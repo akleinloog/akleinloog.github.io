@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Arnoud Kleinloog | My Site</title>
+    <link>/author/arnoud-kleinloog/</link>
+      <atom:link href="/author/arnoud-kleinloog/index.xml" rel="self" type="application/rss+xml" />
+    <description>Arnoud Kleinloog</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Dedicated to the public domain · [Unlicensed](https://github.com/akleinloog/akleinloog.github.io/blob/master/LICENSE) </copyright><lastBuildDate>Sun, 03 May 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/author/arnoud-kleinloog/avatar_hu52a603635ecebd45650b162dadabb4e5_12861_270x270_fill_q90_lanczos_center.jpg</url>
+      <title>Arnoud Kleinloog</title>
+      <link>/author/arnoud-kleinloog/</link>
+    </image>
+    
+    <item>
+      <title>Test Post</title>
+      <link>/post/test-post/</link>
+      <pubDate>Sun, 03 May 2020 00:00:00 +0000</pubDate>
+      <guid>/post/test-post/</guid>
+      <description>&lt;p&gt;This is just a simple test post to see if everything is working correctly. It will be removed and replaced with posts that detail the setup of this blog.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
