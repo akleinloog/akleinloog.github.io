@@ -27,10 +27,10 @@
   
     
   
-  <meta name="description" content="Software Architect">
+  <meta name="description" content="How to set up a simple blog with Hugo and GitHub Pages.">
 
   
-  <link rel="alternate" hreflang="en-us" href="/category/test/">
+  <link rel="alternate" hreflang="en-us" href="/post/my-blog-pt1/">
 
   
 
@@ -212,14 +212,12 @@
   
 
   
-  <link rel="alternate" href="/category/test/index.xml" type="application/rss+xml" title="My Site">
-  
 
   <link rel="manifest" href="/index.webmanifest">
   <link rel="icon" type="image/png" href="/images/icon_hu1d96926d990b8c2ce1741b9516caf288_71361_32x32_fill_lanczos_center_2.png">
   <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu1d96926d990b8c2ce1741b9516caf288_71361_192x192_fill_lanczos_center_2.png">
 
-  <link rel="canonical" href="/category/test/">
+  <link rel="canonical" href="/post/my-blog-pt1/">
 
   
   
@@ -235,18 +233,63 @@
   <meta property="twitter:card" content="summary">
   
   <meta property="og:site_name" content="My Site">
-  <meta property="og:url" content="/category/test/">
-  <meta property="og:title" content="Test | My Site">
-  <meta property="og:description" content="Software Architect"><meta property="og:image" content="/images/icon_hu1d96926d990b8c2ce1741b9516caf288_71361_512x512_fill_lanczos_center_2.png">
+  <meta property="og:url" content="/post/my-blog-pt1/">
+  <meta property="og:title" content="Setting up this Blog - Part 1 | My Site">
+  <meta property="og:description" content="How to set up a simple blog with Hugo and GitHub Pages."><meta property="og:image" content="/images/icon_hu1d96926d990b8c2ce1741b9516caf288_71361_512x512_fill_lanczos_center_2.png">
   <meta property="twitter:image" content="/images/icon_hu1d96926d990b8c2ce1741b9516caf288_71361_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
   
-    <meta property="og:updated_time" content="2020-05-03T00:00:00&#43;00:00">
+    
+      <meta property="article:published_time" content="2020-05-06T00:00:00&#43;00:00">
+    
+    <meta property="article:modified_time" content="2020-05-06T00:00:00&#43;00:00">
   
 
   
 
 
+    
 
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/post/my-blog-pt1/"
+  },
+  "headline": "Setting up this Blog - Part 1",
+  
+  "datePublished": "2020-05-06T00:00:00Z",
+  "dateModified": "2020-05-06T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Arnoud Kleinloog"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "My Site",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/images/icon_hu1d96926d990b8c2ce1741b9516caf288_71361_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "How to set up a simple blog with Hugo and GitHub Pages."
+}
+</script>
+
+  
 
   
 
@@ -254,10 +297,13 @@
   
 
 
+  
 
 
 
-  <title>Test | My Site</title>
+
+
+  <title>Setting up this Blog - Part 1 | My Site</title>
 
 </head>
 
@@ -369,7 +415,7 @@
         
 
         <li class="nav-item">
-          <a class="nav-link " href="/post/"><span>Posts</span></a>
+          <a class="nav-link  active" href="/post/"><span>Posts</span></a>
         </li>
 
         
@@ -459,57 +505,382 @@
 </nav>
 
 
-  
-
-
-
-
-
-
-
-
-
-
-
+  <article class="article">
 
   
 
+
+
+
+
+
+
+
+
+
+
+
+  
+
   
   
+  
+<div class="article-container pt-3">
+  <h1>Setting up this Blog - Part 1</h1>
+
+  
+  <p class="page-subtitle">Getting it up and running&hellip;</p>
+  
+
   
     
-  
-<div class="universal-wrapper pt-3">
-  <h1>Test</h1>
+
+
+<div class="article-metadata">
 
   
+  
+  
+  
+  <div>
+    
+
+  
+  <span><a href="/author/arnoud-kleinloog/">Arnoud Kleinloog</a></span>
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    May 6, 2020
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    3 min read
+  </span>
+  
+
+  
+  
+  
+
+  
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="btn-links mb-3">
+  
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+  
+  <a class="btn btn-outline-primary my-1 mr-1" href="/project/personal-blog/">
+    Project
+  </a>
+  
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
 
   
 </div>
 
 
 
-<div class="universal-wrapper">
+  <div class="article-container">
+
+    <div class="article-style">
+      <p>This is the first in a series of posts detailing the set up of my personal blog. It details the basic set up that is needed to get started.</p>
+<p>I use 
+<a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a> as a static site generator and 
+<a href="https://code.visualstudio.com" target="_blank" rel="noopener">Visual Studio Code</a> as editor. The resulting website is hosted using 
+<a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a>. A nice combination of open source tools with a free hosting provider that poses no restrictions in terms of traffic, size, etc.
+Sounds like a perfect match to me.</p>
+<p>Familiarity with git and the command line are assumed. I use a Mac,en some of the commands may need to be translated to your environment.</p>
+<h2 id="getting-started">Getting started</h2>
+<p>Following this 
+<a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/" target="_blank" rel="noopener">Hugo tutorial</a>, I created two repositories on GitHub.
+One named <em>website</em> for the 
+<a href="https://github.com/akleinloog/website" target="_blank" rel="noopener">sources</a>, and another one for the 
+<a href="https://github.com/akleinloog/akleinloog.github.io" target="_blank" rel="noopener">generated website</a>.</p>
+<div class="alert alert-note">
+  <div>
+    The name of the repository for the generated website has to be specific in order for it to be picked up by GitHub Pages.
+In my case: <strong>akleinloog.github.io</strong>
+  </div>
+</div>
+<p>I decided to dedicate both repositories to the public domain and therefore used the 
+<a href="https://choosealicense.com/licenses/unlicense/" target="_blank" rel="noopener">UNLICENSE</a>.
+Feel free to use anything you find here as you see fit.</p>
+<p>The next step is to clone the repository used for the source:</p>
+<pre><code class="language-bash">git clone https://github.com/&lt;username here&gt;/website.git
+</code></pre>
+<p>And open the project in Visual Studio Code:</p>
+<pre><code class="language-bash">cd website
+code .
+</code></pre>
+<p>Add the following .gitignore file and optionally, save the code workspace:</p>
+<pre><code># MacOS Files
+.DS_Store
+
+# Hugo Working Folders
+resources/
+</code></pre>
+<p>Install Hugo if not already installed:</p>
+<pre><code class="language-bash">brew install hugo
+</code></pre>
+<p>And initialize your repository for Hugo:</p>
+<pre><code class="language-bash">hugo new site . --force
+</code></pre>
+<h2 id="select-a-theme">Select a theme</h2>
+<p>A good overview of available themes can be found 
+<a href="https://jamstackthemes.dev" target="_blank" rel="noopener">here</a>.
+Select Hugo and order the themes by Stars gives you an overview of the most used themes.</p>
+<p>I decided to try 
+<a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic</a>, a feature rich, open source theme developed by George Cushen and made available under the 
+<a href="https://choosealicense.com/licenses/mit/" target="_blank" rel="noopener">MIT</a> license. Thanks George!</p>
+<p>Add the theme as a git submodule:</p>
+<pre><code class="language-bash">git submodule add https://github.com/gcushen/hugo-academic.git themes/academic
+</code></pre>
+<p>Familiarize yourself with Academic, and 
+<a href="https://sourcethemes.com/academic/docs/customization/" target="_blank" rel="noopener">customize</a> it as you see fit.
+A good way to do that, is to clone the 
+<a href="https://github.com/sourcethemes/academic-kickstart" target="_blank" rel="noopener">Academic Kickstart</a> project in a separate directory.
+It provides a good demonstration of what the theme has to offer.</p>
+<h2 id="try-it-out-locally">Try it out locally</h2>
+<p>Experiment with the configuration options and the structure. Run the site in development mode using:</p>
+<pre><code class="language-bash">hugo server
+</code></pre>
+<p>The site will be available at http://localhost:1313.
+Whenever you save your changes, Hugo will pick up on it and automatically refresh it, providing for a pleasant live-editing experience.</p>
+<h2 id="get-ready-to-publish">Get ready to publish</h2>
+<p>Add the repository for the generated website as a git submodule:</p>
+<pre><code class="language-bash">git submodule add -b master https://github.com/&lt;username here&gt;/&lt;username here&gt;.github.io.git public
+</code></pre>
+<p>Doing so ensures that the HTML and JavaScript generated by Hugo will be placed in that repository.</p>
+<p>First, we&rsquo;ll do a manual run. Generate your website:</p>
+<pre><code class="language-bash">hugo -t academic
+</code></pre>
+<p>Test the generated output using the 
+<a href="https://www.npmjs.com/package/serve" target="_blank" rel="noopener">serve package</a>:</p>
+<pre><code class="language-bash">cd public 
+npx serve
+</code></pre>
+<h2 id="automate-it">Automate it</h2>
+<p>Add a file called deploy.sh to the sources repository&rsquo;s main folder. Ensure it is executable:</p>
+<pre><code>chmod +x deploy.sh
+</code></pre>
+<p>Add the following content to that file:</p>
+<pre><code>#!/bin/sh
+
+set -e
+
+echo &quot;Cleaning Publish Folder&quot;
+
+rm -r ./public/*
+
+echo &quot;Running Hugo Build&quot;
+
+hugo -t academic
+
+cd public
+
+echo &quot;Adding changes to git&quot;
+
+git add .
+
+msg=&quot;regenerating site content $(date)&quot;
+
+git commit -m &quot;$msg&quot;
+
+echo &quot;Pushing to master&quot;
+
+git push origin master
+
+cd ..
+
+echo &quot;Deployment Finished&quot;
+</code></pre>
+<p>This script uses Hugo to generate your website and commit the changes to the website&rsquo;s repository.
+By pushing these changes to GitHub, the script effectively deploys your website to production!</p>
+<p>I hope you have enjoyed this as much as I did, in Part 2 I will add google analytics, support for comments and most likely also a contact page.</p>
+
+    </div>
+
+    
+
+
+
+
+
+<div class="article-tags">
   
+  <a class="badge badge-light" href="/tag/academic/">Academic</a>
+  
+  <a class="badge badge-light" href="/tag/hugo/">Hugo</a>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   
+    
+    
+
+
+
+
+
   
     
     
     
-    <div>
-      <h2><a href="/post/test-post/" >Test Post</a></h2>
-      <div class="article-style">
+      
+    
+    
+    
+    <div class="media author-card content-widget-hr">
+      
         
-          Added to see if everything is working, tested with an automatic update.
-        
+        <img class="avatar mr-3 avatar-circle" src="/author/arnoud-kleinloog/avatar_hu52a603635ecebd45650b162dadabb4e5_12861_270x270_fill_q90_lanczos_center.jpg" alt="Arnoud Kleinloog">
+      
+
+      <div class="media-body">
+        <h5 class="card-title"><a href="/">Arnoud Kleinloog</a></h5>
+        <h6 class="card-subtitle">Software Architect</h6>
+        <p class="card-text">Passionate about software architecture and software engineering.</p>
+        <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/in/arnoudkleinloog/" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/akleinloog" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+</ul>
+
       </div>
     </div>
   
 
+
   
 
-</div>
+
+
+
+
+
+
+
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>Related</h3>
+    <ul>
+      
+      <li><a href="/project/personal-blog/">Personal Blog</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+  </div>
+</article>
 
       
 
