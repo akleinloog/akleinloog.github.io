@@ -1,58 +1,34 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Projects | My Site</title>
-    <link>/project/</link>
-      <atom:link href="/project/index.xml" rel="self" type="application/rss+xml" />
-    <description>Projects</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Dedicated to the public domain · [Unlicensed](https://github.com/akleinloog/akleinloog.github.io/blob/master/LICENSE) </copyright><lastBuildDate>Tue, 05 May 2020 00:00:00 +0000</lastBuildDate>
-    <image>
-      <url>/images/icon_hu1d96926d990b8c2ce1741b9516caf288_71361_512x512_fill_lanczos_center_2.png</url>
-      <title>Projects</title>
-      <link>/project/</link>
-    </image>
-    
-    <item>
-      <title>Personal Blog</title>
-      <link>/project/personal-blog/</link>
-      <pubDate>Tue, 05 May 2020 00:00:00 +0000</pubDate>
-      <guid>/project/personal-blog/</guid>
-      <description>&lt;p&gt;The goal of this project was to set up a simple website to use as a personal blog.
-You are currently looking at the result of this!&lt;/p&gt;
-&lt;h2 id=&#34;the-what&#34;&gt;The What&lt;/h2&gt;
-&lt;p&gt;The basic idea was to set up a blog where I can easily manage my posts and provide some info on myself and the projects I work on.
-Having played around with Wordpress in the past, I wanted something different this time.&lt;/p&gt;
-&lt;p&gt;My main requirements:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Easy to use (for me)&lt;/li&gt;
-&lt;li&gt;Easy to host&lt;/li&gt;
-&lt;li&gt;Free of costs (no licence or hosting fees)&lt;/li&gt;
-&lt;li&gt;Learn something new in the process&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;the-why&#34;&gt;The Why&lt;/h2&gt;
-&lt;p&gt;My main motivation is to have a place to keep track of the many technical experiments I do and their outcomes.
-A blog that allows me to write small posts, tag them, and easily search through them seemed like a good solution.&lt;/p&gt;
-&lt;p&gt;If others can also find these experiments and learn from them, that would be an additional benefit. And if they in turn can provide feedback, even better.&lt;/p&gt;
-&lt;h2 id=&#34;the-how&#34;&gt;The How&lt;/h2&gt;
-&lt;p&gt;After looking around a bit I decided to try out the following:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Use 
-&lt;a href=&#34;https://gohugo.io/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Hugo&lt;/a&gt;, a Static Site Generator written in 
-&lt;a href=&#34;https://golang.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Go&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Write the content in 
-&lt;a href=&#34;https://www.markdownguide.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;markdown&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Use a 
-&lt;a href=&#34;https://github.com/akleinloog/website&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GitHub repository&lt;/a&gt; to keep the sources&lt;/li&gt;
-&lt;li&gt;Use another 
-&lt;a href=&#34;https://github.com/akleinloog/akleinloog.github.io&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GitHub repository&lt;/a&gt; to host the resulting blog&lt;/li&gt;
-&lt;li&gt;Open Source the result so others might learn from it&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;the-results&#34;&gt;The Results&lt;/h2&gt;
-&lt;p&gt;The current state of this project is open for all to see. Look around and take a look at the sources if you are interested.&lt;/p&gt;
-&lt;p&gt;This is still a work in progress, I will add some posts that detail what I did and what I used, and hope to add some additional features soon, for example, the possibility for others to comment.&lt;/p&gt;
-&lt;p&gt;I hope you will find this useful somehow!&lt;/p&gt;
-</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Projects | My Site</title><link>https://akleinloog.github.io/project/</link><atom:link href="https://akleinloog.github.io/project/index.xml" rel="self" type="application/rss+xml"/><description>Projects</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Dedicated to the public domain · [Unlicensed](https://github.com/akleinloog/akleinloog.github.io/blob/master/LICENSE)</copyright><lastBuildDate>Tue, 05 May 2020 00:00:00 +0000</lastBuildDate><image><url>https://akleinloog.github.io/images/icon_hu1d96926d990b8c2ce1741b9516caf288_71361_512x512_fill_lanczos_center_2.png</url><title>Projects</title><link>https://akleinloog.github.io/project/</link></image><item><title>Personal Blog</title><link>https://akleinloog.github.io/project/personal-blog/</link><pubDate>Tue, 05 May 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/project/personal-blog/</guid><description>&lt;p>The goal of this project was to set up a simple website to use as a personal blog.
+You are currently looking at the result of this!&lt;/p>
+&lt;h2 id="the-what">The What&lt;/h2>
+&lt;p>The basic idea was to set up a blog where I can easily manage my posts and provide some info on myself and the projects I work on.
+Having played around with Wordpress in the past, I wanted something different this time.&lt;/p>
+&lt;p>My main requirements:&lt;/p>
+&lt;ul>
+&lt;li>Easy to use (for me)&lt;/li>
+&lt;li>Easy to host&lt;/li>
+&lt;li>Free of costs (no licence or hosting fees)&lt;/li>
+&lt;li>Learn something new in the process&lt;/li>
+&lt;/ul>
+&lt;h2 id="the-why">The Why&lt;/h2>
+&lt;p>My main motivation is to have a place to keep track of the many technical experiments I do and their outcomes.
+A blog that allows me to write small posts, tag them, and easily search through them seemed like a good solution.&lt;/p>
+&lt;p>If others can also find these experiments and learn from them, that would be an additional benefit. And if they in turn can provide feedback, even better.&lt;/p>
+&lt;h2 id="the-how">The How&lt;/h2>
+&lt;p>After looking around a bit I decided to try out the following:&lt;/p>
+&lt;ul>
+&lt;li>Use
+&lt;a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo&lt;/a>, a Static Site Generator written in
+&lt;a href="https://golang.org/" target="_blank" rel="noopener">Go&lt;/a>&lt;/li>
+&lt;li>Write the content in
+&lt;a href="https://www.markdownguide.org/" target="_blank" rel="noopener">markdown&lt;/a>&lt;/li>
+&lt;li>Use a
+&lt;a href="https://github.com/akleinloog/website" target="_blank" rel="noopener">GitHub repository&lt;/a> to keep the sources&lt;/li>
+&lt;li>Use another
+&lt;a href="https://github.com/akleinloog/akleinloog.github.io" target="_blank" rel="noopener">GitHub repository&lt;/a> to host the resulting blog&lt;/li>
+&lt;li>Open Source the result so others might learn from it&lt;/li>
+&lt;/ul>
+&lt;h2 id="the-results">The Results&lt;/h2>
+&lt;p>The current state of this project is open for all to see. Look around and take a look at the sources if you are interested.&lt;/p>
+&lt;p>This is still a work in progress, I will add some posts that detail what I did and what I used, and hope to add some additional features soon, for example, the possibility for others to comment.&lt;/p>
+&lt;p>I hope you will find this useful somehow!&lt;/p></description></item></channel></rss>

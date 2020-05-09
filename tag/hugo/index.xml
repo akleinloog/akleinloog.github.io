@@ -1,180 +1,132 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Hugo | My Site</title>
-    <link>/tag/hugo/</link>
-      <atom:link href="/tag/hugo/index.xml" rel="self" type="application/rss+xml" />
-    <description>Hugo</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Dedicated to the public domain · [Unlicensed](https://github.com/akleinloog/akleinloog.github.io/blob/master/LICENSE) </copyright><lastBuildDate>Wed, 06 May 2020 00:00:00 +0000</lastBuildDate>
-    <image>
-      <url>/images/icon_hu1d96926d990b8c2ce1741b9516caf288_71361_512x512_fill_lanczos_center_2.png</url>
-      <title>Hugo</title>
-      <link>/tag/hugo/</link>
-    </image>
-    
-    <item>
-      <title>Setting up this Blog - Part 1</title>
-      <link>/post/my-blog-pt1/</link>
-      <pubDate>Wed, 06 May 2020 00:00:00 +0000</pubDate>
-      <guid>/post/my-blog-pt1/</guid>
-      <description>&lt;p&gt;This is the first in a series of posts detailing the set up of my personal blog. It details the basic set up that is needed to get started.&lt;/p&gt;
-&lt;p&gt;I use 
-&lt;a href=&#34;https://gohugo.io&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Hugo&lt;/a&gt; as a static site generator and 
-&lt;a href=&#34;https://code.visualstudio.com&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Visual Studio Code&lt;/a&gt; as editor. The resulting website is hosted using 
-&lt;a href=&#34;https://pages.github.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GitHub Pages&lt;/a&gt;. A nice combination of open source tools with a free hosting provider that poses no restrictions in terms of traffic, size, etc.
-Sounds like a perfect match to me.&lt;/p&gt;
-&lt;p&gt;Familiarity with git and the command line are assumed. I use a Mac,en some of the commands may need to be translated to your environment.&lt;/p&gt;
-&lt;h2 id=&#34;getting-started&#34;&gt;Getting started&lt;/h2&gt;
-&lt;p&gt;Following this 
-&lt;a href=&#34;https://gohugo.io/hosting-and-deployment/hosting-on-github/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Hugo tutorial&lt;/a&gt;, I created two repositories on GitHub.
-One named &lt;em&gt;website&lt;/em&gt; for the 
-&lt;a href=&#34;https://github.com/akleinloog/website&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;sources&lt;/a&gt;, and another one for the 
-&lt;a href=&#34;https://github.com/akleinloog/akleinloog.github.io&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;generated website&lt;/a&gt;.&lt;/p&gt;
-&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;div&gt;
-    The name of the repository for the generated website has to be specific in order for it to be picked up by GitHub Pages.
-In my case: &lt;strong&gt;akleinloog.github.io&lt;/strong&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;I decided to dedicate both repositories to the public domain and therefore used the 
-&lt;a href=&#34;https://choosealicense.com/licenses/unlicense/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;UNLICENSE&lt;/a&gt;.
-Feel free to use anything you find here as you see fit.&lt;/p&gt;
-&lt;p&gt;The next step is to clone the repository used for the source:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;git clone https://github.com/&amp;lt;username here&amp;gt;/website.git
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;And open the project in Visual Studio Code:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cd website
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hugo | My Site</title><link>https://akleinloog.github.io/tag/hugo/</link><atom:link href="https://akleinloog.github.io/tag/hugo/index.xml" rel="self" type="application/rss+xml"/><description>Hugo</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Dedicated to the public domain · [Unlicensed](https://github.com/akleinloog/akleinloog.github.io/blob/master/LICENSE)</copyright><lastBuildDate>Wed, 06 May 2020 00:00:00 +0000</lastBuildDate><image><url>https://akleinloog.github.io/images/icon_hu1d96926d990b8c2ce1741b9516caf288_71361_512x512_fill_lanczos_center_2.png</url><title>Hugo</title><link>https://akleinloog.github.io/tag/hugo/</link></image><item><title>Setting up this Blog - Part 1</title><link>https://akleinloog.github.io/post/my-blog-pt1/</link><pubDate>Wed, 06 May 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/post/my-blog-pt1/</guid><description>&lt;p>This is the first in a series of posts detailing the set up of my personal blog. It details the basic set up that is needed to get started.&lt;/p>
+&lt;p>I use
+&lt;a href="https://gohugo.io" target="_blank" rel="noopener">Hugo&lt;/a> as a static site generator and
+&lt;a href="https://code.visualstudio.com" target="_blank" rel="noopener">Visual Studio Code&lt;/a> as editor. The resulting website is hosted using
+&lt;a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages&lt;/a>. A nice combination of open source tools with a free hosting provider that poses no restrictions in terms of traffic, size, etc.
+Sounds like a perfect match to me.&lt;/p>
+&lt;p>Familiarity with git and the command line are assumed. I use a Mac,en some of the commands may need to be translated to your environment.&lt;/p>
+&lt;h2 id="getting-started">Getting started&lt;/h2>
+&lt;p>Following this
+&lt;a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/" target="_blank" rel="noopener">Hugo tutorial&lt;/a>, I created two repositories on GitHub.
+One named &lt;em>website&lt;/em> for the
+&lt;a href="https://github.com/akleinloog/website" target="_blank" rel="noopener">sources&lt;/a>, and another one for the
+&lt;a href="https://github.com/akleinloog/akleinloog.github.io" target="_blank" rel="noopener">generated website&lt;/a>.&lt;/p>
+&lt;div class="alert alert-note">
+&lt;div>
+The name of the repository for the generated website has to be specific in order for it to be picked up by GitHub Pages.
+In my case: &lt;strong>akleinloog.github.io&lt;/strong>
+&lt;/div>
+&lt;/div>
+&lt;p>I decided to dedicate both repositories to the public domain and therefore used the
+&lt;a href="https://choosealicense.com/licenses/unlicense/" target="_blank" rel="noopener">UNLICENSE&lt;/a>.
+Feel free to use anything you find here as you see fit.&lt;/p>
+&lt;p>The next step is to clone the repository used for the source:&lt;/p>
+&lt;pre>&lt;code class="language-bash">git clone https://github.com/&amp;lt;username here&amp;gt;/website.git
+&lt;/code>&lt;/pre>
+&lt;p>And open the project in Visual Studio Code:&lt;/p>
+&lt;pre>&lt;code class="language-bash">cd website
 code .
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Add the following .gitignore file and optionally, save the code workspace:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;# MacOS Files
+&lt;/code>&lt;/pre>
+&lt;p>Add the following .gitignore file and optionally, save the code workspace:&lt;/p>
+&lt;pre>&lt;code># MacOS Files
 .DS_Store
-
 # Hugo Working Folders
 resources/
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Install Hugo if not already installed:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;brew install hugo
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;And initialize your repository for Hugo:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;hugo new site . --force
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;select-a-theme&#34;&gt;Select a theme&lt;/h2&gt;
-&lt;p&gt;A good overview of available themes can be found 
-&lt;a href=&#34;https://jamstackthemes.dev&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.
-Select Hugo and order the themes by Stars gives you an overview of the most used themes.&lt;/p&gt;
-&lt;p&gt;I decided to try 
-&lt;a href=&#34;https://sourcethemes.com/academic/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Academic&lt;/a&gt;, a feature rich, open source theme developed by George Cushen and made available under the 
-&lt;a href=&#34;https://choosealicense.com/licenses/mit/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;MIT&lt;/a&gt; license. Thanks George!&lt;/p&gt;
-&lt;p&gt;Add the theme as a git submodule:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;git submodule add https://github.com/gcushen/hugo-academic.git themes/academic
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Familiarize yourself with Academic, and 
-&lt;a href=&#34;https://sourcethemes.com/academic/docs/customization/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;customize&lt;/a&gt; it as you see fit.
-A good way to do that, is to clone the 
-&lt;a href=&#34;https://github.com/sourcethemes/academic-kickstart&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Academic Kickstart&lt;/a&gt; project in a separate directory.
-It provides a good demonstration of what the theme has to offer.&lt;/p&gt;
-&lt;h2 id=&#34;try-it-out-locally&#34;&gt;Try it out locally&lt;/h2&gt;
-&lt;p&gt;Experiment with the configuration options and the structure. Run the site in development mode using:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;hugo server
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The site will be available at http://localhost:1313.
-Whenever you save your changes, Hugo will pick up on it and automatically refresh it, providing for a pleasant live-editing experience.&lt;/p&gt;
-&lt;h2 id=&#34;get-ready-to-publish&#34;&gt;Get ready to publish&lt;/h2&gt;
-&lt;p&gt;Add the repository for the generated website as a git submodule:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;git submodule add -b master https://github.com/&amp;lt;username here&amp;gt;/&amp;lt;username here&amp;gt;.github.io.git public
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Doing so ensures that the HTML and JavaScript generated by Hugo will be placed in that repository.&lt;/p&gt;
-&lt;p&gt;First, we&amp;rsquo;ll do a manual run. Generate your website:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;hugo -t academic
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Test the generated output using the 
-&lt;a href=&#34;https://www.npmjs.com/package/serve&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;serve package&lt;/a&gt;:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cd public 
+&lt;/code>&lt;/pre>
+&lt;p>Install Hugo if not already installed:&lt;/p>
+&lt;pre>&lt;code class="language-bash">brew install hugo
+&lt;/code>&lt;/pre>
+&lt;p>And initialize your repository for Hugo:&lt;/p>
+&lt;pre>&lt;code class="language-bash">hugo new site . --force
+&lt;/code>&lt;/pre>
+&lt;h2 id="select-a-theme">Select a theme&lt;/h2>
+&lt;p>A good overview of available themes can be found
+&lt;a href="https://jamstackthemes.dev" target="_blank" rel="noopener">here&lt;/a>.
+Select Hugo and order the themes by Stars gives you an overview of the most used themes.&lt;/p>
+&lt;p>I decided to try
+&lt;a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic&lt;/a>, a feature rich, open source theme developed by George Cushen and made available under the
+&lt;a href="https://choosealicense.com/licenses/mit/" target="_blank" rel="noopener">MIT&lt;/a> license. Thanks George!&lt;/p>
+&lt;p>Add the theme as a git submodule:&lt;/p>
+&lt;pre>&lt;code class="language-bash">git submodule add https://github.com/gcushen/hugo-academic.git themes/academic
+&lt;/code>&lt;/pre>
+&lt;p>Familiarize yourself with Academic, and
+&lt;a href="https://sourcethemes.com/academic/docs/customization/" target="_blank" rel="noopener">customize&lt;/a> it as you see fit.
+A good way to do that, is to clone the
+&lt;a href="https://github.com/sourcethemes/academic-kickstart" target="_blank" rel="noopener">Academic Kickstart&lt;/a> project in a separate directory.
+It provides a good demonstration of what the theme has to offer.&lt;/p>
+&lt;h2 id="try-it-out-locally">Try it out locally&lt;/h2>
+&lt;p>Experiment with the configuration options and the structure. Run the site in development mode using:&lt;/p>
+&lt;pre>&lt;code class="language-bash">hugo server
+&lt;/code>&lt;/pre>
+&lt;p>The site will be available at http://localhost:1313.
+Whenever you save your changes, Hugo will pick up on it and automatically refresh it, providing for a pleasant live-editing experience.&lt;/p>
+&lt;h2 id="get-ready-to-publish">Get ready to publish&lt;/h2>
+&lt;p>Add the repository for the generated website as a git submodule:&lt;/p>
+&lt;pre>&lt;code class="language-bash">git submodule add -b master https://github.com/&amp;lt;username here&amp;gt;/&amp;lt;username here&amp;gt;.github.io.git public
+&lt;/code>&lt;/pre>
+&lt;p>Doing so ensures that the HTML and JavaScript generated by Hugo will be placed in that repository.&lt;/p>
+&lt;p>First, we&amp;rsquo;ll do a manual run. Generate your website:&lt;/p>
+&lt;pre>&lt;code class="language-bash">hugo -t academic
+&lt;/code>&lt;/pre>
+&lt;p>Test the generated output using the
+&lt;a href="https://www.npmjs.com/package/serve" target="_blank" rel="noopener">serve package&lt;/a>:&lt;/p>
+&lt;pre>&lt;code class="language-bash">cd public
 npx serve
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;automate-it&#34;&gt;Automate it&lt;/h2&gt;
-&lt;p&gt;Add a file called deploy.sh to the sources repository&amp;rsquo;s main folder. Ensure it is executable:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;chmod +x deploy.sh
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Add the following content to that file:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;#!/bin/sh
-
+&lt;/code>&lt;/pre>
+&lt;h2 id="automate-it">Automate it&lt;/h2>
+&lt;p>Add a file called deploy.sh to the sources repository&amp;rsquo;s main folder. Ensure it is executable:&lt;/p>
+&lt;pre>&lt;code>chmod +x deploy.sh
+&lt;/code>&lt;/pre>
+&lt;p>Add the following content to that file:&lt;/p>
+&lt;pre>&lt;code>#!/bin/sh
 set -e
-
 echo &amp;quot;Cleaning Publish Folder&amp;quot;
-
 rm -r ./public/*
-
 echo &amp;quot;Running Hugo Build&amp;quot;
-
 hugo -t academic
-
 cd public
-
 echo &amp;quot;Adding changes to git&amp;quot;
-
 git add .
-
 msg=&amp;quot;regenerating site content $(date)&amp;quot;
-
 git commit -m &amp;quot;$msg&amp;quot;
-
 echo &amp;quot;Pushing to master&amp;quot;
-
 git push origin master
-
 cd ..
-
 echo &amp;quot;Deployment Finished&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This script uses Hugo to generate your website and commit the changes to the website&amp;rsquo;s repository.
-By pushing these changes to GitHub, the script effectively deploys your website to production!&lt;/p&gt;
-&lt;p&gt;I hope you have enjoyed this as much as I did, in Part 2 I will add google analytics, support for comments and most likely also a contact page.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Personal Blog</title>
-      <link>/project/personal-blog/</link>
-      <pubDate>Tue, 05 May 2020 00:00:00 +0000</pubDate>
-      <guid>/project/personal-blog/</guid>
-      <description>&lt;p&gt;The goal of this project was to set up a simple website to use as a personal blog.
-You are currently looking at the result of this!&lt;/p&gt;
-&lt;h2 id=&#34;the-what&#34;&gt;The What&lt;/h2&gt;
-&lt;p&gt;The basic idea was to set up a blog where I can easily manage my posts and provide some info on myself and the projects I work on.
-Having played around with Wordpress in the past, I wanted something different this time.&lt;/p&gt;
-&lt;p&gt;My main requirements:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Easy to use (for me)&lt;/li&gt;
-&lt;li&gt;Easy to host&lt;/li&gt;
-&lt;li&gt;Free of costs (no licence or hosting fees)&lt;/li&gt;
-&lt;li&gt;Learn something new in the process&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;the-why&#34;&gt;The Why&lt;/h2&gt;
-&lt;p&gt;My main motivation is to have a place to keep track of the many technical experiments I do and their outcomes.
-A blog that allows me to write small posts, tag them, and easily search through them seemed like a good solution.&lt;/p&gt;
-&lt;p&gt;If others can also find these experiments and learn from them, that would be an additional benefit. And if they in turn can provide feedback, even better.&lt;/p&gt;
-&lt;h2 id=&#34;the-how&#34;&gt;The How&lt;/h2&gt;
-&lt;p&gt;After looking around a bit I decided to try out the following:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Use 
-&lt;a href=&#34;https://gohugo.io/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Hugo&lt;/a&gt;, a Static Site Generator written in 
-&lt;a href=&#34;https://golang.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Go&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Write the content in 
-&lt;a href=&#34;https://www.markdownguide.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;markdown&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Use a 
-&lt;a href=&#34;https://github.com/akleinloog/website&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GitHub repository&lt;/a&gt; to keep the sources&lt;/li&gt;
-&lt;li&gt;Use another 
-&lt;a href=&#34;https://github.com/akleinloog/akleinloog.github.io&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GitHub repository&lt;/a&gt; to host the resulting blog&lt;/li&gt;
-&lt;li&gt;Open Source the result so others might learn from it&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;the-results&#34;&gt;The Results&lt;/h2&gt;
-&lt;p&gt;The current state of this project is open for all to see. Look around and take a look at the sources if you are interested.&lt;/p&gt;
-&lt;p&gt;This is still a work in progress, I will add some posts that detail what I did and what I used, and hope to add some additional features soon, for example, the possibility for others to comment.&lt;/p&gt;
-&lt;p&gt;I hope you will find this useful somehow!&lt;/p&gt;
-</description>
-    </item>
-    
-  </channel>
-</rss>
+&lt;/code>&lt;/pre>
+&lt;p>This script uses Hugo to generate your website and commit the changes to the website&amp;rsquo;s repository.
+By pushing these changes to GitHub, the script effectively deploys your website to production!&lt;/p>
+&lt;p>I hope you have enjoyed this as much as I did, in Part 2 I will add google analytics, support for comments and most likely also a contact page.&lt;/p></description></item><item><title>Personal Blog</title><link>https://akleinloog.github.io/project/personal-blog/</link><pubDate>Tue, 05 May 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/project/personal-blog/</guid><description>&lt;p>The goal of this project was to set up a simple website to use as a personal blog.
+You are currently looking at the result of this!&lt;/p>
+&lt;h2 id="the-what">The What&lt;/h2>
+&lt;p>The basic idea was to set up a blog where I can easily manage my posts and provide some info on myself and the projects I work on.
+Having played around with Wordpress in the past, I wanted something different this time.&lt;/p>
+&lt;p>My main requirements:&lt;/p>
+&lt;ul>
+&lt;li>Easy to use (for me)&lt;/li>
+&lt;li>Easy to host&lt;/li>
+&lt;li>Free of costs (no licence or hosting fees)&lt;/li>
+&lt;li>Learn something new in the process&lt;/li>
+&lt;/ul>
+&lt;h2 id="the-why">The Why&lt;/h2>
+&lt;p>My main motivation is to have a place to keep track of the many technical experiments I do and their outcomes.
+A blog that allows me to write small posts, tag them, and easily search through them seemed like a good solution.&lt;/p>
+&lt;p>If others can also find these experiments and learn from them, that would be an additional benefit. And if they in turn can provide feedback, even better.&lt;/p>
+&lt;h2 id="the-how">The How&lt;/h2>
+&lt;p>After looking around a bit I decided to try out the following:&lt;/p>
+&lt;ul>
+&lt;li>Use
+&lt;a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo&lt;/a>, a Static Site Generator written in
+&lt;a href="https://golang.org/" target="_blank" rel="noopener">Go&lt;/a>&lt;/li>
+&lt;li>Write the content in
+&lt;a href="https://www.markdownguide.org/" target="_blank" rel="noopener">markdown&lt;/a>&lt;/li>
+&lt;li>Use a
+&lt;a href="https://github.com/akleinloog/website" target="_blank" rel="noopener">GitHub repository&lt;/a> to keep the sources&lt;/li>
+&lt;li>Use another
+&lt;a href="https://github.com/akleinloog/akleinloog.github.io" target="_blank" rel="noopener">GitHub repository&lt;/a> to host the resulting blog&lt;/li>
+&lt;li>Open Source the result so others might learn from it&lt;/li>
+&lt;/ul>
+&lt;h2 id="the-results">The Results&lt;/h2>
+&lt;p>The current state of this project is open for all to see. Look around and take a look at the sources if you are interested.&lt;/p>
+&lt;p>This is still a work in progress, I will add some posts that detail what I did and what I used, and hope to add some additional features soon, for example, the possibility for others to comment.&lt;/p>
+&lt;p>I hope you will find this useful somehow!&lt;/p></description></item></channel></rss>
