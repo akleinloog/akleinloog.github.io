@@ -1,4 +1,44 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts | My Site</title><link>https://akleinloog.github.io/post/</link><atom:link href="https://akleinloog.github.io/post/index.xml" rel="self" type="application/rss+xml"/><description>Posts</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Dedicated to the public domain · [Unlicensed](https://github.com/akleinloog/akleinloog.github.io/blob/master/LICENSE)</copyright><image><url>https://akleinloog.github.io/images/icon_hu1d96926d990b8c2ce1741b9516caf288_71361_512x512_fill_lanczos_center_2.png</url><title>Posts</title><link>https://akleinloog.github.io/post/</link></image><item><title>Setting up this Blog - Part 1</title><link>https://akleinloog.github.io/post/my-blog-pt1/</link><pubDate>Wed, 06 May 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/post/my-blog-pt1/</guid><description>&lt;p>This is the first in a series of posts detailing the set up of my personal blog. It details the basic set up that is needed to get started.&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts | My Site</title><link>https://akleinloog.github.io/post/</link><atom:link href="https://akleinloog.github.io/post/index.xml" rel="self" type="application/rss+xml"/><description>Posts</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Dedicated to the public domain · [Unlicensed](https://github.com/akleinloog/akleinloog.github.io/blob/master/LICENSE)</copyright><image><url>https://akleinloog.github.io/images/icon_hu1d96926d990b8c2ce1741b9516caf288_71361_512x512_fill_lanczos_center_2.png</url><title>Posts</title><link>https://akleinloog.github.io/post/</link></image><item><title>Setting up this Blog - Part 2</title><link>https://akleinloog.github.io/post/my-blog-pt2/</link><pubDate>Sat, 09 May 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/post/my-blog-pt2/</guid><description>&lt;p>This is the second part in a series of posts detailing the set up of my personal blog.
+It details how to enable google analytics, commenting and a simple contact page.
+See
+&lt;a href="https://akleinloog.github.io/post/my-blog-pt1">part 1&lt;/a> for the basic setup.&lt;/p>
+&lt;h2 id="enable-google-analytics">Enable Google Analytics&lt;/h2>
+&lt;p>
+&lt;a href="https://marketingplatform.google.com/about/analytics/" target="_blank" rel="noopener">Google Analytics&lt;/a> can provide you with some interesting insights on your site&amp;rsquo;s visitors and the way they use your site. Enabling it on my personal blog provides a nice opportunity to learn a bit more about the possibilities it offers to site owners.&lt;/p>
+&lt;p>Lucky for me, it is a straight forward exercise. After signing up for google analytics and creating an account for your website, all you need to do is open your &lt;em>params.toml&lt;/em> in _/config/&lt;em>default&lt;/em> and add the account id:&lt;/p>
+&lt;pre>&lt;code class="language-r">############################
+## Marketing
+############################
+[marketing]
+google_analytics = &amp;quot;UA-***&amp;quot;
+# google_tag_manager = &amp;quot;&amp;quot;
+&lt;/code>&lt;/pre>
+&lt;p>I signed up for
+&lt;a href="https://marketingplatform.google.com/about/tag-manager/" target="_blank" rel="noopener">Google Tag Manager&lt;/a> as well, and tried to activate it, but no luck so far. In order to get Google Analytics to work I had to comment out the &lt;em>google_tag_manager&lt;/em> entry. If I decide to take another look at this and get it to work, I&amp;rsquo;ll detail it in a follow up post.&lt;/p>
+&lt;p>The next step is to configure the base URL of your site, in &lt;em>config.toml&lt;/em> in _/config/&lt;em>default&lt;/em>:&lt;/p>
+&lt;pre>&lt;code class="language-r"># The URL of your site.
+baseurl = &amp;quot;https://&amp;lt;username here&amp;gt;.github.io/&amp;quot;
+&lt;/code>&lt;/pre>
+&lt;p>The last change is an improvement to the deploy script we created in the previous post.
+In &lt;em>deploy.sh&lt;/em> replace the following:&lt;/p>
+&lt;pre>&lt;code class="language-bash">echo &amp;quot;Running Hugo Build&amp;quot;
+hugo -t academic
+&lt;/code>&lt;/pre>
+&lt;p>with:&lt;/p>
+&lt;pre>&lt;code class="language-bash">echo &amp;quot;Running Hugo Build&amp;quot;
+env HUGO_ENV=&amp;quot;production&amp;quot; hugo --gc --minify -t academic -b https://&amp;lt;username here&amp;gt;.github.io
+&lt;/code>&lt;/pre>
+&lt;p>Doing so will activate the Google Analytics scripts when the site is running in production. In addition, it also
+&lt;a href="https://gohugo.io/commands/hugo/" target="_blank" rel="noopener">instructs Hugo&lt;/a> to run some cleanup tasks after the build and to minify the output, something I didn&amp;rsquo;t pay attention to in my previous post.&lt;/p>
+&lt;h2 id="enable-google-search-console">Enable Google Search Console&lt;/h2>
+&lt;p>Another thing I decided to add is
+&lt;a href="https://search.google.com/search-console/about" target="_blank" rel="noopener">Google Search Console&lt;/a>, another free-to-use service offered by Google that helps you monitor, maintain, and troubleshoot your site&amp;rsquo;s presence in Google Search results.&lt;/p>
+&lt;p>After using the &amp;lsquo;URL prefix&amp;rsquo; method, my site ownership was automatically verified based on the Google Analytics account. I added an additional verification method by going to &lt;em>Settings-&amp;gt;Ownership Verification&lt;/em>, and selecting &lt;em>HTML File&lt;/em>. Download the file, add it to your &lt;em>/static&lt;/em> folder and redeploy the site:&lt;/p>
+&lt;pre>&lt;code class="language-bash">./deploy.sh
+&lt;/code>&lt;/pre>
+&lt;p>Of course I realize that, as is the case with most &amp;lsquo;free service&amp;rsquo; offerings, I am being part of the product here. Google will use all information they get in ways the see fit. Since what I am doing here is &amp;lsquo;out in the open&amp;rsquo; and dedicated to public domain, I figured it would make a good opportunity to learn more about these Google services, and I appreciate the information (or at least some of it) being shared with me as well.&lt;/p>
+&lt;h2 id="next-step">Next Step&lt;/h2>
+&lt;p>The next step is to enable visitors to comment on posts with Discuss. I&amp;rsquo;ll post part 3 when it is up and running&amp;hellip;&lt;/p></description></item><item><title>Setting up this Blog - Part 1</title><link>https://akleinloog.github.io/post/my-blog-pt1/</link><pubDate>Wed, 06 May 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/post/my-blog-pt1/</guid><description>&lt;p>This is the first in a series of posts detailing the set up of my personal blog. It details the basic set up that is needed to get started.&lt;/p>
 &lt;p>I use
 &lt;a href="https://gohugo.io" target="_blank" rel="noopener">Hugo&lt;/a> as a static site generator and
 &lt;a href="https://code.visualstudio.com" target="_blank" rel="noopener">Visual Studio Code&lt;/a> as editor. The resulting website is hosted using
