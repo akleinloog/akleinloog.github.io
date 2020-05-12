@@ -15,7 +15,11 @@ google_analytics = &amp;quot;UA-***&amp;quot;
 &lt;/code>&lt;/pre>
 &lt;p>I signed up for
 &lt;a href="https://marketingplatform.google.com/about/tag-manager/" target="_blank" rel="noopener">Google Tag Manager&lt;/a> as well, and tried to activate it, but no luck so far. In order to get Google Analytics to work I had to comment out the &lt;em>google_tag_manager&lt;/em> entry. If I decide to take another look at this and get it to work, I&amp;rsquo;ll detail it in a follow up post.&lt;/p>
-&lt;p>The next step is to configure the base URL of your site, in &lt;em>config.toml&lt;/em> in _/config/&lt;em>default&lt;/em>:&lt;/p>
+&lt;p>The next step is to configure the base URL of your site, in &lt;em>config.toml&lt;/em> in _/config/&lt;em>default&lt;/em>. If you used a custom domain:&lt;/p>
+&lt;pre>&lt;code class="language-r"># The URL of your site.
+baseurl = &amp;quot;https://www.yourdomain.com/&amp;quot;
+&lt;/code>&lt;/pre>
+&lt;p>Otherwise, use your GitHub Pages URL:&lt;/p>
 &lt;pre>&lt;code class="language-r"># The URL of your site.
 baseurl = &amp;quot;https://&amp;lt;username here&amp;gt;.github.io/&amp;quot;
 &lt;/code>&lt;/pre>
@@ -37,8 +41,24 @@ env HUGO_ENV=&amp;quot;production&amp;quot; hugo --gc --minify -t academic -b ht
 &lt;pre>&lt;code class="language-bash">./deploy.sh
 &lt;/code>&lt;/pre>
 &lt;p>Of course I realize that, as is the case with most &amp;lsquo;free service&amp;rsquo; offerings, I am being part of the product here. Google will use all information they get in ways they see fit. Since what I am doing here is &amp;lsquo;out in the open&amp;rsquo; and dedicated to the public domain, I figured it would make a good opportunity to learn more about these Google services, and I appreciate that the collected information (or at least some of it) is shared with me as well.&lt;/p>
+&lt;h2 id="commenting-with-disqus">Commenting with Disqus&lt;/h2>
+&lt;p>Enabling others to comment on your site turns it into an interactive site and is relatively easy to do.
+First go to &lt;a href="https://disqus.com">https://disqus.com&lt;/a> and sign up. I selected the basic, free package. Then open &lt;em>params.toml&lt;/em> in your _config/&lt;em>default&lt;/em> directory and fill in the comments section to enable commenting:&lt;/p>
+&lt;pre>&lt;code class="language-r">############################
+## Comments
+############################
+[comments]
+...
+engine = 1
+...
+[comments.disqus]
+shortname = &amp;quot;&amp;lt;shortname&amp;gt;&amp;quot; # Paste the shortname from your Disqus dashboard
+&lt;/code>&lt;/pre>
+&lt;p>When you run the site locally, the commenting section won&amp;rsquo;t be enabled, but you should see a warning like
+&lt;em>&amp;ldquo;Disqus comments not available by default when the website is previewed locally.&amp;quot;&lt;/em> at the bottom of your posts.&lt;/p>
+&lt;p>Deploy your website to production and see how it works!&lt;/p>
 &lt;h2 id="next-step">Next Step&lt;/h2>
-&lt;p>The next step is to enable visitors to comment on posts with Discuss. I&amp;rsquo;ll post part 3 when it is up and running&amp;hellip;&lt;/p></description></item><item><title>Setting up this Blog - Part 1</title><link>https://akleinloog.github.io/post/my-blog-pt1/</link><pubDate>Wed, 06 May 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/post/my-blog-pt1/</guid><description>&lt;p>This is the first in a series of posts detailing the set up of my personal blog. It covers the basic steps needed to get started.&lt;/p>
+&lt;p>The next step is to add a simple contact page. I&amp;rsquo;ll update this post when it is up and running&amp;hellip;&lt;/p></description></item><item><title>Setting up this Blog - Part 1</title><link>https://akleinloog.github.io/post/my-blog-pt1/</link><pubDate>Wed, 06 May 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/post/my-blog-pt1/</guid><description>&lt;p>This is the first in a series of posts detailing the set up of my personal blog. It covers the basic steps needed to get started.&lt;/p>
 &lt;p>I use
 &lt;a href="https://gohugo.io" target="_blank" rel="noopener">Hugo&lt;/a> as a static site generator and
 &lt;a href="https://code.visualstudio.com" target="_blank" rel="noopener">Visual Studio Code&lt;/a> as editor. The resulting website is hosted using
@@ -94,6 +114,12 @@ Select Hugo and order the themes by Stars gives you an overview of the most used
 A good way to do that, is to clone the
 &lt;a href="https://github.com/sourcethemes/academic-kickstart" target="_blank" rel="noopener">Academic Kickstart&lt;/a> project in a separate directory.
 It provides a good demonstration of what the theme has to offer.&lt;/p>
+&lt;h2 id="add-some-content">Add some content&lt;/h2>
+&lt;p>First add the configuration files. You can copy the ones from the Academic Kickstart project to get started. Read through them and adjust as you see fit.&lt;/p>
+&lt;p>Also copy the &lt;em>page_sharer.toml&lt;/em> file in the &lt;em>data&lt;/em> folder to your local project.&lt;/p>
+&lt;p>Playing around with Academic&amp;rsquo;s many widgets using the Kickstart project should give you a fair idea on what other content you want to add.
+You can also have a look at my
+&lt;a href="https://github.com/akleinloog/website" target="_blank" rel="noopener">sources repository&lt;/a> to see what I did for this blog.&lt;/p>
 &lt;h2 id="try-it-out-locally">Try it out locally&lt;/h2>
 &lt;p>Experiment with the configuration options and the structure. Run the site in development mode using:&lt;/p>
 &lt;pre>&lt;code class="language-bash">hugo server
