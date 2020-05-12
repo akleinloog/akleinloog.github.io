@@ -38,13 +38,13 @@ env HUGO_ENV=&amp;quot;production&amp;quot; hugo --gc --minify -t academic -b ht
 &lt;/code>&lt;/pre>
 &lt;p>Of course I realize that, as is the case with most &amp;lsquo;free service&amp;rsquo; offerings, I am being part of the product here. Google will use all information they get in ways they see fit. Since what I am doing here is &amp;lsquo;out in the open&amp;rsquo; and dedicated to the public domain, I figured it would make a good opportunity to learn more about these Google services, and I appreciate that the collected information (or at least some of it) is shared with me as well.&lt;/p>
 &lt;h2 id="next-step">Next Step&lt;/h2>
-&lt;p>The next step is to enable visitors to comment on posts with Discuss. I&amp;rsquo;ll post part 3 when it is up and running&amp;hellip;&lt;/p></description></item><item><title>Setting up this Blog - Part 1</title><link>https://akleinloog.github.io/post/my-blog-pt1/</link><pubDate>Wed, 06 May 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/post/my-blog-pt1/</guid><description>&lt;p>This is the first in a series of posts detailing the set up of my personal blog. It details the basic set up that is needed to get started.&lt;/p>
+&lt;p>The next step is to enable visitors to comment on posts with Discuss. I&amp;rsquo;ll post part 3 when it is up and running&amp;hellip;&lt;/p></description></item><item><title>Setting up this Blog - Part 1</title><link>https://akleinloog.github.io/post/my-blog-pt1/</link><pubDate>Wed, 06 May 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/post/my-blog-pt1/</guid><description>&lt;p>This is the first in a series of posts detailing the set up of my personal blog. It covers the basic steps needed to get started.&lt;/p>
 &lt;p>I use
 &lt;a href="https://gohugo.io" target="_blank" rel="noopener">Hugo&lt;/a> as a static site generator and
 &lt;a href="https://code.visualstudio.com" target="_blank" rel="noopener">Visual Studio Code&lt;/a> as editor. The resulting website is hosted using
 &lt;a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages&lt;/a>. A nice combination of open source tools with a free hosting provider that poses no restrictions in terms of traffic, size, etc.
 Sounds like a perfect match to me.&lt;/p>
-&lt;p>Familiarity with git and the command line are assumed. I use a Mac,en some of the commands may need to be translated to your environment.&lt;/p>
+&lt;p>Familiarity with git and the command line are assumed. I use a Mac, some of the commands may need to be translated to your environment.&lt;/p>
 &lt;h2 id="getting-started">Getting started&lt;/h2>
 &lt;p>Following this
 &lt;a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/" target="_blank" rel="noopener">Hugo tutorial&lt;/a>, I created two repositories on GitHub.
@@ -59,7 +59,7 @@ In my case: &lt;strong>akleinloog.github.io&lt;/strong>
 &lt;/div>
 &lt;p>I decided to dedicate both repositories to the public domain and therefore used the
 &lt;a href="https://choosealicense.com/licenses/unlicense/" target="_blank" rel="noopener">UNLICENSE&lt;/a>.
-Feel free to use anything you find here as you see fit.&lt;/p>
+Feel free to use anything you find there as you see fit.&lt;/p>
 &lt;p>The next step is to clone the repository used for the source:&lt;/p>
 &lt;pre>&lt;code class="language-bash">git clone https://github.com/&amp;lt;username here&amp;gt;/website.git
 &lt;/code>&lt;/pre>
@@ -98,8 +98,8 @@ It provides a good demonstration of what the theme has to offer.&lt;/p>
 &lt;p>Experiment with the configuration options and the structure. Run the site in development mode using:&lt;/p>
 &lt;pre>&lt;code class="language-bash">hugo server
 &lt;/code>&lt;/pre>
-&lt;p>The site will be available at http://localhost:1313.
-Whenever you save your changes, Hugo will pick up on it and automatically refresh it, providing for a pleasant live-editing experience.&lt;/p>
+&lt;p>The site will be available at &lt;em>http://localhost:1313&lt;/em>.
+Whenever you save your changes, Hugo will react and automatically refresh the website, providing a very pleasant live-editing experience.&lt;/p>
 &lt;h2 id="get-ready-to-publish">Get ready to publish&lt;/h2>
 &lt;p>Add the repository for the generated website as a git submodule:&lt;/p>
 &lt;pre>&lt;code class="language-bash">git submodule add -b master https://github.com/&amp;lt;username here&amp;gt;/&amp;lt;username here&amp;gt;.github.io.git public
@@ -134,11 +134,40 @@ git push origin master
 cd ..
 echo &amp;quot;Deployment Finished&amp;quot;
 &lt;/code>&lt;/pre>
-&lt;p>This script uses Hugo to generate your website and commit the changes to the website&amp;rsquo;s repository.
-By pushing these changes to GitHub, the script effectively deploys your website to production!&lt;/p>
-&lt;h2 id="next-step">Next Step&lt;/h2>
+&lt;p>This script uses Hugo to generate your website and commit the changes to the generated website repository.
+By pushing these changes to GitHub, the script effectively deploys your website to production. Give it a try:&lt;/p>
+&lt;pre>&lt;code>./deploy.sh
+&lt;/code>&lt;/pre>
+&lt;p>Navigate to your GitHub Pages URL to see the result!&lt;/p>
+&lt;h2 id="add-a-custom-domain-name">Add a custom domain name&lt;/h2>
+&lt;p>Using a custom domain name for your GitHub pages is relatively straight forward.
+First register a domain name and then configure the
+&lt;a href="https://kb.pressable.com/article/dns-record-types-explained/" target="_blank" rel="noopener">DNS settings&lt;/a>.&lt;/p>
+&lt;p>Create the following A records for your domain to point it to GitHub&amp;rsquo;s servers:&lt;/p>
+&lt;pre>&lt;code>185.199.108.153
+185.199.109.153
+185.199.110.153
+185.199.111.153
+&lt;/code>&lt;/pre>
+&lt;p>Then add a CNAME record for www that points to the your GitHub site.&lt;/p>
+&lt;p>Then go to the GitHub repository settings of your generated site.
+In the GitHub Pages section, enter the domain you&amp;rsquo;ve registered in the custom domain field, with the &lt;strong>www.&lt;/strong> prefix, and save it.
+This will trigger a check-in that adds a CNAME file with the domain that you have specified.&lt;/p>
+&lt;p>Keep in mind that may take some time for DNS changes to take effect, and for the SSL certificates to be generated.
+Once completed, check the &amp;lsquo;Enforce HTTPS&amp;rsquo; checkbox and the setup is completed.&lt;/p>
+&lt;p>Your domain name will be forwarded to your &lt;strong>www.&lt;/strong> and so will your GitHub pages and HTTPS will be automatically enforces, with valid a certificate for your URL, free of charge!&lt;/p>
+&lt;p>See the GitHub Pages docs for
+&lt;a href="https://help.github.com/en/github/working-with-github-pages/managing-a-custom-domain-for-your-github-pages-site" target="_blank" rel="noopener">more information&lt;/a> and
+&lt;a href="https://help.github.com/en/github/working-with-github-pages/troubleshooting-custom-domains-and-github-pages" target="_blank" rel="noopener">troubleshooting tips&lt;/a>.&lt;/p>
+&lt;h2 id="update-your-sources-repository">Update your sources repository&lt;/h2>
+&lt;p>The last thing to do, before making other modifications to your site, is to secure the CNAME file in your sources repository so that it does not get deleted when you regenerate your website. First pull the changes:&lt;/p>
+&lt;pre>&lt;code class="language-bash">cd public
+git pull --all
+&lt;/code>&lt;/pre>
+&lt;p>This will update your local module and add the CNAME file. Now copy that file from the &lt;em>public&lt;/em> folder to the &lt;em>static&lt;/em> folder so it will be re-added when the site is regenerated. Commit and push your changes and you are good to go!&lt;/p>
+&lt;h2 id="next-steps">Next Steps&lt;/h2>
 &lt;p>I hope you have enjoyed this as much as I did, in
-&lt;a href="https://akleinloog.github.io/post/my-blog-pt2">Part 2&lt;/a> I will add support for Google Analytics, and in later posts I will enable comments and add a simple contact page.&lt;/p></description></item><item><title>Personal Blog</title><link>https://akleinloog.github.io/project/personal-blog/</link><pubDate>Tue, 05 May 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/project/personal-blog/</guid><description>&lt;p>The goal of this project was to set up a simple website to use as a personal blog.
+&lt;a href="https://akleinloog.github.io/post/my-blog-pt2">Part 2&lt;/a> I will add support for Google Analytics, comments and a simple contact page.&lt;/p></description></item><item><title>Personal Blog</title><link>https://akleinloog.github.io/project/personal-blog/</link><pubDate>Tue, 05 May 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/project/personal-blog/</guid><description>&lt;p>The goal of this project was to set up a simple website to use as a personal blog.
 You are currently looking at the result of this!&lt;/p>
 &lt;h2 id="the-what">The What&lt;/h2>
 &lt;p>The basic idea was to set up a blog where I can easily manage my posts and provide some info on myself and the projects I work on.
