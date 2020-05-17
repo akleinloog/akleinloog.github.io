@@ -87,8 +87,46 @@ shortname = &amp;quot;&amp;lt;shortname&amp;gt;&amp;quot; # Paste the shortname 
 &lt;p>When you run the site locally, the commenting section won&amp;rsquo;t be enabled, but you should see a warning like
 &lt;em>&amp;ldquo;Disqus comments not available by default when the website is previewed locally.&amp;quot;&lt;/em> at the bottom of your posts.&lt;/p>
 &lt;p>Deploy your website to production and see how it works!&lt;/p>
-&lt;h2 id="next-step">Next Step&lt;/h2>
-&lt;p>The next step is to add a simple contact page. I&amp;rsquo;ll update this post when it is up and running&amp;hellip;&lt;/p></description></item><item><title>Setting up this Blog - Part 1</title><link>https://akleinloog.github.io/post/my-blog-pt1/</link><pubDate>Wed, 06 May 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/post/my-blog-pt1/</guid><description>&lt;p>This is the first in a series of posts detailing the set up of my personal blog. It covers the basic steps needed to get started.&lt;/p>
+&lt;h2 id="contact-page">Contact Page&lt;/h2>
+&lt;p>Adding a simple contact page can be done with Academic&amp;rsquo;s
+&lt;a href="https://sourcethemes.com/academic/docs/page-builder/#contact" target="_blank" rel="noopener">contact widget&lt;/a>.&lt;/p>
+&lt;p>For this side, I decided to add it to the bottom of the about page, and in addition, add a top-level menu and a link from my profile.&lt;/p>
+&lt;p>To add a top level menu, open _config/&lt;em>default/menus.toml&lt;/em> and add:&lt;/p>
+&lt;pre>&lt;code class="language-r">[[main]]
+name = &amp;quot;Contact&amp;quot;
+url = &amp;quot;about/#contact&amp;quot;
+weight = 50
+&lt;/code>&lt;/pre>
+&lt;p>In _config/&lt;em>default/params.toml&lt;/em>, make sure that an email address is configured.&lt;/p>
+&lt;p>To add a link from your profile, open _authors/admin/&lt;em>index.md&lt;/em> and add this to the social section:&lt;/p>
+&lt;pre>&lt;code class="language-r">- icon: envelope
+icon_pack: fas
+link: 'about/#contact'
+&lt;/code>&lt;/pre>
+&lt;p>To add the contact form itself, in the &lt;em>content/about/&lt;/em> folder, add contact.md with the following content:&lt;/p>
+&lt;pre>&lt;code class="language-r">+++
+# Contact widget.
+widget = &amp;quot;contact&amp;quot;
+headless = true
+active = true
+weight = 50
+title = &amp;quot;Contact&amp;quot;
+subtitle = &amp;quot;&amp;quot;
+# Automatically link email and phone?
+autolink = true
+# Email form provider
+# 0: Disable email form
+# 1: Netlify (requires that the site is hosted by Netlify)
+# 2: formspree.io
+email_form = 2
++++
+&lt;/code>&lt;/pre>
+&lt;p>This sets up your site to use
+&lt;a href="https://formspree.io/" target="_blank" rel="noopener">Formspree&lt;/a> to email you the request.
+After deploying to production, simply fill in the form once and you will receive an email to complete your registration.
+Their free plan gives you a limited amount of monthly submissions.&lt;/p>
+&lt;p>The contact widget can be further customized by providing additional information in your &lt;em>params.toml&lt;/em>, see the
+&lt;a href="https://sourcethemes.com/academic/docs/page-builder/#contact" target="_blank" rel="noopener">docs&lt;/a> for more detail.&lt;/p></description></item><item><title>Setting up this Blog - Part 1</title><link>https://akleinloog.github.io/post/my-blog-pt1/</link><pubDate>Wed, 06 May 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/post/my-blog-pt1/</guid><description>&lt;p>This is the first in a series of posts detailing the set up of my personal blog. It covers the basic steps needed to get started.&lt;/p>
 &lt;p>I use
 &lt;a href="https://gohugo.io" target="_blank" rel="noopener">Hugo&lt;/a> as a static site generator and
 &lt;a href="https://code.visualstudio.com" target="_blank" rel="noopener">Visual Studio Code&lt;/a> as editor. The resulting website is hosted using
