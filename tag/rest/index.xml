@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>REST | My Site</title><link>https://akleinloog.github.io/tag/rest/</link><atom:link href="https://akleinloog.github.io/tag/rest/index.xml" rel="self" type="application/rss+xml"/><description>REST</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Dedicated to the public domain · [Unlicensed](https://github.com/akleinloog/akleinloog.github.io/blob/master/LICENSE)</copyright><lastBuildDate>Sat, 16 May 2020 00:00:00 +0000</lastBuildDate><image><url>https://akleinloog.github.io/images/icon_hu1d96926d990b8c2ce1741b9516caf288_71361_512x512_fill_lanczos_center_2.png</url><title>REST</title><link>https://akleinloog.github.io/tag/rest/</link></image><item><title>Rapid API</title><link>https://akleinloog.github.io/project/rapid-api/</link><pubDate>Sat, 16 May 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/project/rapid-api/</guid><description>&lt;p>This goal of this project is to come up with an approach for rapid prototyping of APIs that support both REST and GraphQL.&lt;/p>
+&lt;h2 id="the-what">The What&lt;/h2>
+&lt;p>A containerized starting point that can be used to quickly implement a prototype of an API, customize it as needed, and easily add initial content.&lt;/p>
+&lt;p>My main requirements:&lt;/p>
+&lt;ul>
+&lt;li>Support for RESTful APIs&lt;/li>
+&lt;li>Support for GraphQL APIs&lt;/li>
+&lt;li>Easily modify the API and add initial content&lt;/li>
+&lt;li>Free of costs (no licence fees)&lt;/li>
+&lt;/ul>
+&lt;p>Additional nice to haves:&lt;/p>
+&lt;ul>
+&lt;li>Support for Webhooks&lt;/li>
+&lt;li>Support for Authentication&lt;/li>
+&lt;li>Support for Open API documentation&lt;/li>
+&lt;/ul>
+&lt;h2 id="the-why">The Why&lt;/h2>
+&lt;p>Every now and then I find myself in a situation where I need to quickly create a prototype of an API.
+This often happens when exploring a design for a new Microservice, especially when that Microservice depends on other services.&lt;/p>
+&lt;p>In order to properly allocate responsibilities and design the interactions between these Microservice, I often find it useful to create some working prototypes of the dependent Microservices.&lt;/p>
+&lt;p>Being able to do so quickly, while having a rich feature set at the same time, enables me to apply a &lt;strong>show me&lt;/strong> approach to software architecture, which I find far more interesting and effective, and therefore more valuable, than the more common diagrams-based &lt;strong>tell me&lt;/strong> approach.&lt;/p>
+&lt;h2 id="the-how">The How&lt;/h2>
+&lt;p>The
+&lt;a href="https://strapi.io/" target="_blank" rel="noopener">strapi&lt;/a> project was initially created to boot&lt;strong>strap&lt;/strong> &lt;strong>API&lt;/strong>s. Even though it is now advertised as a Headless CMS, from what I have seen, it could be a very good fit for what I need.&lt;/p>
+&lt;p>Based on strapi, I will create a docker image that is pre-configured and ready to use. In the process, I will tailor the image to my needs and in addition, set up an automated build that pushes new versions of that image to
+&lt;a href="https://hub.docker.com" target="_blank" rel="noopener">docker hub&lt;/a>.
+This is something that I never did, so a good opportunity to learn.&lt;/p>
+&lt;h2 id="the-results">The Results&lt;/h2>
+&lt;p>I just started this project, so there are no results to share just yet.
+I will detail the progress in a series of blog posts and update this section when the results are available.&lt;/p>
+&lt;p>In the end, my solution will be publicly available on GitHub and on Docker, for you to use freely, to learn from, and hopefully, to provide some feedback on!&lt;/p></description></item></channel></rss>
