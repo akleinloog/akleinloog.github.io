@@ -30,7 +30,132 @@ And for me, the best way to learn after some basic tutorials is to put things in
 &lt;h2 id="the-results">The Results&lt;/h2>
 &lt;p>I just started this project, so there are no results to share just yet.
 I will detail the progress in a series of blog posts and update this section when the HTTP Logger is available.&lt;/p>
-&lt;p>In the end, my solution will be publicly available on GitHub and on Docker, for you to use freely, to learn from, and hopefully, to provide some feedback on!&lt;/p></description></item><item><title>Rapid API</title><link>https://akleinloog.github.io/project/rapid-api/</link><pubDate>Sat, 16 May 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/project/rapid-api/</guid><description>&lt;p>This goal of this project is to come up with an approach for rapid prototyping of APIs that support both REST and GraphQL.&lt;/p>
+&lt;p>In the end, my solution will be publicly available on GitHub and on Docker, for you to use freely, to learn from, and hopefully, to provide some feedback on!&lt;/p></description></item><item><title>Which Kubernetes to use on my development PC?</title><link>https://akleinloog.github.io/post/which-local-kubernetes/</link><pubDate>Fri, 22 May 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/post/which-local-kubernetes/</guid><description>&lt;p>
+&lt;a href="https://kubernetes.io" target="_blank" rel="noopener">Kubernetes&lt;/a> is the state-of-the-art when it comes to container orchestration.&lt;br>
+It was built upon years of experience with production workloads at Google, combined with best-of-breed ideas and practices from the community.
+It is available Open Source and vendor neutral and runs basically everywhere.&lt;/p>
+&lt;p>Today, I see Kubernetes as the Operating System of the Cloud Native world.&lt;br>
+It provides the base environment for my containerized applications, and as such, it is important to me to have it running locally on my development PC.&lt;/p>
+&lt;p>To this end, several decent options are available. Which to choose when?&lt;/p>
+&lt;h3 id="my-requirements">My Requirements&lt;/h3>
+&lt;p>As always, choosing a solution works best if you understand your needs.
+Since this is for my local development environment, my must haves are:&lt;/p>
+&lt;ul>
+&lt;li>Runs on my laptop&lt;/li>
+&lt;li>Easy to install, configure and automate&lt;/li>
+&lt;li>Wide support of Kubernetes versions and features&lt;/li>
+&lt;li>Cross Platform, available for Mac, Windows and Linux&lt;/li>
+&lt;/ul>
+&lt;p>In addition, I would like to use the same solution on a single machine personal development server.
+Using different solutions is an option.&lt;/p>
+&lt;h3 id="the-alternatives">The Alternatives&lt;/h3>
+&lt;p>So far, I have identified the following potential solutions:&lt;/p>
+&lt;p>
+&lt;a href="https://www.docker.com/blog/kubernetes-is-now-available-in-docker-desktop-stable-channel/" target="_blank" rel="noopener">Docker Desktop&lt;/a> ships with a bundled Kubernetes offering.
+The Kubernetes version it supports is tightly coupled with the Docker version. The current version (2.2.0.5) supports Kubernetes version 1.15.5.
+I have not found a programmatic way to create and destroy a new Kubernetes cluster.
+It can only be done using the Docker desktop app preferences.&lt;/p>
+&lt;p>
+&lt;a href="https://kind.sigs.k8s.io" target="_blank" rel="noopener">Kind&lt;/a> - Kubernetes IN Docker - is a tool for running local Kubernetes clusters using Docker containers as nodes.
+It is an
+&lt;a href="https://github.com/kubernetes-sigs/kind" target="_blank" rel="noopener">Open Source&lt;/a> project managed by the Kubernetes Community and was primarily designed for testing Kubernetes itself.
+Kind supports multi-node (including HA) clusters and is optimized for CI pipelines.&lt;/p>
+&lt;p>
+&lt;a href="https://minikube.sigs.k8s.io/docs/" target="_blank" rel="noopener">Minikube&lt;/a> sets up a local single node Kubernetes cluster using a VM.
+It is another
+&lt;a href="https://github.com/kubernetes/minikube" target="_blank" rel="noopener">Open Source&lt;/a> project managed by the Kubernetes Community and was designed to make it simple to run Kubernetes locally, for day-to-day development workflows and learning purposes.
+Minikube supports multiple container runtimes and advanced features such as Load Balancer, filesystem mounts, and Feature Gates.&lt;/p>
+&lt;p>
+&lt;a href="https://k3d.io" target="_blank" rel="noopener">K3d&lt;/a> is a lightweight wrapper to run
+&lt;a href="https://k3s.io" target="_blank" rel="noopener">k3s&lt;/a> (Rancher Lab’s minified Kubernetes distribution) in docker.
+By removing dispensable features (legacy, alpha, non-default, in-tree plugins) and using lightweight components (e.g. sqlite3 instead of etcd3) Rancher Labs created an ultra small Kubernetes distribution built for IoT and Edge computing. It supports ARMv7 and ARM64 architectures, making it possible to run a Kubernetes cluster on a set of Raspberry Pis.&lt;/p>
+&lt;p>Other potential alternatives like
+&lt;a href="https://microk8s.io" target="_blank" rel="noopener">Microk8s&lt;/a>,
+&lt;a href="https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm/" target="_blank" rel="noopener">Kubeadm&lt;/a>,
+&lt;a href="https://kubespray.io" target="_blank" rel="noopener">Kubespray&lt;/a> and
+&lt;a href="https://kops.sigs.k8s.io" target="_blank" rel="noopener">Kops&lt;/a> where discarded, either because they are not Cross Platform or are geared towards production environments.&lt;/p>
+&lt;h3 id="how-do-they-compare">How do they compare?&lt;/h3>
+&lt;p>The following table lists the alternatives along with some of their characteristics:&lt;/p>
+&lt;ul>
+&lt;li>Nodes: The number of cluster nodes supported&lt;/li>
+&lt;li>CLI: Command Line Interface for installation and configuration&lt;/li>
+&lt;li>Multiple: Supports multiple clusters on a single machine&lt;/li>
+&lt;li>Versions: Support for different Kubernetes versions&lt;/li>
+&lt;li>Features: Support for Kubernetes features&lt;/li>
+&lt;li>Resources: Resource usage when compare to each other&lt;/li>
+&lt;li>Pauseable: Cluster can be stopped and restarted&lt;/li>
+&lt;/ul>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;/th>
+&lt;th>Nodes&lt;/th>
+&lt;th>CLI&lt;/th>
+&lt;th>Multiple&lt;/th>
+&lt;th>Versions&lt;/th>
+&lt;th>Features&lt;/th>
+&lt;th>Resources&lt;/th>
+&lt;th>Pauseable&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>Minikube&lt;/td>
+&lt;td>1&lt;/td>
+&lt;td>Yes&lt;/td>
+&lt;td>Yes&lt;/td>
+&lt;td>High&lt;/td>
+&lt;td>Highest&lt;/td>
+&lt;td>High&lt;/td>
+&lt;td>Yes&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Kind&lt;/td>
+&lt;td>n&lt;/td>
+&lt;td>Yes&lt;/td>
+&lt;td>Yes&lt;/td>
+&lt;td>High&lt;/td>
+&lt;td>High&lt;/td>
+&lt;td>Medium&lt;/td>
+&lt;td>No&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>K3d&lt;/td>
+&lt;td>n&lt;/td>
+&lt;td>No&lt;/td>
+&lt;td>Yes&lt;/td>
+&lt;td>Low&lt;/td>
+&lt;td>Medium&lt;/td>
+&lt;td>Low&lt;/td>
+&lt;td>No&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Docker&lt;/td>
+&lt;td>1&lt;/td>
+&lt;td>No&lt;/td>
+&lt;td>No&lt;/td>
+&lt;td>Single&lt;/td>
+&lt;td>High&lt;/td>
+&lt;td>Medium&lt;/td>
+&lt;td>No&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h3 id="conclusion">Conclusion&lt;/h3>
+&lt;p>This exercise provided me with some interesting insights.&lt;/p>
+&lt;p>I discard the Docker Desktop version, mainly because it only supports a single Kubernetes version and I have not found a way to programmatically create, configure and destroy the cluster.&lt;/p>
+&lt;p>
+&lt;a href="https://k3s.io" target="_blank" rel="noopener">k3s&lt;/a> has gotten my attention. Especially the idea of running a Kubernetes cluster on a set of Raspberry PIs definitely made it on my wish list.&lt;/p>
+&lt;p>For my development environment, I am tending towards using something that is managed by the Kubernetes Community.
+They have done an awesome job with Kubernetes, and I expect less hassle using either Kind or Minikube.&lt;/p>
+&lt;p>For now, I&amp;rsquo;ll get started with Minikube, as it promises the best support for my development workflows.
+I will detail my setup and learnings in a follow up post.
+At a later state, I may also add Kind to the mix to experiment with certain failure scenarios.&lt;/p>
+&lt;p>And when the time comes to develop solutions targeting IoT and Edge computing I can use K3d to test on my local environment.&lt;/p>
+&lt;p>Check
+&lt;a href="https://github.com/cncf/k8s-conformance" target="_blank" rel="noopener">here&lt;/a> for a list of certified Kubernetes offerings and
+&lt;a href="https://docs.google.com/spreadsheets/d/1LxSqBzjOxfGx3cmtZ4EbB_BGCxT_wlxW_xgHVVa23es/edit#gid=0" target="_blank" rel="noopener">here&lt;/a> for the details on which Kubernetes versions are supported.&lt;/p>
+&lt;p>If you feel like I have missed something, or do not agree with my conclusions, please leave a note!&lt;/p></description></item><item><title>Rapid API</title><link>https://akleinloog.github.io/project/rapid-api/</link><pubDate>Sat, 16 May 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/project/rapid-api/</guid><description>&lt;p>This goal of this project is to come up with an approach for rapid prototyping of APIs that support both REST and GraphQL.&lt;/p>
 &lt;h2 id="the-what">The What&lt;/h2>
 &lt;p>A containerized starting point that can be used to quickly implement a prototype of an API, customize it as needed, and easily add initial content.&lt;/p>
 &lt;p>My main requirements:&lt;/p>

@@ -1,36 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docker | My Site</title><link>https://akleinloog.github.io/tag/docker/</link><atom:link href="https://akleinloog.github.io/tag/docker/index.xml" rel="self" type="application/rss+xml"/><description>Docker</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Dedicated to the public domain · [Unlicensed](https://github.com/akleinloog/akleinloog.github.io/blob/master/LICENSE)</copyright><lastBuildDate>Fri, 22 May 2020 00:00:00 +0000</lastBuildDate><image><url>https://akleinloog.github.io/images/icon_hu1d96926d990b8c2ce1741b9516caf288_71361_512x512_fill_lanczos_center_2.png</url><title>Docker</title><link>https://akleinloog.github.io/tag/docker/</link></image><item><title>HTTP Logger</title><link>https://akleinloog.github.io/project/http-logger/</link><pubDate>Fri, 22 May 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/project/http-logger/</guid><description>&lt;p>This goal of this project is to create a simple HTTP Logger in Go, that logs all incoming HTTP requests in a structured way.&lt;/p>
-&lt;h2 id="the-what">The What&lt;/h2>
-&lt;p>A Simple HTTP Logger that can be configured to run on any port.&lt;/p>
-&lt;p>My main requirements:&lt;/p>
-&lt;ul>
-&lt;li>Log HTTP GET, POST, PUT and other methods to stdout&lt;/li>
-&lt;li>Always return 200 OK as response&lt;/li>
-&lt;li>Structured logging in JSON format&lt;/li>
-&lt;li>Log Host, URL, Method, IP addresses, request body and more&lt;/li>
-&lt;li>Containerized, lightweight, easily usable in different environments&lt;/li>
-&lt;/ul>
-&lt;p>Additional nice to haves:&lt;/p>
-&lt;ul>
-&lt;li>Enforce SSL with redirect and correct certificates&lt;/li>
-&lt;li>Easy configuration (flags, environment settings, config files)&lt;/li>
-&lt;li>Easy way to access request body&lt;/li>
-&lt;/ul>
-&lt;h2 id="the-why">The Why&lt;/h2>
-&lt;p>The HTTP Logger can be used to gain some insights into HTTP traffic, for example, when you want to test if a webhook is properly sending messages, and what the content of these messages is.&lt;/p>
-&lt;p>In addition, it is a perfectly small Microservice, ideally suited to learn some Go development practices that could be suited for other Microservices too.&lt;/p>
-&lt;h2 id="the-how">The How&lt;/h2>
-&lt;p>The HTTP Logger will be implemented using Go, a language that I am not yet familiar with, but really want to learn.
-And for me, the best way to learn after some basic tutorials is to put things into practice.&lt;/p>
-&lt;p>In order to learn a bit more about Go, I will pay attention to:&lt;/p>
-&lt;ul>
-&lt;li>Structured Logging (stdout in JSON)&lt;/li>
-&lt;li>Flexible Configuration (Support for Flags, Environment, Config file, etx)&lt;/li>
-&lt;li>Proper CLI support&lt;/li>
-&lt;/ul>
-&lt;h2 id="the-results">The Results&lt;/h2>
-&lt;p>I just started this project, so there are no results to share just yet.
-I will detail the progress in a series of blog posts and update this section when the HTTP Logger is available.&lt;/p>
-&lt;p>In the end, my solution will be publicly available on GitHub and on Docker, for you to use freely, to learn from, and hopefully, to provide some feedback on!&lt;/p></description></item><item><title>Which Kubernetes to use on my development PC?</title><link>https://akleinloog.github.io/post/which-local-kubernetes/</link><pubDate>Fri, 22 May 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/post/which-local-kubernetes/</guid><description>&lt;p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Kind | My Site</title><link>https://akleinloog.github.io/tag/kind/</link><atom:link href="https://akleinloog.github.io/tag/kind/index.xml" rel="self" type="application/rss+xml"/><description>Kind</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Dedicated to the public domain · [Unlicensed](https://github.com/akleinloog/akleinloog.github.io/blob/master/LICENSE)</copyright><lastBuildDate>Fri, 22 May 2020 00:00:00 +0000</lastBuildDate><image><url>https://akleinloog.github.io/images/icon_hu1d96926d990b8c2ce1741b9516caf288_71361_512x512_fill_lanczos_center_2.png</url><title>Kind</title><link>https://akleinloog.github.io/tag/kind/</link></image><item><title>Which Kubernetes to use on my development PC?</title><link>https://akleinloog.github.io/post/which-local-kubernetes/</link><pubDate>Fri, 22 May 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/post/which-local-kubernetes/</guid><description>&lt;p>
 &lt;a href="https://kubernetes.io" target="_blank" rel="noopener">Kubernetes&lt;/a> is the state-of-the-art when it comes to container orchestration.&lt;br>
 It was built upon years of experience with production workloads at Google, combined with best-of-breed ideas and practices from the community.
 It is available Open Source and vendor neutral and runs basically everywhere.&lt;/p>
