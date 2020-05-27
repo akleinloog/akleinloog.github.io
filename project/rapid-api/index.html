@@ -12,7 +12,8 @@ This often happens when exploring a design for a new Microservice, especially wh
 <a href=https://strapi.io/ target=_blank rel=noopener>strapi</a> project was initially created to boot<strong>strap</strong> <strong>API</strong>s. Even though it is now advertised as a Headless CMS, from what I have seen, it could be a very good fit for what I need.</p><p>Based on strapi, I will create a docker image that is pre-configured and ready to use. In the process, I will tailor the image to my needs and in addition, set up an automated build that pushes new versions of that image to
 <a href=https://hub.docker.com target=_blank rel=noopener>docker hub</a>.
 This is something that I did not do before, so a good opportunity to learn.</p><h2 id=the-results>The Results</h2><p>See
-<a href=/post/rapid-api-prototype>this post</a> for a detailed description of the process and how to use it.</p><p>The resulting container to get you going with rapid API prototyping is available on docker hub rapidand can be started as follows:</p><pre><code class=language-r>docker run -p 8080:8080 akleinloog/rapid-api
+<a href=/post/rapid-api-prototype>this post</a> for a detailed description of the process and how to use it.</p><p>The resulting container to get you going with rapid API prototyping is available on docker hub
+<a href=https://hub.docker.com/r/akleinloog/rapid-api target=_blank rel=noopener>here</a> and can be started as follows:</p><pre><code class=language-r>docker run -p 8080:8080 akleinloog/rapid-api
 </code></pre><p>The code is available in this
 <a href=https://github.com/akleinloog/rapid-api target=_blank rel=noopener>GitHub repository</a>.</p><p>Use it freely, learn from it, and ideally, provide some feedback!</p></div><div class=article-tags><a class="badge badge-light" href=/tag/api/>API</a>
 <a class="badge badge-light" href=/tag/graphql/>GraphQL</a>

@@ -216,7 +216,8 @@ This is something that I did not do before, so a good opportunity to learn.&lt;/
 &lt;h2 id="the-results">The Results&lt;/h2>
 &lt;p>See
 &lt;a href="https://akleinloog.github.io/post/rapid-api-prototype">this post&lt;/a> for a detailed description of the process and how to use it.&lt;/p>
-&lt;p>The resulting container to get you going with rapid API prototyping is available on docker hub rapidand can be started as follows:&lt;/p>
+&lt;p>The resulting container to get you going with rapid API prototyping is available on docker hub
+&lt;a href="https://hub.docker.com/r/akleinloog/rapid-api" target="_blank" rel="noopener">here&lt;/a> and can be started as follows:&lt;/p>
 &lt;pre>&lt;code class="language-r">docker run -p 8080:8080 akleinloog/rapid-api
 &lt;/code>&lt;/pre>
 &lt;p>The code is available in this
