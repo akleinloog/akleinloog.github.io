@@ -1,4 +1,192 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>API | My Site</title><link>https://akleinloog.github.io/tag/api/</link><atom:link href="https://akleinloog.github.io/tag/api/index.xml" rel="self" type="application/rss+xml"/><description>API</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Dedicated to the public domain · [Unlicensed](https://github.com/akleinloog/akleinloog.github.io/blob/master/LICENSE)</copyright><lastBuildDate>Sat, 16 May 2020 00:00:00 +0000</lastBuildDate><image><url>https://akleinloog.github.io/images/icon_hu1d96926d990b8c2ce1741b9516caf288_71361_512x512_fill_lanczos_center_2.png</url><title>API</title><link>https://akleinloog.github.io/tag/api/</link></image><item><title>Rapid API</title><link>https://akleinloog.github.io/project/rapid-api/</link><pubDate>Sat, 16 May 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/project/rapid-api/</guid><description>&lt;p>This goal of this project is to come up with an approach for rapid prototyping of APIs that support both REST and GraphQL.&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>API | My Site</title><link>https://akleinloog.github.io/tag/api/</link><atom:link href="https://akleinloog.github.io/tag/api/index.xml" rel="self" type="application/rss+xml"/><description>API</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Dedicated to the public domain · [Unlicensed](https://github.com/akleinloog/akleinloog.github.io/blob/master/LICENSE)</copyright><lastBuildDate>Mon, 18 May 2020 00:00:00 +0000</lastBuildDate><image><url>https://akleinloog.github.io/images/icon_hu1d96926d990b8c2ce1741b9516caf288_71361_512x512_fill_lanczos_center_2.png</url><title>API</title><link>https://akleinloog.github.io/tag/api/</link></image><item><title>Rapid API Prototyping</title><link>https://akleinloog.github.io/post/rapid-api-prototype/</link><pubDate>Mon, 18 May 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/post/rapid-api-prototype/</guid><description>&lt;p>The goal of the
+&lt;a href="https://akleinloog.github.io/project/rapid-api">Rapid API project&lt;/a> is to create a containerized starting point that can be used to quickly implement a prototype of an API, customize it as needed, and easily add initial content.&lt;/p>
+&lt;h2 id="preparation">Preparation&lt;/h2>
+&lt;p>To get started, create a new GitHub repository, initialized it with a README and a license, and clone it to your local machine.&lt;/p>
+&lt;h2 id="docker-files">Docker files&lt;/h2>
+&lt;p>Add a &lt;em>docker-compose.yaml&lt;/em> file with the following content:&lt;/p>
+&lt;pre>&lt;code class="language-R">version: '3.7'
+services:
+rapid-api:
+container_name: api-dev
+build: ./docker/sqlite
+ports:
+- '8080:8080'
+&lt;/code>&lt;/pre>
+&lt;p>This file points to a Dockerfile in the &lt;em>/docker/sqlite&lt;/em> folder and maps container port 8080 to host port 8080 so we can access our API.&lt;/p>
+&lt;p>Next, add a &lt;em>docker&lt;/em> folder with a &lt;em>sqlite&lt;/em> sub folder. There, create a &lt;em>Dockerfile&lt;/em> with the following content:&lt;/p>
+&lt;pre>&lt;code class="language-R">FROM node:13.14.0-alpine3.11
+RUN apk update &amp;amp;&amp;amp; apk upgrade
+RUN yarn global add strapi
+WORKDIR /app
+RUN strapi new . --quickstart --no-run
+RUN yarn install --force
+RUN strapi install documentation &amp;amp;&amp;amp; strapi install graphql
+RUN sed -i 's/1337/8080/g' ./config/server.js
+COPY settings.json /app/extensions/documentation/config/
+COPY entrypoint.sh /usr/local/bin/
+RUN chmod 755 &amp;quot;/usr/local/bin/entrypoint.sh&amp;quot;
+EXPOSE 8080
+ENTRYPOINT [&amp;quot;/usr/local/bin/entrypoint.sh&amp;quot;]
+&lt;/code>&lt;/pre>
+&lt;p>As you can see, the Dockerfile uses the latest Node JS 13 version.
+At the time of writing, Node JS 14 has already been released, but not all of strapi&amp;rsquo;s dependencies were available at the time of writing.&lt;/p>
+&lt;p>The docker build starts with installing the strapi CLI, which it then uses to create a new quickstart project.
+This initializes a strapi project using a
+&lt;a href="https://www.sqlite.org/index.html" target="_blank" rel="noopener">SQLite&lt;/a> database.
+It then installs the
+&lt;a href="https://strapi.io/documentation/v3.x/plugins/documentation.html" target="_blank" rel="noopener">API documentation&lt;/a> and
+&lt;a href="https://strapi.io/documentation/v3.x/plugins/graphql.html" target="_blank" rel="noopener">GraphQL&lt;/a> plugins and changes the default port number from 1337 to 8080.
+In addition, it copies a &lt;em>settings.json&lt;/em> file and an &lt;em>entrypoint.sh&lt;/em> file to the image.&lt;/p>
+&lt;h2 id="open-api-settings">Open API settings&lt;/h2>
+&lt;p>Next to the &lt;em>Dockerfile&lt;/em> in the &lt;em>sqlite&lt;/em> folder, add a &lt;em>settings.json&lt;/em> file with the following content:&lt;/p>
+&lt;pre>&lt;code class="language-json">{
+&amp;quot;openapi&amp;quot;: &amp;quot;3.0.0&amp;quot;,
+&amp;quot;info&amp;quot;: {
+&amp;quot;version&amp;quot;: &amp;quot;1.0.0&amp;quot;,
+&amp;quot;title&amp;quot;: &amp;quot;DOCUMENTATION&amp;quot;,
+&amp;quot;description&amp;quot;: &amp;quot;&amp;quot;,
+&amp;quot;termsOfService&amp;quot;: &amp;quot;YOUR_TERMS_OF_SERVICE_URL&amp;quot;,
+&amp;quot;contact&amp;quot;: {
+&amp;quot;name&amp;quot;: &amp;quot;TEAM&amp;quot;,
+&amp;quot;email&amp;quot;: &amp;quot;contact-email@something.io&amp;quot;,
+&amp;quot;url&amp;quot;: &amp;quot;mywebsite.io&amp;quot;
+},
+&amp;quot;license&amp;quot;: {
+&amp;quot;name&amp;quot;: &amp;quot;Apache 2.0&amp;quot;,
+&amp;quot;url&amp;quot;: &amp;quot;https://www.apache.org/licenses/LICENSE-2.0.html&amp;quot;
+}
+},
+&amp;quot;x-strapi-config&amp;quot;: {
+&amp;quot;path&amp;quot;: &amp;quot;/documentation&amp;quot;,
+&amp;quot;showGeneratedFiles&amp;quot;: true,
+&amp;quot;pluginsForWhichToGenerateDoc&amp;quot;: [
+&amp;quot;email&amp;quot;,
+&amp;quot;upload&amp;quot;,
+&amp;quot;users-permissions&amp;quot;
+]
+},
+&amp;quot;servers&amp;quot;: [
+{
+&amp;quot;url&amp;quot;: &amp;quot;http://localhost:8080&amp;quot;,
+&amp;quot;description&amp;quot;: &amp;quot;Development server&amp;quot;
+},
+{
+&amp;quot;url&amp;quot;: &amp;quot;YOUR_STAGING_SERVER&amp;quot;,
+&amp;quot;description&amp;quot;: &amp;quot;Staging server&amp;quot;
+},
+{
+&amp;quot;url&amp;quot;: &amp;quot;YOUR_PRODUCTION_SERVER&amp;quot;,
+&amp;quot;description&amp;quot;: &amp;quot;Production server&amp;quot;
+}
+],
+&amp;quot;externalDocs&amp;quot;: {
+&amp;quot;description&amp;quot;: &amp;quot;Find out more&amp;quot;,
+&amp;quot;url&amp;quot;: &amp;quot;https://strapi.io/documentation/&amp;quot;
+},
+&amp;quot;security&amp;quot;: [
+{
+&amp;quot;bearerAuth&amp;quot;: []
+}
+],
+&amp;quot;paths&amp;quot;: {},
+&amp;quot;tags&amp;quot;: [],
+&amp;quot;components&amp;quot;: {}
+}
+&lt;/code>&lt;/pre>
+&lt;p>This file is needed in order to correct the port number used by the Open API endpoint. Feel free to edit the other settings to your liking.
+For more info, see
+&lt;a href="https://strapi.io/documentation/v3.x/plugins/documentation.html#installation" target="_blank" rel="noopener">this section&lt;/a> in the strapi documentation.&lt;/p>
+&lt;h2 id="entrypoint">Entrypoint&lt;/h2>
+&lt;p>Next to the &lt;em>Dockerfile&lt;/em> in the &lt;em>sqlite&lt;/em> folder, add an &lt;em>entrypoint.sh&lt;/em> file with the following content:&lt;/p>
+&lt;pre>&lt;code class="language-R">#!/bin/sh
+# exit when any command fails
+set -e
+echo &amp;quot;Starting Server&amp;quot;
+strapi develop
+&lt;/code>&lt;/pre>
+&lt;p>This entrypoint script simply starts the strapi project in development mode, with automatic reload enabled.&lt;/p>
+&lt;h2 id="first-run">First run&lt;/h2>
+&lt;p>Startup the container for the first time:&lt;/p>
+&lt;pre>&lt;code class="language-bash">docker-compose up --build
+&lt;/code>&lt;/pre>
+&lt;p>It will take a while before we are ready for the next steps. The base image is downloaded, updates are installed, the strapi project is initialized and the Documentation and GraphQL plugins are installed. Once this is completed, the container is started and some log entries appear.
+Eventually you will see something like this, indicating that the container is successfully started:&lt;/p>
+&lt;pre>&lt;code class="language-r">api-dev | One more thing...
+api-dev | Create your first administrator 💻 by going to the administration panel at:
+api-dev |
+api-dev | ┌─────────────────────────────┐
+api-dev | │ http://localhost:8080/admin │
+api-dev | └─────────────────────────────┘
+api-dev |
+&lt;/code>&lt;/pre>
+&lt;p>You are now read to navigate to
+&lt;a href="http://localhost:8080/admin" target="_blank" rel="noopener">http://localhost:8080/admin&lt;/a>, create an admin account and start customizing your API.&lt;/p>
+&lt;h2 id="adding-content">Adding Content&lt;/h2>
+&lt;p>Let&amp;rsquo;s add a first example resource together.&lt;/p>
+&lt;p>From the menu on the left, select the &lt;em>Content-Types Builder&lt;/em> and choose &lt;em>Create new collection type&lt;/em>.
+Give it a display name &lt;em>Example&lt;/em> and continue. Now we can add our choice of fields to our collection type:
+&lt;img src="fields.png" alt="Content Fields">
+As you can see, strapi comes with a nice set of built-in field types. Feel free to experiment with them.
+For now, we will just add a Text field called &lt;em>Name&lt;/em> and a Rich Text field called &lt;em>Description&lt;/em>.
+Hit &lt;em>Finish&lt;/em> and then &lt;em>Save&lt;/em>. Strapi will now generate the &lt;em>Example API&lt;/em> and restart the server.
+Once complete, you will see the &lt;em>Example&lt;/em> collection type appear in the top left.
+Open it up and add a few examples.&lt;/p>
+&lt;p>Checkout the
+&lt;a href="https://strapi.io/documentation/v3.x/getting-started/introduction.html" target="_blank" rel="noopener">strapi documentation&lt;/a> and
+&lt;a href="https://strapi.io/tutorials" target="_blank" rel="noopener">tutorials&lt;/a> for more examples.&lt;/p>
+&lt;h2 id="test-the-api">Test the API&lt;/h2>
+&lt;p>Now that we have added some content and created our first API, we want to see it in action.
+You can use the API client of your choice to test it (postman,
+&lt;a href="https://insomnia.rest/" target="_blank" rel="noopener">insomnia&lt;/a>, curl, etc,)
+At the moment, I prefer to use Visual Studio Code with the
+&lt;a href="https://marketplace.visualstudio.com/items?itemName=humao.rest-client" target="_blank" rel="noopener">REST Client&lt;/a> plugin.
+Add a &lt;em>test.http&lt;/em> file with the first test:&lt;/p>
+&lt;pre>&lt;code class="language-r">###
+GET http://localhost:8080/examples
+&lt;/code>&lt;/pre>
+&lt;p>A little &lt;em>Send Request&lt;/em> label will appear, and when you click that, Visual Studio Code will execute the GET request.
+You will get a response like this:&lt;/p>
+&lt;pre>&lt;code class="language-r">HTTP/1.1 403 Forbidden
+...
+Connection: close
+{
+&amp;quot;statusCode&amp;quot;: 403,
+&amp;quot;error&amp;quot;: &amp;quot;Forbidden&amp;quot;,
+&amp;quot;message&amp;quot;: &amp;quot;Forbidden&amp;quot;
+}
+&lt;/code>&lt;/pre>
+&lt;p>Your API supports authentication and is not open to the public!
+For the sake of this test, in your strapi Admin UI, navigate to &lt;em>Roles &amp;amp; Responsibilities&lt;/em>, select &lt;em>Public&lt;/em> and check &lt;em>Select All&lt;/em> next to &lt;em>Example&lt;/em> and save that.
+&lt;img src="permissions.png" alt="Permissions">&lt;/p>
+&lt;p>Now try sending the request again, you should receive the examples that you&amp;rsquo;ve added previously.&lt;/p>
+&lt;p>For our last exercise, let&amp;rsquo;s use the API to add another entry.
+Add the following to the &lt;em>test.http&lt;/em> file:&lt;/p>
+&lt;pre>&lt;code class="language-r">###
+POST http://localhost:8080/examples
+content-type: application/json
+{
+&amp;quot;name&amp;quot;: &amp;quot;API Example&amp;quot;,
+&amp;quot;description&amp;quot;: &amp;quot;Added using the API&amp;quot;
+}
+&lt;/code>&lt;/pre>
+&lt;p>Don&amp;rsquo;t forget the content-type header! Strapi will check for this and create an entry with empty values if you forget to specify that!&lt;/p>
+&lt;h2 id="api-documentation">API Documentation&lt;/h2>
+&lt;p>You will find another nice feature of our setup when you navigate to &lt;em>Documentation&lt;/em>. Click in the &lt;em>Retrieve your jwt token&lt;/em> textbox and the token will be copied to the clipboard. Click on &lt;em>Open the documentation&lt;/em> and the Swagger based OpenAPI endpoint will be opened. You can &lt;em>Authorize&lt;/em> yourself with your token and get familiar with all the options that your API has to offer.&lt;/p>
+&lt;h2 id="graphql">GraphQL&lt;/h2>
+&lt;p>A main reason for me to try strapi for rapid API prototyping is its support for GraphQL.
+I am not yet very familiar with GraphQL and want to have a playground to learn more.&lt;/p>
+&lt;p>Your API&amp;rsquo;s GraphQL Playground is available at
+&lt;a href="http://localhost:8080/graphql" target="_blank" rel="noopener">http://localhost:8080/graphql&lt;/a>. See
+&lt;a href="https://strapi.io/documentation/v3.x/plugins/graphql.html" target="_blank" rel="noopener">this section&lt;/a> in the strapi documentation for more info.&lt;/p>
+&lt;h2 id="even-easier">Even easier&amp;hellip;&lt;/h2>
+&lt;p>Don&amp;rsquo;t want to go through the effort described above?
+I&amp;rsquo;ll do you one better. The resulting container image is available
+&lt;a href="https://hub.docker.com/r/akleinloog/rapid-api" target="_blank" rel="noopener">here&lt;/a> on docker hub, so you can get started with a single line:&lt;/p>
+&lt;pre>&lt;code class="language-r">docker run -p 8080:8080 akleinloog/rapid-api
+&lt;/code>&lt;/pre>
+&lt;h2 id="the-code">The code&lt;/h2>
+&lt;p>If you want to see how to set up a prototype using MongoDB instead of SQLite, or wonder how I built and published the container image to docker hub, feel free to check out the
+&lt;a href="https://github.com/akleinloog/rapid-api" target="_blank" rel="noopener">repository&lt;/a> on Github.&lt;/p></description></item><item><title>Rapid API</title><link>https://akleinloog.github.io/project/rapid-api/</link><pubDate>Sat, 16 May 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/project/rapid-api/</guid><description>&lt;p>This goal of this project is to come up with an approach for rapid prototyping of APIs that support both REST and GraphQL.&lt;/p>
 &lt;h2 id="the-what">The What&lt;/h2>
 &lt;p>A containerized starting point that can be used to quickly implement a prototype of an API, customize it as needed, and easily add initial content.&lt;/p>
 &lt;p>My main requirements:&lt;/p>
@@ -17,15 +205,21 @@
 &lt;h2 id="the-why">The Why&lt;/h2>
 &lt;p>Every now and then I find myself in a situation where I need to quickly create a prototype of an API.
 This often happens when exploring a design for a new Microservice, especially when that Microservice depends on other services.&lt;/p>
-&lt;p>In order to properly allocate responsibilities and design the interactions between these Microservice, I often find it useful to create some working prototypes of the dependent Microservices.&lt;/p>
-&lt;p>Being able to do so quickly, while having a rich feature set at the same time, enables me to apply a &lt;strong>show me&lt;/strong> approach to software architecture, which I find far more interesting and effective, and therefore more valuable, than the more common diagrams-based &lt;strong>tell me&lt;/strong> approach.&lt;/p>
+&lt;p>In order to properly allocate responsibilities and design the interactions between these Microservice, I often find it useful to create some working prototypes of the Microservices I depend on.&lt;/p>
+&lt;p>Being able to do so quickly, while having a rich feature set at the same time, enables me to follow the &lt;strong>show me&lt;/strong> approach to software architecture, which I find far more interesting and effective, and therefore more valuable, than the more common diagrams-based &lt;strong>tell me&lt;/strong> approach.&lt;/p>
 &lt;h2 id="the-how">The How&lt;/h2>
 &lt;p>The
 &lt;a href="https://strapi.io/" target="_blank" rel="noopener">strapi&lt;/a> project was initially created to boot&lt;strong>strap&lt;/strong> &lt;strong>API&lt;/strong>s. Even though it is now advertised as a Headless CMS, from what I have seen, it could be a very good fit for what I need.&lt;/p>
 &lt;p>Based on strapi, I will create a docker image that is pre-configured and ready to use. In the process, I will tailor the image to my needs and in addition, set up an automated build that pushes new versions of that image to
 &lt;a href="https://hub.docker.com" target="_blank" rel="noopener">docker hub&lt;/a>.
-This is something that I never did, so a good opportunity to learn.&lt;/p>
+This is something that I did not do before, so a good opportunity to learn.&lt;/p>
 &lt;h2 id="the-results">The Results&lt;/h2>
-&lt;p>I just started this project, so there are no results to share just yet.
-I will detail the progress in a series of blog posts and update this section when the results are available.&lt;/p>
-&lt;p>In the end, my solution will be publicly available on GitHub and on Docker, for you to use freely, to learn from, and hopefully, to provide some feedback on!&lt;/p></description></item></channel></rss>
+&lt;p>See
+&lt;a href="https://akleinloog.github.io/post/rapid-api-prototype">this post&lt;/a> for a detailed description of the process and how to use it.&lt;/p>
+&lt;p>The resulting container to get you going with rapid API prototyping is available on docker hub
+&lt;a href="https://hub.docker.com/r/akleinloog/rapid-api" target="_blank" rel="noopener">here&lt;/a> and can be started as follows:&lt;/p>
+&lt;pre>&lt;code class="language-r">docker run -p 8080:8080 akleinloog/rapid-api
+&lt;/code>&lt;/pre>
+&lt;p>The code is available in this
+&lt;a href="https://github.com/akleinloog/rapid-api" target="_blank" rel="noopener">GitHub repository&lt;/a>.&lt;/p>
+&lt;p>Use it freely, learn from it, and ideally, provide some feedback!&lt;/p></description></item></channel></rss>
