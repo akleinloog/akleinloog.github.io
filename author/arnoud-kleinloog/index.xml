@@ -1,4 +1,161 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Arnoud Kleinloog | My Site</title><link>https://akleinloog.github.io/author/arnoud-kleinloog/</link><atom:link href="https://akleinloog.github.io/author/arnoud-kleinloog/index.xml" rel="self" type="application/rss+xml"/><description>Arnoud Kleinloog</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Dedicated to the public domain · [Unlicensed](https://github.com/akleinloog/akleinloog.github.io/blob/master/LICENSE)</copyright><image><url>https://akleinloog.github.io/author/arnoud-kleinloog/avatar_hu52a603635ecebd45650b162dadabb4e5_12861_270x270_fill_q90_lanczos_center.jpg</url><title>Arnoud Kleinloog</title><link>https://akleinloog.github.io/author/arnoud-kleinloog/</link></image><item><title>Rapid API Prototyping</title><link>https://akleinloog.github.io/post/rapid-api-prototype/</link><pubDate>Wed, 27 May 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/post/rapid-api-prototype/</guid><description>&lt;p>The goal of my
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Arnoud Kleinloog | My Site</title><link>https://akleinloog.github.io/author/arnoud-kleinloog/</link><atom:link href="https://akleinloog.github.io/author/arnoud-kleinloog/index.xml" rel="self" type="application/rss+xml"/><description>Arnoud Kleinloog</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Dedicated to the public domain · [Unlicensed](https://github.com/akleinloog/akleinloog.github.io/blob/master/LICENSE)</copyright><image><url>https://akleinloog.github.io/author/arnoud-kleinloog/avatar_hu52a603635ecebd45650b162dadabb4e5_12861_270x270_fill_q90_lanczos_center.jpg</url><title>Arnoud Kleinloog</title><link>https://akleinloog.github.io/author/arnoud-kleinloog/</link></image><item><title>Minikube - Kubernetes for developers</title><link>https://akleinloog.github.io/post/minikube-kubernetes/</link><pubDate>Sat, 30 May 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/post/minikube-kubernetes/</guid><description>&lt;p>As described
+&lt;a href="https://akleinloog.github.io/post/which-local-kubernetes">here&lt;/a>, I decided to use
+&lt;a href="https://minikube.sigs.k8s.io/docs/" target="_blank" rel="noopener">minikube&lt;/a> to run a Kubernetes cluster on my dev machine.
+These are the details and some learnings along the way.&lt;/p>
+&lt;h3 id="preparation">Preparation&lt;/h3>
+&lt;p>As usual, before starting any experiments, I want my MacBook up to date, so I make sure that I have the latest updates installed.
+At the time of writing, these are macOS Catalina version 10.15.5 and Xcode version 11.5.
+Then I make sure that brew and any installed packages are up to date as well:&lt;/p>
+&lt;pre>&lt;code>brew update
+brew upgrade
+brew cask upgrade
+&lt;/code>&lt;/pre>
+&lt;p>In addition, make sure there are no issues. If there are, resolve them first:&lt;/p>
+&lt;pre>&lt;code>brew doctor
+&lt;/code>&lt;/pre>
+&lt;p>Should give the following output when all is ready:&lt;/p>
+&lt;pre>&lt;code>Your system is ready to brew.
+&lt;/code>&lt;/pre>
+&lt;p>Should you run into any issues, google is your friend&amp;hellip;&lt;/p>
+&lt;p>If you are running windows,
+&lt;a href="https://chocolatey.org/" target="_blank" rel="noopener">chocolatey&lt;/a> is a decent alternative to brew.&lt;/p>
+&lt;p>If not already installed, make sure you have
+&lt;a href="https://hub.docker.com/editions/community/docker-ce-desktop-mac" target="_blank" rel="noopener">Docker Desktop&lt;/a> up and running.
+This should also come with
+&lt;a href="https://github.com/moby/hyperkit" target="_blank" rel="noopener">Hyperkit&lt;/a>, a lightweight hypervisor for macOS.
+You can find other alternatives
+&lt;a href="https://minikube.sigs.k8s.io/docs/drivers/" target="_blank" rel="noopener">here&lt;/a>.&lt;/p>
+&lt;h3 id="installation">Installation&lt;/h3>
+&lt;p>Install minikube and
+&lt;a href="https://kubernetes.io/docs/reference/kubectl/overview/" target="_blank" rel="noopener">kubectl&lt;/a>:&lt;/p>
+&lt;pre>&lt;code>brew install minikube
+brew install kubectl
+&lt;/code>&lt;/pre>
+&lt;h3 id="first-cluster">First Cluster&lt;/h3>
+&lt;p>Create a cluster:&lt;/p>
+&lt;pre>&lt;code>minikube start
+&lt;/code>&lt;/pre>
+&lt;p>Gives an output similar to:&lt;/p>
+&lt;pre>&lt;code>😄 minikube v1.11.0 on Darwin 10.15.5
+✨ Using the hyperkit driver based on user configuration
+🆕 Kubernetes 1.18.3 is now available. If you would like to upgrade, specify: --kubernetes-version=v1.18.3
+👍 Starting control plane node minikube in cluster minikube
+🔥 Creating hyperkit VM (CPUs=2, Memory=2048MB, Disk=20000MB) ...
+🐳 Preparing Kubernetes v1.14.7 on Docker 19.03.8 ...
+🔎 Verifying Kubernetes components...
+🌟 Enabled addons: default-storageclass, storage-provisioner
+🏄 Done! kubectl is now configured to use &amp;quot;minikube&amp;quot;
+❗ /usr/local/bin/kubectl is version 1.18.3, which may be incompatible with Kubernetes 1.14.7.
+💡 You can also use 'minikube kubectl -- get pods' to invoke a matching version
+&lt;/code>&lt;/pre>
+&lt;p>This tells us that the default Kubernetes version that was used is &lt;strong>1.14.7&lt;/strong>, and that the cluster has &lt;strong>2&lt;/strong> CPUs, &lt;strong>2 GB&lt;/strong> of memory and &lt;strong>20 GB&lt;/strong> of disk spaces at its disposable.
+It also tells us that the latest available version of Kubernetes is &lt;strong>1.18.3&lt;/strong>.
+Since this is my dev machine, I want to use the latest Kubernetes version, and I want to assign more resources.
+Remove the cluster:&lt;/p>
+&lt;pre>&lt;code>minikube delete
+&lt;/code>&lt;/pre>
+&lt;p>Gives an output similar to:&lt;/p>
+&lt;pre>&lt;code>🔥 Deleting &amp;quot;minikube&amp;quot; in hyperkit ...
+💀 Removed all traces of the &amp;quot;minikube&amp;quot; cluster.
+&lt;/code>&lt;/pre>
+&lt;p>Create a new cluster as follows:&lt;/p>
+&lt;pre>&lt;code>minikube start --kubernetes-version=v1.18.3 --cpus=4 --memory='8g' --disk-size='80000mb'
+&lt;/code>&lt;/pre>
+&lt;p>Gives an output similar to:&lt;/p>
+&lt;pre>&lt;code>😄 minikube v1.11.0 on Darwin 10.15.5
+✨ Using the hyperkit driver based on user configuration
+👍 Starting control plane node minikube in cluster minikube
+🔥 Creating hyperkit VM (CPUs=4, Memory=8192MB, Disk=80000MB) ...
+🐳 Preparing Kubernetes v1.18.3 on Docker 19.03.8 ...
+🔎 Verifying Kubernetes components...
+🌟 Enabled addons: default-storageclass, storage-provisioner
+🏄 Done! kubectl is now configured to use &amp;quot;minikube&amp;quot;
+&lt;/code>&lt;/pre>
+&lt;p>That is more like it. A local Kubernetes cluster up and running, and everything is up to date.
+If you want, you can open the kubernetes dashboard using:&lt;/p>
+&lt;pre>&lt;code>minikube dashboard
+&lt;/code>&lt;/pre>
+&lt;p>The dashboard will be installed and opened in a browser tab.&lt;/p>
+&lt;h3 id="pause-and-resume">Pause and resume&lt;/h3>
+&lt;p>One very useful feature of minikube is that you can pause and resume your cluster.
+If you don&amp;rsquo;t need it for now, pause the cluster using:&lt;/p>
+&lt;pre>&lt;code>minikube stop
+&lt;/code>&lt;/pre>
+&lt;p>Gives an output similar to:&lt;/p>
+&lt;pre>&lt;code>✋ Stopping &amp;quot;minikube&amp;quot; in hyperkit ...
+🛑 Node &amp;quot;minikube&amp;quot; stopped.
+&lt;/code>&lt;/pre>
+&lt;p>At a later point, you can resume it using:&lt;/p>
+&lt;pre>&lt;code>minikube start --kubernetes-version=v1.18.3
+&lt;/code>&lt;/pre>
+&lt;p>Gives an output similar to:&lt;/p>
+&lt;pre>&lt;code>😄 minikube v1.11.0 on Darwin 10.15.5
+✨ Using the hyperkit driver based on existing profile
+👍 Starting control plane node minikube in cluster minikube
+🔄 Restarting existing hyperkit VM for &amp;quot;minikube&amp;quot; ...
+🐳 Preparing Kubernetes v1.18.3 on Docker 19.03.8 ...
+🔎 Verifying Kubernetes components...
+🌟 Enabled addons: default-storageclass, storage-provisioner
+🏄 Done! kubectl is now configured to use &amp;quot;minikube&amp;quot;
+&lt;/code>&lt;/pre>
+&lt;p>Notice that you do need to provide the Kubernetes version if you specified one different from the default.
+This command can also be used to upgrade the Kubernetes version if a newer one becomes available.&lt;/p>
+&lt;h3 id="multiple-clusters">Multiple Clusters&lt;/h3>
+&lt;p>Another very useful feature of minikube is the ability to run multiple clusters.
+You can run them at the same time to do multi-cluster experiments, or pause / resume them when switching between projects.
+Let&amp;rsquo;s first delete the previously created cluster:&lt;/p>
+&lt;pre>&lt;code>minikube delete
+&lt;/code>&lt;/pre>
+&lt;p>Then create our first cluster:&lt;/p>
+&lt;pre>&lt;code>minikube start -p cluster1 --kubernetes-version=v1.18.3
+&lt;/code>&lt;/pre>
+&lt;p>And then a second one:&lt;/p>
+&lt;pre>&lt;code>minikube start -p cluster2 --kubernetes-version=v1.18.3
+&lt;/code>&lt;/pre>
+&lt;p>You can see the clusters using:&lt;/p>
+&lt;pre>&lt;code>kubectl config get-contexts
+&lt;/code>&lt;/pre>
+&lt;p>Gives an output similar to:&lt;/p>
+&lt;pre>&lt;code>CURRENT NAME CLUSTER AUTHINFO NAMESPACE
+cluster1 cluster1 cluster1
+* cluster2 cluster2 cluster2
+&lt;/code>&lt;/pre>
+&lt;p>The * marks the currently selected context. You can also see that using:&lt;/p>
+&lt;pre>&lt;code>% kubectl config current-context
+cluster2
+&lt;/code>&lt;/pre>
+&lt;p>You can switch between clusters by selecting their context:&lt;/p>
+&lt;pre>&lt;code>% kubectl config use-context cluster1
+Switched to context &amp;quot;cluster1&amp;quot;.
+&lt;/code>&lt;/pre>
+&lt;p>Stop one of the clusters if you don&amp;rsquo;t need it for now:&lt;/p>
+&lt;pre>&lt;code>% minikube stop -p cluster2
+✋ Stopping &amp;quot;cluster2&amp;quot; in hyperkit ...
+🛑 Node &amp;quot;cluster2&amp;quot; stopped.
+&lt;/code>&lt;/pre>
+&lt;p>Resume it when you need it again:&lt;/p>
+&lt;pre>&lt;code>% minikube start -p cluster2 --kubernetes-version=v1.18.3
+😄 [cluster2] minikube v1.11.0 on Darwin 10.15.5
+✨ Using the hyperkit driver based on existing profile
+👍 Starting control plane node cluster2 in cluster cluster2
+🔄 Restarting existing hyperkit VM for &amp;quot;cluster2&amp;quot; ...
+🐳 Preparing Kubernetes v1.18.3 on Docker 19.03.8 ...
+🔎 Verifying Kubernetes components...
+🌟 Enabled addons: default-storageclass, storage-provisioner
+🏄 Done! kubectl is now configured to use &amp;quot;cluster2&amp;quot;
+&lt;/code>&lt;/pre>
+&lt;p>And delete it when you don&amp;rsquo;t need it anymore:&lt;/p>
+&lt;pre>&lt;code>% minikube delete -p cluster2
+🔥 Deleting &amp;quot;cluster2&amp;quot; in hyperkit ...
+💀 Removed all traces of the &amp;quot;cluster2&amp;quot; cluster.
+&lt;/code>&lt;/pre>
+&lt;h3 id="next-steps">Next Steps&amp;hellip;&lt;/h3>
+&lt;p>Get more familiar with Kubernetes, follow some basic tutorials to deploy your first app
+&lt;a href="https://kubernetes.io/docs/tutorials/" target="_blank" rel="noopener">here&lt;/a> and find some more
+&lt;a href="https://katacoda.com/courses/kubernetes" target="_blank" rel="noopener">here&lt;/a>. Again, google is your friend, there is plenty of content out there.&lt;/p>
+&lt;p>As for me, my next step will be to install
+&lt;a href="https://istio.io/" target="_blank" rel="noopener">Istio&lt;/a> and make sure that my cluster can also be reached from other machines in my network.
+I&amp;rsquo;ll present the details in a following post&amp;hellip;&lt;/p></description></item><item><title>Rapid API Prototyping</title><link>https://akleinloog.github.io/post/rapid-api-prototype/</link><pubDate>Wed, 27 May 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/post/rapid-api-prototype/</guid><description>&lt;p>The goal of my
 &lt;a href="https://akleinloog.github.io/project/rapid-api">Rapid API project&lt;/a> is to create a containerized starting point that can be used to quickly implement a prototype of an API, customize it as needed, and easily add initial content.&lt;/p>
 &lt;h2 id="preparation">Preparation&lt;/h2>
 &lt;p>To get started, create a new GitHub repository, initialized it with a README and a license, and clone it to your local machine.&lt;/p>
