@@ -4,7 +4,7 @@
 &lt;p>To get started, create a new GitHub repository, initialized it with a README and a license, and clone it to your local machine.&lt;/p>
 &lt;h2 id="docker-files">Docker files&lt;/h2>
 &lt;p>Add a &lt;em>docker-compose.yaml&lt;/em> file with the following content:&lt;/p>
-&lt;pre>&lt;code class="language-R">version: '3.7'
+&lt;pre>&lt;code class="language-yaml">version: '3.7'
 services:
 rapid-api:
 container_name: api-dev
@@ -14,7 +14,7 @@ ports:
 &lt;/code>&lt;/pre>
 &lt;p>This file points to a Dockerfile in the &lt;em>/docker/sqlite&lt;/em> folder and maps container port 8080 to host port 8080 so we can access our API.&lt;/p>
 &lt;p>Next, add a &lt;em>docker&lt;/em> folder with a &lt;em>sqlite&lt;/em> sub folder. There, create a &lt;em>Dockerfile&lt;/em> with the following content:&lt;/p>
-&lt;pre>&lt;code class="language-R">FROM node:13.14.0-alpine3.11
+&lt;pre>&lt;code class="language-dockerfile">FROM node:13.14.0-alpine3.11
 RUN apk update &amp;amp;&amp;amp; apk upgrade
 RUN yarn global add strapi
 WORKDIR /app
@@ -98,7 +98,7 @@ For more info, see
 &lt;a href="https://strapi.io/documentation/v3.x/plugins/documentation.html#installation" target="_blank" rel="noopener">this section&lt;/a> in the strapi documentation.&lt;/p>
 &lt;h2 id="entrypoint">Entrypoint&lt;/h2>
 &lt;p>Next to the &lt;em>Dockerfile&lt;/em> in the &lt;em>sqlite&lt;/em> folder, add an &lt;em>entrypoint.sh&lt;/em> file with the following content:&lt;/p>
-&lt;pre>&lt;code class="language-R">#!/bin/sh
+&lt;pre>&lt;code class="language-bash">#!/bin/sh
 # exit when any command fails
 set -e
 echo &amp;quot;Starting Server&amp;quot;
@@ -111,12 +111,12 @@ strapi develop
 &lt;/code>&lt;/pre>
 &lt;p>It will take a while before we are ready for the next steps. The base image is downloaded, updates are installed, the strapi project is initialized and the Documentation and GraphQL plugins are installed. Once this is completed, the container is started and some log entries appear.
 Eventually you will see something like this, indicating that the container is successfully started:&lt;/p>
-&lt;pre>&lt;code class="language-r">api-dev | One more thing...
+&lt;pre>&lt;code class="language-plaintext">api-dev | One more thing...
 api-dev | Create your first administrator 💻 by going to the administration panel at:
 api-dev |
-api-dev | ┌─────────────────────────────┐
+api-dev | ┌──────────────────┐
 api-dev | │ http://localhost:8080/admin │
-api-dev | └─────────────────────────────┘
+api-dev | └──────────────────┘
 api-dev |
 &lt;/code>&lt;/pre>
 &lt;p>You are now read to navigate to
@@ -141,12 +141,12 @@ You can use the API client of your choice to test it (postman,
 At the moment, I prefer to use Visual Studio Code with the
 &lt;a href="https://marketplace.visualstudio.com/items?itemName=humao.rest-client" target="_blank" rel="noopener">REST Client&lt;/a> plugin.
 Add a &lt;em>test.http&lt;/em> file with the first test:&lt;/p>
-&lt;pre>&lt;code class="language-r">###
+&lt;pre>&lt;code class="language-http">###
 GET http://localhost:8080/examples
 &lt;/code>&lt;/pre>
 &lt;p>A little &lt;em>Send Request&lt;/em> label will appear, and when you click that, Visual Studio Code will execute the GET request.
 You will get a response like this:&lt;/p>
-&lt;pre>&lt;code class="language-r">HTTP/1.1 403 Forbidden
+&lt;pre>&lt;code class="language-http">HTTP/1.1 403 Forbidden
 ...
 Connection: close
 {
@@ -161,7 +161,7 @@ For the sake of this test, in your strapi Admin UI, navigate to &lt;em>Roles &am
 &lt;p>Now try sending the request again, you should receive the examples that you&amp;rsquo;ve added previously.&lt;/p>
 &lt;p>For our last exercise, let&amp;rsquo;s use the API to add another entry.
 Add the following to the &lt;em>test.http&lt;/em> file:&lt;/p>
-&lt;pre>&lt;code class="language-r">###
+&lt;pre>&lt;code class="language-http">###
 POST http://localhost:8080/examples
 content-type: application/json
 {
@@ -182,7 +182,7 @@ I am not yet very familiar with GraphQL and want to have a playground to learn m
 &lt;p>Don&amp;rsquo;t want to go through the effort described above?
 I&amp;rsquo;ll do you one better. The resulting container image is available
 &lt;a href="https://hub.docker.com/r/akleinloog/rapid-api" target="_blank" rel="noopener">here&lt;/a> on docker hub, so you can get started with a single line:&lt;/p>
-&lt;pre>&lt;code class="language-r">docker run -p 8080:8080 akleinloog/rapid-api
+&lt;pre>&lt;code class="language-bash">docker run -p 8080:8080 akleinloog/rapid-api
 &lt;/code>&lt;/pre>
 &lt;h2 id="the-code">The code&lt;/h2>
 &lt;p>If you want to see how to set up a prototype using MongoDB instead of SQLite, or wonder how I built and published the container image to docker hub, feel free to check out the

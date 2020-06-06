@@ -6,7 +6,7 @@ See
 &lt;p>
 &lt;a href="https://marketingplatform.google.com/about/analytics/" target="_blank" rel="noopener">Google Analytics&lt;/a> can provide you with some interesting insights on your site&amp;rsquo;s visitors and the way they use your site. Enabling it on my personal blog provides a nice opportunity to learn a bit more about the possibilities it offers to site owners.&lt;/p>
 &lt;p>Lucky for me, it is a straight forward exercise. After signing up for google analytics and creating an account for your website, all you need to do is open your &lt;em>params.toml&lt;/em> in _/config/&lt;em>default&lt;/em> and add the account id:&lt;/p>
-&lt;pre>&lt;code class="language-r">############################
+&lt;pre>&lt;code class="language-toml">############################
 ## Marketing
 ############################
 [marketing]
@@ -16,11 +16,11 @@ google_analytics = &amp;quot;UA-***&amp;quot;
 &lt;p>I signed up for
 &lt;a href="https://marketingplatform.google.com/about/tag-manager/" target="_blank" rel="noopener">Google Tag Manager&lt;/a> as well, and tried to activate it, but no luck so far. In order to get Google Analytics to work I had to comment out the &lt;em>google_tag_manager&lt;/em> entry. If I decide to take another look at this and get it to work, I&amp;rsquo;ll detail it in a follow up post.&lt;/p>
 &lt;p>The next step is to configure the base URL of your site, in &lt;em>config.toml&lt;/em> in _/config/&lt;em>default&lt;/em>. If you used a custom domain:&lt;/p>
-&lt;pre>&lt;code class="language-r"># The URL of your site.
+&lt;pre>&lt;code class="language-toml"># The URL of your site.
 baseurl = &amp;quot;https://www.yourdomain.com/&amp;quot;
 &lt;/code>&lt;/pre>
 &lt;p>Otherwise, use your GitHub Pages URL:&lt;/p>
-&lt;pre>&lt;code class="language-r"># The URL of your site.
+&lt;pre>&lt;code class="language-toml"># The URL of your site.
 baseurl = &amp;quot;https://&amp;lt;username here&amp;gt;.github.io/&amp;quot;
 &lt;/code>&lt;/pre>
 &lt;p>The last change is an improvement to the deploy script we created in the previous post.
@@ -44,7 +44,7 @@ env HUGO_ENV=&amp;quot;production&amp;quot; hugo --gc --minify -t academic -b ht
 &lt;h2 id="commenting-with-disqus">Commenting with Disqus&lt;/h2>
 &lt;p>Enabling others to comment on your site turns it into an interactive site and is relatively easy to do.
 First go to &lt;a href="https://disqus.com">https://disqus.com&lt;/a> and sign up. I selected the basic, free package. Then open &lt;em>params.toml&lt;/em> in your _config/&lt;em>default&lt;/em> directory and fill in the comments section to enable commenting:&lt;/p>
-&lt;pre>&lt;code class="language-r">############################
+&lt;pre>&lt;code class="language-toml">############################
 ## Comments
 ############################
 [comments]
@@ -62,19 +62,19 @@ shortname = &amp;quot;&amp;lt;shortname&amp;gt;&amp;quot; # Paste the shortname 
 &lt;a href="https://sourcethemes.com/academic/docs/page-builder/#contact" target="_blank" rel="noopener">contact widget&lt;/a>.&lt;/p>
 &lt;p>For this side, I decided to add it to the bottom of the about page, and in addition, add a top-level menu and a link from my profile.&lt;/p>
 &lt;p>To add a top level menu, open _config/&lt;em>default/menus.toml&lt;/em> and add:&lt;/p>
-&lt;pre>&lt;code class="language-r">[[main]]
+&lt;pre>&lt;code class="language-toml">[[main]]
 name = &amp;quot;Contact&amp;quot;
 url = &amp;quot;about/#contact&amp;quot;
 weight = 50
 &lt;/code>&lt;/pre>
 &lt;p>In _config/&lt;em>default/params.toml&lt;/em>, make sure that an email address is configured.&lt;/p>
 &lt;p>To add a link from your profile, open _authors/admin/&lt;em>index.md&lt;/em> and add this to the social section:&lt;/p>
-&lt;pre>&lt;code class="language-r">- icon: envelope
+&lt;pre>&lt;code class="language-toml">- icon: envelope
 icon_pack: fas
 link: 'about/#contact'
 &lt;/code>&lt;/pre>
 &lt;p>To add the contact form itself, in the &lt;em>content/about/&lt;/em> folder, add contact.md with the following content:&lt;/p>
-&lt;pre>&lt;code class="language-r">+++
+&lt;pre>&lt;code class="language-toml">+++
 # Contact widget.
 widget = &amp;quot;contact&amp;quot;
 headless = true

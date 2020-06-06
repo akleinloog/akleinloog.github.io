@@ -6,15 +6,15 @@ These are the details and some learnings along the way.&lt;/p>
 &lt;p>As usual, before starting any experiments, I want my MacBook up to date, so I make sure that I have the latest updates installed.
 At the time of writing, these are macOS Catalina version 10.15.5 and Xcode version 11.5.
 Then I make sure that brew and any installed packages are up to date as well:&lt;/p>
-&lt;pre>&lt;code>brew update
+&lt;pre>&lt;code class="language-bash">brew update
 brew upgrade
 brew cask upgrade
 &lt;/code>&lt;/pre>
 &lt;p>In addition, make sure there are no issues. If there are, resolve them first:&lt;/p>
-&lt;pre>&lt;code>brew doctor
+&lt;pre>&lt;code class="language-bash">brew doctor
 &lt;/code>&lt;/pre>
 &lt;p>Should give the following output when all is ready:&lt;/p>
-&lt;pre>&lt;code>Your system is ready to brew.
+&lt;pre>&lt;code class="language-bash">Your system is ready to brew.
 &lt;/code>&lt;/pre>
 &lt;p>Should you run into any issues, google is your friend&amp;hellip;&lt;/p>
 &lt;p>If you are running windows,
@@ -28,15 +28,15 @@ You can find other alternatives
 &lt;h3 id="installation">Installation&lt;/h3>
 &lt;p>Install minikube and
 &lt;a href="https://kubernetes.io/docs/reference/kubectl/overview/" target="_blank" rel="noopener">kubectl&lt;/a>:&lt;/p>
-&lt;pre>&lt;code>brew install minikube
+&lt;pre>&lt;code class="language-bash">brew install minikube
 brew install kubectl
 &lt;/code>&lt;/pre>
 &lt;h3 id="first-cluster">First Cluster&lt;/h3>
 &lt;p>Create a cluster:&lt;/p>
-&lt;pre>&lt;code>minikube start
+&lt;pre>&lt;code class="language-bash">minikube start
 &lt;/code>&lt;/pre>
 &lt;p>Gives an output similar to:&lt;/p>
-&lt;pre>&lt;code>😄 minikube v1.11.0 on Darwin 10.15.5
+&lt;pre>&lt;code class="language-plaintext">😄 minikube v1.11.0 on Darwin 10.15.5
 ✨ Using the hyperkit driver based on user configuration
 🆕 Kubernetes 1.18.3 is now available. If you would like to upgrade, specify: --kubernetes-version=v1.18.3
 👍 Starting control plane node minikube in cluster minikube
@@ -52,17 +52,17 @@ brew install kubectl
 It also tells us that the latest available version of Kubernetes is &lt;strong>1.18.3&lt;/strong>.
 Since this is my dev machine, I want to use the latest Kubernetes version, and I want to assign more resources.
 Remove the cluster:&lt;/p>
-&lt;pre>&lt;code>minikube delete
+&lt;pre>&lt;code class="language-bash">minikube delete
 &lt;/code>&lt;/pre>
 &lt;p>Gives an output similar to:&lt;/p>
-&lt;pre>&lt;code>🔥 Deleting &amp;quot;minikube&amp;quot; in hyperkit ...
+&lt;pre>&lt;code class="language-plaintext">🔥 Deleting &amp;quot;minikube&amp;quot; in hyperkit ...
 💀 Removed all traces of the &amp;quot;minikube&amp;quot; cluster.
 &lt;/code>&lt;/pre>
 &lt;p>Create a new cluster as follows:&lt;/p>
-&lt;pre>&lt;code>minikube start --kubernetes-version=v1.18.3 --cpus=4 --memory='8g' --disk-size='80000mb'
+&lt;pre>&lt;code class="language-bash">minikube start --kubernetes-version=v1.18.3 --cpus=4 --memory='8g' --disk-size='80000mb'
 &lt;/code>&lt;/pre>
 &lt;p>Gives an output similar to:&lt;/p>
-&lt;pre>&lt;code>😄 minikube v1.11.0 on Darwin 10.15.5
+&lt;pre>&lt;code class="language-plaintext">😄 minikube v1.11.0 on Darwin 10.15.5
 ✨ Using the hyperkit driver based on user configuration
 👍 Starting control plane node minikube in cluster minikube
 🔥 Creating hyperkit VM (CPUs=4, Memory=8192MB, Disk=80000MB) ...
@@ -73,23 +73,23 @@ Remove the cluster:&lt;/p>
 &lt;/code>&lt;/pre>
 &lt;p>That is more like it. A local Kubernetes cluster up and running, and everything is up to date.
 If you want, you can open the kubernetes dashboard using:&lt;/p>
-&lt;pre>&lt;code>minikube dashboard
+&lt;pre>&lt;code class="language-bash">minikube dashboard
 &lt;/code>&lt;/pre>
 &lt;p>The dashboard will be installed and opened in a browser tab.&lt;/p>
 &lt;h3 id="pause-and-resume">Pause and resume&lt;/h3>
 &lt;p>One very useful feature of minikube is that you can pause and resume your cluster.
 If you don&amp;rsquo;t need it for now, pause the cluster using:&lt;/p>
-&lt;pre>&lt;code>minikube stop
+&lt;pre>&lt;code class="language-bash">minikube stop
 &lt;/code>&lt;/pre>
 &lt;p>Gives an output similar to:&lt;/p>
-&lt;pre>&lt;code>✋ Stopping &amp;quot;minikube&amp;quot; in hyperkit ...
+&lt;pre>&lt;code class="language-plaintext">✋ Stopping &amp;quot;minikube&amp;quot; in hyperkit ...
 🛑 Node &amp;quot;minikube&amp;quot; stopped.
 &lt;/code>&lt;/pre>
 &lt;p>At a later point, you can resume it using:&lt;/p>
-&lt;pre>&lt;code>minikube start --kubernetes-version=v1.18.3
+&lt;pre>&lt;code class="language-bash">minikube start --kubernetes-version=v1.18.3
 &lt;/code>&lt;/pre>
 &lt;p>Gives an output similar to:&lt;/p>
-&lt;pre>&lt;code>😄 minikube v1.11.0 on Darwin 10.15.5
+&lt;pre>&lt;code class="language-plaintext">😄 minikube v1.11.0 on Darwin 10.15.5
 ✨ Using the hyperkit driver based on existing profile
 👍 Starting control plane node minikube in cluster minikube
 🔄 Restarting existing hyperkit VM for &amp;quot;minikube&amp;quot; ...
@@ -104,37 +104,37 @@ This command can also be used to upgrade the Kubernetes version if a newer one b
 &lt;p>Another very useful feature of minikube is the ability to run multiple clusters.
 You can run them at the same time to do multi-cluster experiments, or pause / resume them when switching between projects.
 Let&amp;rsquo;s first delete the previously created cluster:&lt;/p>
-&lt;pre>&lt;code>minikube delete
+&lt;pre>&lt;code class="language-bash">minikube delete
 &lt;/code>&lt;/pre>
 &lt;p>Then create our first cluster:&lt;/p>
-&lt;pre>&lt;code>minikube start -p cluster1 --kubernetes-version=v1.18.3
+&lt;pre>&lt;code class="language-bash">minikube start -p cluster1 --kubernetes-version=v1.18.3
 &lt;/code>&lt;/pre>
 &lt;p>And then a second one:&lt;/p>
-&lt;pre>&lt;code>minikube start -p cluster2 --kubernetes-version=v1.18.3
+&lt;pre>&lt;code class="language-bash">minikube start -p cluster2 --kubernetes-version=v1.18.3
 &lt;/code>&lt;/pre>
 &lt;p>You can see the clusters using:&lt;/p>
-&lt;pre>&lt;code>kubectl config get-contexts
+&lt;pre>&lt;code class="language-bash">kubectl config get-contexts
 &lt;/code>&lt;/pre>
 &lt;p>Gives an output similar to:&lt;/p>
-&lt;pre>&lt;code>CURRENT NAME CLUSTER AUTHINFO NAMESPACE
+&lt;pre>&lt;code class="language-plaintext">CURRENT NAME CLUSTER AUTHINFO NAMESPACE
 cluster1 cluster1 cluster1
 * cluster2 cluster2 cluster2
 &lt;/code>&lt;/pre>
 &lt;p>The * marks the currently selected context. You can also see that using:&lt;/p>
-&lt;pre>&lt;code>% kubectl config current-context
+&lt;pre>&lt;code class="language-bash">% kubectl config current-context
 cluster2
 &lt;/code>&lt;/pre>
 &lt;p>You can switch between clusters by selecting their context:&lt;/p>
-&lt;pre>&lt;code>% kubectl config use-context cluster1
+&lt;pre>&lt;code class="language-plaintext">% kubectl config use-context cluster1
 Switched to context &amp;quot;cluster1&amp;quot;.
 &lt;/code>&lt;/pre>
 &lt;p>Stop one of the clusters if you don&amp;rsquo;t need it for now:&lt;/p>
-&lt;pre>&lt;code>% minikube stop -p cluster2
+&lt;pre>&lt;code class="language-plaintext">% minikube stop -p cluster2
 ✋ Stopping &amp;quot;cluster2&amp;quot; in hyperkit ...
 🛑 Node &amp;quot;cluster2&amp;quot; stopped.
 &lt;/code>&lt;/pre>
 &lt;p>Resume it when you need it again:&lt;/p>
-&lt;pre>&lt;code>% minikube start -p cluster2 --kubernetes-version=v1.18.3
+&lt;pre>&lt;code class="language-plaintext">% minikube start -p cluster2 --kubernetes-version=v1.18.3
 😄 [cluster2] minikube v1.11.0 on Darwin 10.15.5
 ✨ Using the hyperkit driver based on existing profile
 👍 Starting control plane node cluster2 in cluster cluster2
@@ -145,7 +145,7 @@ Switched to context &amp;quot;cluster1&amp;quot;.
 🏄 Done! kubectl is now configured to use &amp;quot;cluster2&amp;quot;
 &lt;/code>&lt;/pre>
 &lt;p>And delete it when you don&amp;rsquo;t need it anymore:&lt;/p>
-&lt;pre>&lt;code>% minikube delete -p cluster2
+&lt;pre>&lt;code class="language-plaintext">% minikube delete -p cluster2
 🔥 Deleting &amp;quot;cluster2&amp;quot; in hyperkit ...
 💀 Removed all traces of the &amp;quot;cluster2&amp;quot; cluster.
 &lt;/code>&lt;/pre>

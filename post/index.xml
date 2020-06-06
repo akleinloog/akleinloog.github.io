@@ -1,4 +1,217 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts | My Site</title><link>https://akleinloog.github.io/post/</link><atom:link href="https://akleinloog.github.io/post/index.xml" rel="self" type="application/rss+xml"/><description>Posts</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Dedicated to the public domain · [Unlicensed](https://github.com/akleinloog/akleinloog.github.io/blob/master/LICENSE)</copyright><image><url>https://akleinloog.github.io/images/icon_hu1d96926d990b8c2ce1741b9516caf288_71361_512x512_fill_lanczos_center_2.png</url><title>Posts</title><link>https://akleinloog.github.io/post/</link></image><item><title>Minikube - Kubernetes for developers</title><link>https://akleinloog.github.io/post/minikube-kubernetes/</link><pubDate>Sat, 30 May 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/post/minikube-kubernetes/</guid><description>&lt;p>As described
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts | My Site</title><link>https://akleinloog.github.io/post/</link><atom:link href="https://akleinloog.github.io/post/index.xml" rel="self" type="application/rss+xml"/><description>Posts</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Dedicated to the public domain · [Unlicensed](https://github.com/akleinloog/akleinloog.github.io/blob/master/LICENSE)</copyright><image><url>https://akleinloog.github.io/images/icon_hu1d96926d990b8c2ce1741b9516caf288_71361_512x512_fill_lanczos_center_2.png</url><title>Posts</title><link>https://akleinloog.github.io/post/</link></image><item><title>Go CLI</title><link>https://akleinloog.github.io/post/go-cli/</link><pubDate>Fri, 05 Jun 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/post/go-cli/</guid><description>&lt;p>Let&amp;rsquo;s set up a decent Command Line Interface (CLI) for our Go project.
+This has been made easy by
+&lt;a href="https://github.com/spf13/cobra" target="_blank" rel="noopener">Cobra&lt;/a>, a library that provides a simple interface to create a powerful modern CLI, like you are used to from git, kubectl, etc.&lt;/p>
+&lt;p>Cobra comes with a very nice set of features, amongst which:&lt;/p>
+&lt;ul>
+&lt;li>Easily add commands and nested commands&lt;/li>
+&lt;li>Support for flags (including short &amp;amp; long versions)&lt;/li>
+&lt;li>Intelligent suggestions (app srver&amp;hellip; did you mean app server?)&lt;/li>
+&lt;li>Automatic help generation and support of -h and --help&lt;/li>
+&lt;li>Automatically generated bash autocomplete and man pages&lt;/li>
+&lt;/ul>
+&lt;h3 id="installation">Installation&lt;/h3>
+&lt;p>To get started, we&amp;rsquo;ll create a new go project and initialize it, in my case:&lt;/p>
+&lt;pre>&lt;code class="language-bash">go mod init github.com/akleinloog/hello
+&lt;/code>&lt;/pre>
+&lt;p>Then, install the latest version of Cobra:&lt;/p>
+&lt;pre>&lt;code class="language-bash">go get github.com/spf13/cobra/cobra
+&lt;/code>&lt;/pre>
+&lt;p>And initialize the new project:&lt;/p>
+&lt;pre>&lt;code class="language-bash">cobra init --pkg-name github.com/akleinloog/hello
+&lt;/code>&lt;/pre>
+&lt;p>This adds a &lt;em>main.go&lt;/em> file and a &lt;em>cmd&lt;/em> folder with a &lt;em>root.go&lt;/em> file.
+The main.go file is very simple, contains some license info and a simple main function:&lt;/p>
+&lt;pre>&lt;code class="language-go">package main
+import &amp;quot;github.com/akleinloog/hello/cmd&amp;quot;
+func main() {
+cmd.Execute()
+}
+&lt;/code>&lt;/pre>
+&lt;p>Take a look at the &lt;em>root.go&lt;/em> file in the &lt;em>cmd&lt;/em> folder, and you will notice a few things.
+First, it contains a use instruction and a short and a long description.
+Change the text to something meaningful for your example. In my case:&lt;/p>
+&lt;pre>&lt;code class="language-go">var rootCmd = &amp;amp;cobra.Command{
+Use: &amp;quot;hello&amp;quot;,
+Short: &amp;quot;Go Hello&amp;quot;,
+Long: `A simple HTTP Server written in Go.
+It gives out a simple Hello message with a counter, the host name and the requested address.`,
+}
+&lt;/code>&lt;/pre>
+&lt;p>It is good practice not to define an action here. In that case, Cobra will ensure to give out a nice set of instructions.
+See for yourself:&lt;/p>
+&lt;pre>&lt;code class="language-bash">go build
+./hello
+&lt;/code>&lt;/pre>
+&lt;p>Another thing to notice is that cobra added an &lt;em>Execute()&lt;/em> function, an &lt;em>init()&lt;/em> function and an &lt;em>initConfig()&lt;/em> function.
+With that, it added
+&lt;a href="https://github.com/spf13/viper" target="_blank" rel="noopener">Viper&lt;/a> and support for a configuration file.
+We&amp;rsquo;ll add another flag later on, and I will discuss Viper and proper configuration in another post.&lt;/p>
+&lt;h3 id="adding-commands">Adding Commands&lt;/h3>
+&lt;p>Let&amp;rsquo;s first add a new command that will start our HTTP Server:&lt;/p>
+&lt;pre>&lt;code class="language-bash">cobra add serve
+&lt;/code>&lt;/pre>
+&lt;p>Cobra added a &lt;em>serve.go&lt;/em> file in the &lt;em>cmd&lt;/em> folder, similar to the &lt;em>root.go&lt;/em> we saw earlier.
+This time it adds a serve command. Let&amp;rsquo;s update the text again:&lt;/p>
+&lt;pre>&lt;code class="language-go">var serveCmd = &amp;amp;cobra.Command{
+Use: &amp;quot;serve&amp;quot;,
+Short: &amp;quot;Starts the HTTP Server.&amp;quot;,
+Long: `Starts the HTTP Server listening at port 80, where it will return a simple hello on any request.`,
+Run: func(cmd *cobra.Command, args []string) {
+fmt.Println(&amp;quot;serve called&amp;quot;)
+},
+}
+&lt;/code>&lt;/pre>
+&lt;p>In the &lt;em>init()&lt;/em> method you see that the command is added to the root command:&lt;/p>
+&lt;pre>&lt;code class="language-go">func init() {
+rootCmd.AddCommand(serveCmd)
+...
+}
+&lt;/code>&lt;/pre>
+&lt;p>Rebuild and run again:&lt;/p>
+&lt;pre>&lt;code class="language-bash">go build
+./hello
+&lt;/code>&lt;/pre>
+&lt;p>Notice that the output has now changed.
+Information is provided on the commands and on flags that are supported.&lt;/p>
+&lt;p>Try the help:&lt;/p>
+&lt;pre>&lt;code class="language-bash">./hello serve -h
+&lt;/code>&lt;/pre>
+&lt;p>Help specific to the serve command is provided.&lt;/p>
+&lt;p>Now try the actual command:&lt;/p>
+&lt;pre>&lt;code class="language-bash">./hello serve
+&lt;/code>&lt;/pre>
+&lt;p>You should see the simple &amp;lsquo;serve called&amp;rsquo; output.&lt;/p>
+&lt;h3 id="add-the-http-server">Add the HTTP Server&lt;/h3>
+&lt;p>Let&amp;rsquo;s implement the HTTP server. We&amp;rsquo;ll keep it simple.
+In &lt;em>serve.go&lt;/em> add the following functions:&lt;/p>
+&lt;pre>&lt;code class="language-go">var (
+requestNr int64 = 0
+host string = &amp;quot;unknown&amp;quot;
+)
+func listen() {
+currentHost, err := os.Hostname()
+if err != nil {
+log.Println(&amp;quot;Could not determine host name:&amp;quot;, err)
+} else {
+host = currentHost
+}
+log.Println(&amp;quot;Starting Hello Server on &amp;quot; + host)
+http.HandleFunc(&amp;quot;/&amp;quot;, hello)
+err = http.ListenAndServe(&amp;quot;:80&amp;quot;, nil)
+if err != nil {
+log.Fatal(err)
+}
+}
+func hello(w http.ResponseWriter, r *http.Request) {
+requestNr++
+message := fmt.Sprintf(&amp;quot;Go Hello %d from %s on %s ./%s\n&amp;quot;, requestNr, host, r.Method, r.URL.Path[1:])
+log.Print(message)
+fmt.Fprint(w, message)
+}
+&lt;/code>&lt;/pre>
+&lt;p>And change the serve command to:&lt;/p>
+&lt;pre>&lt;code class="language-go">var serveCmd = &amp;amp;cobra.Command{
+Use: &amp;quot;serve&amp;quot;,
+Short: &amp;quot;Starts the HTTP Server.&amp;quot;,
+Long: `Starts the HTTP Server listening at port 80, where it will return a simple hello on any request.`,
+Run: func(cmd *cobra.Command, args []string) {
+listen()
+},
+}
+&lt;/code>&lt;/pre>
+&lt;p>Rebuild and run the server:&lt;/p>
+&lt;pre>&lt;code class="language-bash">go build
+./hello serve
+&lt;/code>&lt;/pre>
+&lt;p>The HTTP Server will start and you can visit
+&lt;a href="http://localhost" target="_blank" rel="noopener">http://localhost&lt;/a> to see the result.&lt;/p>
+&lt;h3 id="add-an-http-client">Add an HTTP Client&lt;/h3>
+&lt;p>Let&amp;rsquo;s add another command that will serve as a client for our Server:&lt;/p>
+&lt;pre>&lt;code class="language-bash">cobra add get
+&lt;/code>&lt;/pre>
+&lt;p>Add the following function to &lt;em>get.go&lt;/em>:&lt;/p>
+&lt;pre>&lt;code class="language-go">func get() {
+resp, err := http.Get(&amp;quot;http://localhost&amp;quot;)
+if err != nil {
+log.Println(err)
+}
+defer resp.Body.Close()
+scanner := bufio.NewScanner(resp.Body)
+for i := 0; scanner.Scan() &amp;amp;&amp;amp; i &amp;lt; 5; i++ {
+fmt.Println(scanner.Text())
+}
+if err := scanner.Err(); err != nil {
+log.Println(err)
+}
+}
+&lt;/code>&lt;/pre>
+&lt;p>And make sure it is called from the get command:&lt;/p>
+&lt;pre>&lt;code class="language-go"> Run: func(cmd *cobra.Command, args []string) {
+get()
+},
+&lt;/code>&lt;/pre>
+&lt;p>Rebuild and start the server:&lt;/p>
+&lt;pre>&lt;code class="language-bash">go build
+./hello serve
+&lt;/code>&lt;/pre>
+&lt;p>Then from another console window:&lt;/p>
+&lt;pre>&lt;code class="language-bash">./hello get
+&lt;/code>&lt;/pre>
+&lt;p>And you will see the hello as output!&lt;/p>
+&lt;h3 id="add-a-flag">Add a Flag&lt;/h3>
+&lt;p>To finish up, let&amp;rsquo;s add a flag to specify the port number that our server will listen on.&lt;/p>
+&lt;p>We&amp;rsquo;ll keep it simple for now, we want:&lt;/p>
+&lt;ul>
+&lt;li>Works for both the client and the server&lt;/li>
+&lt;li>Supports the full &amp;ndash;port and the shorthand -p&lt;/li>
+&lt;li>Default port is 80&lt;/li>
+&lt;/ul>
+&lt;p>In &lt;em>get&lt;/em>.go_, declare a variable to be used as port number:&lt;/p>
+&lt;pre>&lt;code class="language-go">var clientPort int
+&lt;/code>&lt;/pre>
+&lt;p>And add the port flag to the &lt;em>init()&lt;/em> function:&lt;/p>
+&lt;pre>&lt;code class="language-go"> getCmd.Flags().IntVarP(&amp;amp;clientPort,&amp;quot;port&amp;quot;,&amp;quot;p&amp;quot;, 80, &amp;quot;port number&amp;quot;)
+&lt;/code>&lt;/pre>
+&lt;p>Do the same thing in &lt;em>serve.go&lt;/em>, but use serverPort as variable name.&lt;/p>
+&lt;p>Rebuild and check the help output:&lt;/p>
+&lt;pre>&lt;code class="language-bash">go build
+./hello
+./hello serve -h
+./hello get -h
+&lt;/code>&lt;/pre>
+&lt;p>Let&amp;rsquo;s adjust the server so it uses the new port flag.
+In the &lt;em>listen()&lt;/em> function in &lt;em>serve.go&lt;/em>, replace&lt;/p>
+&lt;pre>&lt;code class="language-go"> err = http.ListenAndServe(&amp;quot;:80&amp;quot;, nil)
+&lt;/code>&lt;/pre>
+&lt;p>with&lt;/p>
+&lt;pre>&lt;code class="language-go"> log.Printf(&amp;quot;Listening on port %d\n&amp;quot;, serverPort)
+err = http.ListenAndServe(fmt.Sprintf(&amp;quot;:%d&amp;quot;, serverPort), nil)
+&lt;/code>&lt;/pre>
+&lt;p>Now for the client, in the get()_ function in _get.go_, replace&lt;/p>
+&lt;pre>&lt;code class="language-go"> resp, err := http.Get(&amp;quot;http://localhost&amp;quot;)
+&lt;/code>&lt;/pre>
+&lt;p>with&lt;/p>
+&lt;pre>&lt;code class="language-go"> resp, err := http.Get(fmt.Sprintf(&amp;quot;http://localhost:%d&amp;quot;, clientPort))
+&lt;/code>&lt;/pre>
+&lt;p>Rebuild and start the server:&lt;/p>
+&lt;pre>&lt;code class="language-bash">go build
+./hello serve -p 10080
+&lt;/code>&lt;/pre>
+&lt;p>The server will now be available on
+&lt;a href="http://localhost:10080" target="_blank" rel="noopener">http://localhost:10080&lt;/a>&lt;/p>
+&lt;p>Then from another console window:&lt;/p>
+&lt;pre>&lt;code class="language-bash">./hello get -p 10080
+&lt;/code>&lt;/pre>
+&lt;p>You should see something similar to:
+Then from another console window:&lt;/p>
+&lt;pre>&lt;code class="language-plaintext">Go Hello 1 from my-mac.home on GET ./
+&lt;/code>&lt;/pre>
+&lt;h3 id="the-code">The code&lt;/h3>
+&lt;p>The code of my simple Hello Server is available on GitHub
+&lt;a href="https://github.com/akleinloog/hello" target="_blank" rel="noopener">here&lt;/a>.
+I may add a few features there since I intend to use it for some Kubernetes experiments.
+Another similar example is my simple
+&lt;a href="https://akleinloog.github.io/project/http-logger">HTTP Logger&lt;/a>.&lt;/p></description></item><item><title>Minikube - Kubernetes for developers</title><link>https://akleinloog.github.io/post/minikube-kubernetes/</link><pubDate>Sat, 30 May 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/post/minikube-kubernetes/</guid><description>&lt;p>As described
 &lt;a href="https://akleinloog.github.io/post/which-local-kubernetes">here&lt;/a>, I decided to use
 &lt;a href="https://minikube.sigs.k8s.io/docs/" target="_blank" rel="noopener">minikube&lt;/a> to run a Kubernetes cluster on my dev machine.
 These are the details and some learnings along the way.&lt;/p>
@@ -6,15 +219,15 @@ These are the details and some learnings along the way.&lt;/p>
 &lt;p>As usual, before starting any experiments, I want my MacBook up to date, so I make sure that I have the latest updates installed.
 At the time of writing, these are macOS Catalina version 10.15.5 and Xcode version 11.5.
 Then I make sure that brew and any installed packages are up to date as well:&lt;/p>
-&lt;pre>&lt;code>brew update
+&lt;pre>&lt;code class="language-bash">brew update
 brew upgrade
 brew cask upgrade
 &lt;/code>&lt;/pre>
 &lt;p>In addition, make sure there are no issues. If there are, resolve them first:&lt;/p>
-&lt;pre>&lt;code>brew doctor
+&lt;pre>&lt;code class="language-bash">brew doctor
 &lt;/code>&lt;/pre>
 &lt;p>Should give the following output when all is ready:&lt;/p>
-&lt;pre>&lt;code>Your system is ready to brew.
+&lt;pre>&lt;code class="language-bash">Your system is ready to brew.
 &lt;/code>&lt;/pre>
 &lt;p>Should you run into any issues, google is your friend&amp;hellip;&lt;/p>
 &lt;p>If you are running windows,
@@ -28,15 +241,15 @@ You can find other alternatives
 &lt;h3 id="installation">Installation&lt;/h3>
 &lt;p>Install minikube and
 &lt;a href="https://kubernetes.io/docs/reference/kubectl/overview/" target="_blank" rel="noopener">kubectl&lt;/a>:&lt;/p>
-&lt;pre>&lt;code>brew install minikube
+&lt;pre>&lt;code class="language-bash">brew install minikube
 brew install kubectl
 &lt;/code>&lt;/pre>
 &lt;h3 id="first-cluster">First Cluster&lt;/h3>
 &lt;p>Create a cluster:&lt;/p>
-&lt;pre>&lt;code>minikube start
+&lt;pre>&lt;code class="language-bash">minikube start
 &lt;/code>&lt;/pre>
 &lt;p>Gives an output similar to:&lt;/p>
-&lt;pre>&lt;code>😄 minikube v1.11.0 on Darwin 10.15.5
+&lt;pre>&lt;code class="language-plaintext">😄 minikube v1.11.0 on Darwin 10.15.5
 ✨ Using the hyperkit driver based on user configuration
 🆕 Kubernetes 1.18.3 is now available. If you would like to upgrade, specify: --kubernetes-version=v1.18.3
 👍 Starting control plane node minikube in cluster minikube
@@ -52,17 +265,17 @@ brew install kubectl
 It also tells us that the latest available version of Kubernetes is &lt;strong>1.18.3&lt;/strong>.
 Since this is my dev machine, I want to use the latest Kubernetes version, and I want to assign more resources.
 Remove the cluster:&lt;/p>
-&lt;pre>&lt;code>minikube delete
+&lt;pre>&lt;code class="language-bash">minikube delete
 &lt;/code>&lt;/pre>
 &lt;p>Gives an output similar to:&lt;/p>
-&lt;pre>&lt;code>🔥 Deleting &amp;quot;minikube&amp;quot; in hyperkit ...
+&lt;pre>&lt;code class="language-plaintext">🔥 Deleting &amp;quot;minikube&amp;quot; in hyperkit ...
 💀 Removed all traces of the &amp;quot;minikube&amp;quot; cluster.
 &lt;/code>&lt;/pre>
 &lt;p>Create a new cluster as follows:&lt;/p>
-&lt;pre>&lt;code>minikube start --kubernetes-version=v1.18.3 --cpus=4 --memory='8g' --disk-size='80000mb'
+&lt;pre>&lt;code class="language-bash">minikube start --kubernetes-version=v1.18.3 --cpus=4 --memory='8g' --disk-size='80000mb'
 &lt;/code>&lt;/pre>
 &lt;p>Gives an output similar to:&lt;/p>
-&lt;pre>&lt;code>😄 minikube v1.11.0 on Darwin 10.15.5
+&lt;pre>&lt;code class="language-plaintext">😄 minikube v1.11.0 on Darwin 10.15.5
 ✨ Using the hyperkit driver based on user configuration
 👍 Starting control plane node minikube in cluster minikube
 🔥 Creating hyperkit VM (CPUs=4, Memory=8192MB, Disk=80000MB) ...
@@ -73,23 +286,23 @@ Remove the cluster:&lt;/p>
 &lt;/code>&lt;/pre>
 &lt;p>That is more like it. A local Kubernetes cluster up and running, and everything is up to date.
 If you want, you can open the kubernetes dashboard using:&lt;/p>
-&lt;pre>&lt;code>minikube dashboard
+&lt;pre>&lt;code class="language-bash">minikube dashboard
 &lt;/code>&lt;/pre>
 &lt;p>The dashboard will be installed and opened in a browser tab.&lt;/p>
 &lt;h3 id="pause-and-resume">Pause and resume&lt;/h3>
 &lt;p>One very useful feature of minikube is that you can pause and resume your cluster.
 If you don&amp;rsquo;t need it for now, pause the cluster using:&lt;/p>
-&lt;pre>&lt;code>minikube stop
+&lt;pre>&lt;code class="language-bash">minikube stop
 &lt;/code>&lt;/pre>
 &lt;p>Gives an output similar to:&lt;/p>
-&lt;pre>&lt;code>✋ Stopping &amp;quot;minikube&amp;quot; in hyperkit ...
+&lt;pre>&lt;code class="language-plaintext">✋ Stopping &amp;quot;minikube&amp;quot; in hyperkit ...
 🛑 Node &amp;quot;minikube&amp;quot; stopped.
 &lt;/code>&lt;/pre>
 &lt;p>At a later point, you can resume it using:&lt;/p>
-&lt;pre>&lt;code>minikube start --kubernetes-version=v1.18.3
+&lt;pre>&lt;code class="language-bash">minikube start --kubernetes-version=v1.18.3
 &lt;/code>&lt;/pre>
 &lt;p>Gives an output similar to:&lt;/p>
-&lt;pre>&lt;code>😄 minikube v1.11.0 on Darwin 10.15.5
+&lt;pre>&lt;code class="language-plaintext">😄 minikube v1.11.0 on Darwin 10.15.5
 ✨ Using the hyperkit driver based on existing profile
 👍 Starting control plane node minikube in cluster minikube
 🔄 Restarting existing hyperkit VM for &amp;quot;minikube&amp;quot; ...
@@ -104,37 +317,37 @@ This command can also be used to upgrade the Kubernetes version if a newer one b
 &lt;p>Another very useful feature of minikube is the ability to run multiple clusters.
 You can run them at the same time to do multi-cluster experiments, or pause / resume them when switching between projects.
 Let&amp;rsquo;s first delete the previously created cluster:&lt;/p>
-&lt;pre>&lt;code>minikube delete
+&lt;pre>&lt;code class="language-bash">minikube delete
 &lt;/code>&lt;/pre>
 &lt;p>Then create our first cluster:&lt;/p>
-&lt;pre>&lt;code>minikube start -p cluster1 --kubernetes-version=v1.18.3
+&lt;pre>&lt;code class="language-bash">minikube start -p cluster1 --kubernetes-version=v1.18.3
 &lt;/code>&lt;/pre>
 &lt;p>And then a second one:&lt;/p>
-&lt;pre>&lt;code>minikube start -p cluster2 --kubernetes-version=v1.18.3
+&lt;pre>&lt;code class="language-bash">minikube start -p cluster2 --kubernetes-version=v1.18.3
 &lt;/code>&lt;/pre>
 &lt;p>You can see the clusters using:&lt;/p>
-&lt;pre>&lt;code>kubectl config get-contexts
+&lt;pre>&lt;code class="language-bash">kubectl config get-contexts
 &lt;/code>&lt;/pre>
 &lt;p>Gives an output similar to:&lt;/p>
-&lt;pre>&lt;code>CURRENT NAME CLUSTER AUTHINFO NAMESPACE
+&lt;pre>&lt;code class="language-plaintext">CURRENT NAME CLUSTER AUTHINFO NAMESPACE
 cluster1 cluster1 cluster1
 * cluster2 cluster2 cluster2
 &lt;/code>&lt;/pre>
 &lt;p>The * marks the currently selected context. You can also see that using:&lt;/p>
-&lt;pre>&lt;code>% kubectl config current-context
+&lt;pre>&lt;code class="language-bash">% kubectl config current-context
 cluster2
 &lt;/code>&lt;/pre>
 &lt;p>You can switch between clusters by selecting their context:&lt;/p>
-&lt;pre>&lt;code>% kubectl config use-context cluster1
+&lt;pre>&lt;code class="language-plaintext">% kubectl config use-context cluster1
 Switched to context &amp;quot;cluster1&amp;quot;.
 &lt;/code>&lt;/pre>
 &lt;p>Stop one of the clusters if you don&amp;rsquo;t need it for now:&lt;/p>
-&lt;pre>&lt;code>% minikube stop -p cluster2
+&lt;pre>&lt;code class="language-plaintext">% minikube stop -p cluster2
 ✋ Stopping &amp;quot;cluster2&amp;quot; in hyperkit ...
 🛑 Node &amp;quot;cluster2&amp;quot; stopped.
 &lt;/code>&lt;/pre>
 &lt;p>Resume it when you need it again:&lt;/p>
-&lt;pre>&lt;code>% minikube start -p cluster2 --kubernetes-version=v1.18.3
+&lt;pre>&lt;code class="language-plaintext">% minikube start -p cluster2 --kubernetes-version=v1.18.3
 😄 [cluster2] minikube v1.11.0 on Darwin 10.15.5
 ✨ Using the hyperkit driver based on existing profile
 👍 Starting control plane node cluster2 in cluster cluster2
@@ -145,7 +358,7 @@ Switched to context &amp;quot;cluster1&amp;quot;.
 🏄 Done! kubectl is now configured to use &amp;quot;cluster2&amp;quot;
 &lt;/code>&lt;/pre>
 &lt;p>And delete it when you don&amp;rsquo;t need it anymore:&lt;/p>
-&lt;pre>&lt;code>% minikube delete -p cluster2
+&lt;pre>&lt;code class="language-plaintext">% minikube delete -p cluster2
 🔥 Deleting &amp;quot;cluster2&amp;quot; in hyperkit ...
 💀 Removed all traces of the &amp;quot;cluster2&amp;quot; cluster.
 &lt;/code>&lt;/pre>
@@ -161,7 +374,7 @@ I&amp;rsquo;ll present the details in a following post&amp;hellip;&lt;/p></descr
 &lt;p>To get started, create a new GitHub repository, initialized it with a README and a license, and clone it to your local machine.&lt;/p>
 &lt;h2 id="docker-files">Docker files&lt;/h2>
 &lt;p>Add a &lt;em>docker-compose.yaml&lt;/em> file with the following content:&lt;/p>
-&lt;pre>&lt;code class="language-R">version: '3.7'
+&lt;pre>&lt;code class="language-yaml">version: '3.7'
 services:
 rapid-api:
 container_name: api-dev
@@ -171,7 +384,7 @@ ports:
 &lt;/code>&lt;/pre>
 &lt;p>This file points to a Dockerfile in the &lt;em>/docker/sqlite&lt;/em> folder and maps container port 8080 to host port 8080 so we can access our API.&lt;/p>
 &lt;p>Next, add a &lt;em>docker&lt;/em> folder with a &lt;em>sqlite&lt;/em> sub folder. There, create a &lt;em>Dockerfile&lt;/em> with the following content:&lt;/p>
-&lt;pre>&lt;code class="language-R">FROM node:13.14.0-alpine3.11
+&lt;pre>&lt;code class="language-dockerfile">FROM node:13.14.0-alpine3.11
 RUN apk update &amp;amp;&amp;amp; apk upgrade
 RUN yarn global add strapi
 WORKDIR /app
@@ -255,7 +468,7 @@ For more info, see
 &lt;a href="https://strapi.io/documentation/v3.x/plugins/documentation.html#installation" target="_blank" rel="noopener">this section&lt;/a> in the strapi documentation.&lt;/p>
 &lt;h2 id="entrypoint">Entrypoint&lt;/h2>
 &lt;p>Next to the &lt;em>Dockerfile&lt;/em> in the &lt;em>sqlite&lt;/em> folder, add an &lt;em>entrypoint.sh&lt;/em> file with the following content:&lt;/p>
-&lt;pre>&lt;code class="language-R">#!/bin/sh
+&lt;pre>&lt;code class="language-bash">#!/bin/sh
 # exit when any command fails
 set -e
 echo &amp;quot;Starting Server&amp;quot;
@@ -268,12 +481,12 @@ strapi develop
 &lt;/code>&lt;/pre>
 &lt;p>It will take a while before we are ready for the next steps. The base image is downloaded, updates are installed, the strapi project is initialized and the Documentation and GraphQL plugins are installed. Once this is completed, the container is started and some log entries appear.
 Eventually you will see something like this, indicating that the container is successfully started:&lt;/p>
-&lt;pre>&lt;code class="language-r">api-dev | One more thing...
+&lt;pre>&lt;code class="language-plaintext">api-dev | One more thing...
 api-dev | Create your first administrator 💻 by going to the administration panel at:
 api-dev |
-api-dev | ┌─────────────────────────────┐
+api-dev | ┌──────────────────┐
 api-dev | │ http://localhost:8080/admin │
-api-dev | └─────────────────────────────┘
+api-dev | └──────────────────┘
 api-dev |
 &lt;/code>&lt;/pre>
 &lt;p>You are now read to navigate to
@@ -298,12 +511,12 @@ You can use the API client of your choice to test it (postman,
 At the moment, I prefer to use Visual Studio Code with the
 &lt;a href="https://marketplace.visualstudio.com/items?itemName=humao.rest-client" target="_blank" rel="noopener">REST Client&lt;/a> plugin.
 Add a &lt;em>test.http&lt;/em> file with the first test:&lt;/p>
-&lt;pre>&lt;code class="language-r">###
+&lt;pre>&lt;code class="language-http">###
 GET http://localhost:8080/examples
 &lt;/code>&lt;/pre>
 &lt;p>A little &lt;em>Send Request&lt;/em> label will appear, and when you click that, Visual Studio Code will execute the GET request.
 You will get a response like this:&lt;/p>
-&lt;pre>&lt;code class="language-r">HTTP/1.1 403 Forbidden
+&lt;pre>&lt;code class="language-http">HTTP/1.1 403 Forbidden
 ...
 Connection: close
 {
@@ -318,7 +531,7 @@ For the sake of this test, in your strapi Admin UI, navigate to &lt;em>Roles &am
 &lt;p>Now try sending the request again, you should receive the examples that you&amp;rsquo;ve added previously.&lt;/p>
 &lt;p>For our last exercise, let&amp;rsquo;s use the API to add another entry.
 Add the following to the &lt;em>test.http&lt;/em> file:&lt;/p>
-&lt;pre>&lt;code class="language-r">###
+&lt;pre>&lt;code class="language-http">###
 POST http://localhost:8080/examples
 content-type: application/json
 {
@@ -339,7 +552,7 @@ I am not yet very familiar with GraphQL and want to have a playground to learn m
 &lt;p>Don&amp;rsquo;t want to go through the effort described above?
 I&amp;rsquo;ll do you one better. The resulting container image is available
 &lt;a href="https://hub.docker.com/r/akleinloog/rapid-api" target="_blank" rel="noopener">here&lt;/a> on docker hub, so you can get started with a single line:&lt;/p>
-&lt;pre>&lt;code class="language-r">docker run -p 8080:8080 akleinloog/rapid-api
+&lt;pre>&lt;code class="language-bash">docker run -p 8080:8080 akleinloog/rapid-api
 &lt;/code>&lt;/pre>
 &lt;h2 id="the-code">The code&lt;/h2>
 &lt;p>If you want to see how to set up a prototype using MongoDB instead of SQLite, or wonder how I built and published the container image to docker hub, feel free to check out the
@@ -476,7 +689,7 @@ See
 &lt;p>
 &lt;a href="https://marketingplatform.google.com/about/analytics/" target="_blank" rel="noopener">Google Analytics&lt;/a> can provide you with some interesting insights on your site&amp;rsquo;s visitors and the way they use your site. Enabling it on my personal blog provides a nice opportunity to learn a bit more about the possibilities it offers to site owners.&lt;/p>
 &lt;p>Lucky for me, it is a straight forward exercise. After signing up for google analytics and creating an account for your website, all you need to do is open your &lt;em>params.toml&lt;/em> in _/config/&lt;em>default&lt;/em> and add the account id:&lt;/p>
-&lt;pre>&lt;code class="language-r">############################
+&lt;pre>&lt;code class="language-toml">############################
 ## Marketing
 ############################
 [marketing]
@@ -486,11 +699,11 @@ google_analytics = &amp;quot;UA-***&amp;quot;
 &lt;p>I signed up for
 &lt;a href="https://marketingplatform.google.com/about/tag-manager/" target="_blank" rel="noopener">Google Tag Manager&lt;/a> as well, and tried to activate it, but no luck so far. In order to get Google Analytics to work I had to comment out the &lt;em>google_tag_manager&lt;/em> entry. If I decide to take another look at this and get it to work, I&amp;rsquo;ll detail it in a follow up post.&lt;/p>
 &lt;p>The next step is to configure the base URL of your site, in &lt;em>config.toml&lt;/em> in _/config/&lt;em>default&lt;/em>. If you used a custom domain:&lt;/p>
-&lt;pre>&lt;code class="language-r"># The URL of your site.
+&lt;pre>&lt;code class="language-toml"># The URL of your site.
 baseurl = &amp;quot;https://www.yourdomain.com/&amp;quot;
 &lt;/code>&lt;/pre>
 &lt;p>Otherwise, use your GitHub Pages URL:&lt;/p>
-&lt;pre>&lt;code class="language-r"># The URL of your site.
+&lt;pre>&lt;code class="language-toml"># The URL of your site.
 baseurl = &amp;quot;https://&amp;lt;username here&amp;gt;.github.io/&amp;quot;
 &lt;/code>&lt;/pre>
 &lt;p>The last change is an improvement to the deploy script we created in the previous post.
@@ -514,7 +727,7 @@ env HUGO_ENV=&amp;quot;production&amp;quot; hugo --gc --minify -t academic -b ht
 &lt;h2 id="commenting-with-disqus">Commenting with Disqus&lt;/h2>
 &lt;p>Enabling others to comment on your site turns it into an interactive site and is relatively easy to do.
 First go to &lt;a href="https://disqus.com">https://disqus.com&lt;/a> and sign up. I selected the basic, free package. Then open &lt;em>params.toml&lt;/em> in your _config/&lt;em>default&lt;/em> directory and fill in the comments section to enable commenting:&lt;/p>
-&lt;pre>&lt;code class="language-r">############################
+&lt;pre>&lt;code class="language-toml">############################
 ## Comments
 ############################
 [comments]
@@ -532,19 +745,19 @@ shortname = &amp;quot;&amp;lt;shortname&amp;gt;&amp;quot; # Paste the shortname 
 &lt;a href="https://sourcethemes.com/academic/docs/page-builder/#contact" target="_blank" rel="noopener">contact widget&lt;/a>.&lt;/p>
 &lt;p>For this side, I decided to add it to the bottom of the about page, and in addition, add a top-level menu and a link from my profile.&lt;/p>
 &lt;p>To add a top level menu, open _config/&lt;em>default/menus.toml&lt;/em> and add:&lt;/p>
-&lt;pre>&lt;code class="language-r">[[main]]
+&lt;pre>&lt;code class="language-toml">[[main]]
 name = &amp;quot;Contact&amp;quot;
 url = &amp;quot;about/#contact&amp;quot;
 weight = 50
 &lt;/code>&lt;/pre>
 &lt;p>In _config/&lt;em>default/params.toml&lt;/em>, make sure that an email address is configured.&lt;/p>
 &lt;p>To add a link from your profile, open _authors/admin/&lt;em>index.md&lt;/em> and add this to the social section:&lt;/p>
-&lt;pre>&lt;code class="language-r">- icon: envelope
+&lt;pre>&lt;code class="language-toml">- icon: envelope
 icon_pack: fas
 link: 'about/#contact'
 &lt;/code>&lt;/pre>
 &lt;p>To add the contact form itself, in the &lt;em>content/about/&lt;/em> folder, add contact.md with the following content:&lt;/p>
-&lt;pre>&lt;code class="language-r">+++
+&lt;pre>&lt;code class="language-toml">+++
 # Contact widget.
 widget = &amp;quot;contact&amp;quot;
 headless = true
