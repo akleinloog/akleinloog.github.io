@@ -187,7 +187,7 @@ In the &lt;em>listen()&lt;/em> function in &lt;em>serve.go&lt;/em>, replace&lt;/
 &lt;pre>&lt;code class="language-go"> log.Printf(&amp;quot;Listening on port %d\n&amp;quot;, serverPort)
 err = http.ListenAndServe(fmt.Sprintf(&amp;quot;:%d&amp;quot;, serverPort), nil)
 &lt;/code>&lt;/pre>
-&lt;p>Now for the client, in the get()_ function in _get.go_, replace&lt;/p>
+&lt;p>Now for the client, in the &lt;em>get()&lt;/em> function in &lt;em>get.go&lt;/em>, replace&lt;/p>
 &lt;pre>&lt;code class="language-go"> resp, err := http.Get(&amp;quot;http://localhost&amp;quot;)
 &lt;/code>&lt;/pre>
 &lt;p>with&lt;/p>
