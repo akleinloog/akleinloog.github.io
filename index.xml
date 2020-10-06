@@ -847,7 +847,7 @@ email_form = 2
 After deploying to production, simply fill in the form once and you will receive an email to complete your registration.
 Their free plan gives you a limited amount of monthly submissions.&lt;/p>
 &lt;p>The contact widget can be further customized by providing additional information in your &lt;em>params.toml&lt;/em>, see the
-&lt;a href="https://sourcethemes.com/academic/docs/page-builder/#contact" target="_blank" rel="noopener">docs&lt;/a> for more detail.&lt;/p></description></item><item><title>Setting up this Blog - Part 1</title><link>https://akleinloog.github.io/post/my-blog-pt1/</link><pubDate>Wed, 06 May 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/post/my-blog-pt1/</guid><description>&lt;p>This is the first in a series of posts detailing the set up of my personal blog. It covers the basic steps needed to get started.&lt;/p>
+&lt;a href="https://sourcethemes.com/academic/docs/page-builder/#contact" target="_blank" rel="noopener">docs&lt;/a> for more detail.&lt;/p></description></item><item><title>Setting up this Blog - Part 1</title><link>https://akleinloog.github.io/post/my-blog-pt1/</link><pubDate>Wed, 06 May 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/post/my-blog-pt1/</guid><description>&lt;p>Welcome to the first in a series of posts that detail how I set up of this blog. It covers the basic steps needed to get started.&lt;/p>
 &lt;p>I use
 &lt;a href="https://gohugo.io" target="_blank" rel="noopener">Hugo&lt;/a> as a static site generator and
 &lt;a href="https://code.visualstudio.com" target="_blank" rel="noopener">Visual Studio Code&lt;/a> as editor. The resulting website is hosted using
@@ -974,35 +974,36 @@ Once completed, check the &amp;lsquo;Enforce HTTPS&amp;rsquo; checkbox and the s
 &lt;p>See the GitHub Pages docs for
 &lt;a href="https://help.github.com/en/github/working-with-github-pages/managing-a-custom-domain-for-your-github-pages-site" target="_blank" rel="noopener">more information&lt;/a> and
 &lt;a href="https://help.github.com/en/github/working-with-github-pages/troubleshooting-custom-domains-and-github-pages" target="_blank" rel="noopener">troubleshooting tips&lt;/a>.&lt;/p>
-&lt;h2 id="update-your-sources-repository">Update your sources repository&lt;/h2>
-&lt;p>The last thing to do, before making other modifications to your site, is to secure the CNAME file in your sources repository so that it does not get deleted when you regenerate your website. First pull the changes:&lt;/p>
+&lt;h2 id="update-the-source-repository">Update the source repository&lt;/h2>
+&lt;p>The last thing to do, before making other modifications to your site, is to secure the CNAME file in your source repository so that it does not get deleted when the website is regenerated. First pull the changes:&lt;/p>
 &lt;pre>&lt;code class="language-bash">cd public
 git pull --all
 &lt;/code>&lt;/pre>
-&lt;p>This will update your local module and add the CNAME file. Now copy that file from the &lt;em>public&lt;/em> folder to the &lt;em>static&lt;/em> folder so it will be re-added when the site is regenerated. Commit and push your changes and you are good to go!&lt;/p>
+&lt;p>This will update the local module and add the CNAME file. Now copy that file from the &lt;em>public&lt;/em> folder to the &lt;em>static&lt;/em> folder so it will be re-added when the site is regenerated. Commit and push your changes and you are good to go!&lt;/p>
 &lt;h2 id="next-steps">Next Steps&lt;/h2>
-&lt;p>I hope you have enjoyed this as much as I did, in
-&lt;a href="https://akleinloog.github.io/post/my-blog-pt2">Part 2&lt;/a> I will add support for Google Analytics, comments and a simple contact page.&lt;/p></description></item><item><title>Personal Blog</title><link>https://akleinloog.github.io/project/personal-blog/</link><pubDate>Tue, 05 May 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/project/personal-blog/</guid><description>&lt;p>The goal of this project was to set up a simple website to use as a personal blog.
-You are currently looking at the result of this!&lt;/p>
+&lt;p>I hope you may have learned something from this, as I did. In
+&lt;a href="https://akleinloog.github.io/post/my-blog-pt2">Part 2&lt;/a> I will add support for Google Analytics, comments and a simple contact page.&lt;/p></description></item><item><title>Personal Blog</title><link>https://akleinloog.github.io/project/personal-blog/</link><pubDate>Tue, 05 May 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/project/personal-blog/</guid><description>&lt;p>The goal of this mini-project was to set up a simple website to use as a personal blog.
+You are currently looking at the result of it.&lt;/p>
 &lt;h2 id="the-what">The What&lt;/h2>
-&lt;p>The basic idea was to set up a blog where I can easily manage my posts and provide some info on myself and the projects I work on.
-Having played around with Wordpress in the past, I wanted something different this time.&lt;/p>
+&lt;p>The basic idea was to set up a simple blog that allows me to manage posts on some topics that interest me and to provide some info on some of the projects I work on.
+Having played around with Wordpress in the past, I wanted to try something different this time.&lt;/p>
 &lt;p>My main requirements:&lt;/p>
 &lt;ul>
-&lt;li>Easy to use (for me)&lt;/li>
-&lt;li>Easy to host&lt;/li>
-&lt;li>Free of costs (no licence or hosting fees)&lt;/li>
+&lt;li>Easy to use (for me, so opinionated)&lt;/li>
+&lt;li>Easy to host, on a custom domain with HTTPS&lt;/li>
+&lt;li>Free of costs, no licence or hosting fees&lt;/li>
 &lt;li>Learn something new in the process&lt;/li>
 &lt;/ul>
 &lt;h2 id="the-why">The Why&lt;/h2>
-&lt;p>My main motivation is to have a place to keep track of the many technical experiments I do and their outcomes.
+&lt;p>My main motivation is to have a place to keep track of some of the technical experiments I do and their outcomes.
 A blog that allows me to write small posts, tag them, and easily search through them seemed like a good solution.&lt;/p>
-&lt;p>If others can also find these experiments and learn from them, that would be an additional benefit. And if they in turn can provide feedback, even better.&lt;/p>
+&lt;p>If others may find these experiments and learn from them, that would be an additional benefit.
+And if in turn they would provide feedback, even better!&lt;/p>
 &lt;h2 id="the-how">The How&lt;/h2>
 &lt;p>After looking around a bit I decided to try out the following:&lt;/p>
 &lt;ul>
 &lt;li>Use
-&lt;a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo&lt;/a>, a Static Site Generator written in
+&lt;a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo&lt;/a>, a static site generator written in
 &lt;a href="https://golang.org/" target="_blank" rel="noopener">Go&lt;/a>&lt;/li>
 &lt;li>Write the content in
 &lt;a href="https://www.markdownguide.org/" target="_blank" rel="noopener">markdown&lt;/a>&lt;/li>
@@ -1014,5 +1015,5 @@ A blog that allows me to write small posts, tag them, and easily search through 
 &lt;/ul>
 &lt;h2 id="the-results">The Results&lt;/h2>
 &lt;p>The current state of this project is open for all to see. Look around and take a look at the sources if you are interested.&lt;/p>
-&lt;p>This is still a work in progress, I will add some posts that detail what I did and what I used, and hope to add some additional features soon, for example, the possibility for others to comment.&lt;/p>
-&lt;p>I hope you will find this useful somehow!&lt;/p></description></item><item><title>About</title><link>https://akleinloog.github.io/about/</link><pubDate>Sat, 02 May 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/about/</guid><description/></item><item><title>Projects</title><link>https://akleinloog.github.io/portfolio/</link><pubDate>Sat, 02 May 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/portfolio/</guid><description/></item></channel></rss>
+&lt;p>This is a work in progress, posts will be added and edited to my likings, and I hope to add some additional features every now and then as well.&lt;/p>
+&lt;p>I hope you may find this useful somehow!&lt;/p></description></item><item><title>About</title><link>https://akleinloog.github.io/about/</link><pubDate>Sat, 02 May 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/about/</guid><description/></item><item><title>Projects</title><link>https://akleinloog.github.io/portfolio/</link><pubDate>Sat, 02 May 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/portfolio/</guid><description/></item></channel></rss>
