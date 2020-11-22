@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Go | My Site</title><link>https://akleinloog.github.io/tag/go/</link><atom:link href="https://akleinloog.github.io/tag/go/index.xml" rel="self" type="application/rss+xml"/><description>Go</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Dedicated to the public domain · [Unlicensed](https://github.com/akleinloog/akleinloog.github.io/blob/master/LICENSE)</copyright><lastBuildDate>Fri, 05 Jun 2020 00:00:00 +0000</lastBuildDate><image><url>https://akleinloog.github.io/images/icon_hu1d96926d990b8c2ce1741b9516caf288_71361_512x512_fill_lanczos_center_2.png</url><title>Go</title><link>https://akleinloog.github.io/tag/go/</link></image><item><title>Go CLI</title><link>https://akleinloog.github.io/post/go-cli/</link><pubDate>Fri, 05 Jun 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/post/go-cli/</guid><description>&lt;p>Let&amp;rsquo;s set up a decent Command Line Interface (CLI) for our Go project.
-This has been made easy by
-&lt;a href="https://github.com/spf13/cobra" target="_blank" rel="noopener">Cobra&lt;/a>, a library that provides a simple interface to create a powerful modern CLI, like you are used to from git, kubectl, etc.&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Go | My Site</title><link>https://www.kleinloog.ch/tag/go/</link><atom:link href="https://www.kleinloog.ch/tag/go/index.xml" rel="self" type="application/rss+xml"/><description>Go</description><generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>Dedicated to the public domain · [Unlicensed](https://github.com/akleinloog/akleinloog.github.io/blob/master/LICENSE)</copyright><lastBuildDate>Fri, 05 Jun 2020 00:00:00 +0000</lastBuildDate><image><url>https://www.kleinloog.ch/images/icon_hu1d96926d990b8c2ce1741b9516caf288_71361_512x512_fill_lanczos_center_2.png</url><title>Go</title><link>https://www.kleinloog.ch/tag/go/</link></image><item><title>Go CLI</title><link>https://www.kleinloog.ch/post/go-cli/</link><pubDate>Fri, 05 Jun 2020 00:00:00 +0000</pubDate><guid>https://www.kleinloog.ch/post/go-cli/</guid><description>&lt;p>Let&amp;rsquo;s set up a decent Command Line Interface (CLI) for our Go project.
+This has been made easy by &lt;a href="https://github.com/spf13/cobra" target="_blank" rel="noopener">Cobra&lt;/a>, a library that provides a simple interface to create a powerful modern CLI, like you are used to from git, kubectl, etc.&lt;/p>
 &lt;p>Cobra comes with a very nice set of features, amongst which:&lt;/p>
 &lt;ul>
 &lt;li>Easily add commands and nested commands&lt;/li>
@@ -43,8 +42,7 @@ See for yourself:&lt;/p>
 ./hello
 &lt;/code>&lt;/pre>
 &lt;p>Another thing to notice is that cobra added an &lt;em>Execute()&lt;/em> function, an &lt;em>init()&lt;/em> function and an &lt;em>initConfig()&lt;/em> function.
-With that, it added
-&lt;a href="https://github.com/spf13/viper" target="_blank" rel="noopener">Viper&lt;/a> and support for a configuration file.
+With that, it added &lt;a href="https://github.com/spf13/viper" target="_blank" rel="noopener">Viper&lt;/a> and support for a configuration file.
 We&amp;rsquo;ll add another flag later on, and I will discuss Viper and proper configuration in another post.&lt;/p>
 &lt;h3 id="adding-commands">Adding Commands&lt;/h3>
 &lt;p>Let&amp;rsquo;s first add a new command that will start our HTTP Server:&lt;/p>
@@ -123,8 +121,7 @@ listen()
 &lt;pre>&lt;code class="language-bash">go build
 ./hello serve
 &lt;/code>&lt;/pre>
-&lt;p>The HTTP Server will start and you can visit
-&lt;a href="http://localhost" target="_blank" rel="noopener">http://localhost&lt;/a> to see the result.&lt;/p>
+&lt;p>The HTTP Server will start and you can visit &lt;a href="http://localhost" target="_blank" rel="noopener">http://localhost&lt;/a> to see the result.&lt;/p>
 &lt;h3 id="add-an-http-client">Add an HTTP Client&lt;/h3>
 &lt;p>Let&amp;rsquo;s add another command that will serve as a client for our Server:&lt;/p>
 &lt;pre>&lt;code class="language-bash">cobra add get
@@ -197,8 +194,7 @@ err = http.ListenAndServe(fmt.Sprintf(&amp;quot;:%d&amp;quot;, serverPort), nil)
 &lt;pre>&lt;code class="language-bash">go build
 ./hello serve -p 10080
 &lt;/code>&lt;/pre>
-&lt;p>The server will now be available on
-&lt;a href="http://localhost:10080" target="_blank" rel="noopener">http://localhost:10080&lt;/a>&lt;/p>
+&lt;p>The server will now be available on &lt;a href="http://localhost:10080" target="_blank" rel="noopener">http://localhost:10080&lt;/a>&lt;/p>
 &lt;p>Then from another console window:&lt;/p>
 &lt;pre>&lt;code class="language-bash">./hello get -p 10080
 &lt;/code>&lt;/pre>
@@ -207,11 +203,9 @@ Then from another console window:&lt;/p>
 &lt;pre>&lt;code class="language-plaintext">Go Hello 1 from my-mac.home on GET ./
 &lt;/code>&lt;/pre>
 &lt;h3 id="the-code">The code&lt;/h3>
-&lt;p>The code of my simple Hello Server is available on GitHub
-&lt;a href="https://github.com/akleinloog/hello" target="_blank" rel="noopener">here&lt;/a>.
+&lt;p>The code of my simple Hello Server is available on GitHub &lt;a href="https://github.com/akleinloog/hello" target="_blank" rel="noopener">here&lt;/a>.
 I may add a few features there since I intend to use it for some Kubernetes experiments.
-Another similar example is my simple
-&lt;a href="https://akleinloog.github.io/project/http-logger">HTTP Logger&lt;/a>.&lt;/p></description></item><item><title>HTTP Logger</title><link>https://akleinloog.github.io/project/http-logger/</link><pubDate>Fri, 22 May 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/project/http-logger/</guid><description>&lt;p>This goal of this project is to create a simple HTTP Logger in Go, that logs all incoming HTTP requests in a structured way.&lt;/p>
+Another similar example is my simple &lt;a href="https://www.kleinloog.ch/project/http-logger">HTTP Logger&lt;/a>.&lt;/p></description></item><item><title>HTTP Logger</title><link>https://www.kleinloog.ch/project/http-logger/</link><pubDate>Fri, 22 May 2020 00:00:00 +0000</pubDate><guid>https://www.kleinloog.ch/project/http-logger/</guid><description>&lt;p>This goal of this project is to create a simple HTTP Logger in Go, that logs all incoming HTTP requests in a structured way.&lt;/p>
 &lt;h2 id="the-what">The What&lt;/h2>
 &lt;p>A Simple HTTP Logger that can be configured to run on any port.&lt;/p>
 &lt;p>My main requirements:&lt;/p>

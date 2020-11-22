@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Projects | My Site</title><link>https://akleinloog.github.io/project/</link><atom:link href="https://akleinloog.github.io/project/index.xml" rel="self" type="application/rss+xml"/><description>Projects</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Dedicated to the public domain · [Unlicensed](https://github.com/akleinloog/akleinloog.github.io/blob/master/LICENSE)</copyright><lastBuildDate>Fri, 22 May 2020 00:00:00 +0000</lastBuildDate><image><url>https://akleinloog.github.io/images/icon_hu1d96926d990b8c2ce1741b9516caf288_71361_512x512_fill_lanczos_center_2.png</url><title>Projects</title><link>https://akleinloog.github.io/project/</link></image><item><title>HTTP Logger</title><link>https://akleinloog.github.io/project/http-logger/</link><pubDate>Fri, 22 May 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/project/http-logger/</guid><description>&lt;p>This goal of this project is to create a simple HTTP Logger in Go, that logs all incoming HTTP requests in a structured way.&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Projects | My Site</title><link>https://www.kleinloog.ch/project/</link><atom:link href="https://www.kleinloog.ch/project/index.xml" rel="self" type="application/rss+xml"/><description>Projects</description><generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>Dedicated to the public domain · [Unlicensed](https://github.com/akleinloog/akleinloog.github.io/blob/master/LICENSE)</copyright><lastBuildDate>Fri, 22 May 2020 00:00:00 +0000</lastBuildDate><image><url>https://www.kleinloog.ch/images/icon_hu1d96926d990b8c2ce1741b9516caf288_71361_512x512_fill_lanczos_center_2.png</url><title>Projects</title><link>https://www.kleinloog.ch/project/</link></image><item><title>HTTP Logger</title><link>https://www.kleinloog.ch/project/http-logger/</link><pubDate>Fri, 22 May 2020 00:00:00 +0000</pubDate><guid>https://www.kleinloog.ch/project/http-logger/</guid><description>&lt;p>This goal of this project is to create a simple HTTP Logger in Go, that logs all incoming HTTP requests in a structured way.&lt;/p>
 &lt;h2 id="the-what">The What&lt;/h2>
 &lt;p>A Simple HTTP Logger that can be configured to run on any port.&lt;/p>
 &lt;p>My main requirements:&lt;/p>
@@ -30,7 +30,7 @@ And for me, the best way to learn after some basic tutorials is to put things in
 &lt;h2 id="the-results">The Results&lt;/h2>
 &lt;p>I just started this project, so there are no results to share just yet.
 I will detail the progress in a series of blog posts and update this section when the HTTP Logger is available.&lt;/p>
-&lt;p>In the end, my solution will be publicly available on GitHub and on Docker, for you to use freely, to learn from, and hopefully, to provide some feedback on!&lt;/p></description></item><item><title>Rapid API</title><link>https://akleinloog.github.io/project/rapid-api/</link><pubDate>Sat, 16 May 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/project/rapid-api/</guid><description>&lt;p>This goal of this project is to come up with an approach for rapid prototyping of APIs that support both REST and GraphQL.&lt;/p>
+&lt;p>In the end, my solution will be publicly available on GitHub and on Docker, for you to use freely, to learn from, and hopefully, to provide some feedback on!&lt;/p></description></item><item><title>Rapid API</title><link>https://www.kleinloog.ch/project/rapid-api/</link><pubDate>Sat, 16 May 2020 00:00:00 +0000</pubDate><guid>https://www.kleinloog.ch/project/rapid-api/</guid><description>&lt;p>This goal of this project is to come up with an approach for rapid prototyping of APIs that support both REST and GraphQL.&lt;/p>
 &lt;h2 id="the-what">The What&lt;/h2>
 &lt;p>A containerized starting point that can be used to quickly implement a prototype of an API, customize it as needed, and easily add initial content.&lt;/p>
 &lt;p>My main requirements:&lt;/p>
@@ -52,21 +52,16 @@ This often happens when exploring a design for a new Microservice, especially wh
 &lt;p>In order to properly allocate responsibilities and design the interactions between these Microservice, I often find it useful to create some working prototypes of the Microservices I depend on.&lt;/p>
 &lt;p>Being able to do so quickly, while having a rich feature set at the same time, enables me to follow the &lt;strong>show me&lt;/strong> approach to software architecture, which I find far more interesting and effective, and therefore more valuable, than the more common diagrams-based &lt;strong>tell me&lt;/strong> approach.&lt;/p>
 &lt;h2 id="the-how">The How&lt;/h2>
-&lt;p>The
-&lt;a href="https://strapi.io/" target="_blank" rel="noopener">strapi&lt;/a> project was initially created to boot&lt;strong>strap&lt;/strong> &lt;strong>API&lt;/strong>s. Even though it is now advertised as a Headless CMS, from what I have seen, it could be a very good fit for what I need.&lt;/p>
-&lt;p>Based on strapi, I will create a docker image that is pre-configured and ready to use. In the process, I will tailor the image to my needs and in addition, set up an automated build that pushes new versions of that image to
-&lt;a href="https://hub.docker.com" target="_blank" rel="noopener">docker hub&lt;/a>.
+&lt;p>The &lt;a href="https://strapi.io/" target="_blank" rel="noopener">strapi&lt;/a> project was initially created to boot&lt;strong>strap&lt;/strong> &lt;strong>API&lt;/strong>s. Even though it is now advertised as a Headless CMS, from what I have seen, it could be a very good fit for what I need.&lt;/p>
+&lt;p>Based on strapi, I will create a docker image that is pre-configured and ready to use. In the process, I will tailor the image to my needs and in addition, set up an automated build that pushes new versions of that image to &lt;a href="https://hub.docker.com" target="_blank" rel="noopener">docker hub&lt;/a>.
 This is something that I did not do before, so a good opportunity to learn.&lt;/p>
 &lt;h2 id="the-results">The Results&lt;/h2>
-&lt;p>See
-&lt;a href="https://akleinloog.github.io/post/rapid-api-prototype">this post&lt;/a> for a detailed description of the process and how to use it.&lt;/p>
-&lt;p>The resulting container to get you going with rapid API prototyping is available on docker hub
-&lt;a href="https://hub.docker.com/r/akleinloog/rapid-api" target="_blank" rel="noopener">here&lt;/a> and can be started as follows:&lt;/p>
+&lt;p>See &lt;a href="https://www.kleinloog.ch/post/rapid-api-prototype">this post&lt;/a> for a detailed description of the process and how to use it.&lt;/p>
+&lt;p>The resulting container to get you going with rapid API prototyping is available on docker hub &lt;a href="https://hub.docker.com/r/akleinloog/rapid-api" target="_blank" rel="noopener">here&lt;/a> and can be started as follows:&lt;/p>
 &lt;pre>&lt;code class="language-r">docker run -p 8080:8080 akleinloog/rapid-api
 &lt;/code>&lt;/pre>
-&lt;p>The code is available in this
-&lt;a href="https://github.com/akleinloog/rapid-api" target="_blank" rel="noopener">GitHub repository&lt;/a>.&lt;/p>
-&lt;p>Use it freely, learn from it, and ideally, provide some feedback!&lt;/p></description></item><item><title>Personal Blog</title><link>https://akleinloog.github.io/project/personal-blog/</link><pubDate>Tue, 05 May 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/project/personal-blog/</guid><description>&lt;p>The goal of this mini-project was to set up a simple website to use as a personal blog.
+&lt;p>The code is available in this &lt;a href="https://github.com/akleinloog/rapid-api" target="_blank" rel="noopener">GitHub repository&lt;/a>.&lt;/p>
+&lt;p>Use it freely, learn from it, and ideally, provide some feedback!&lt;/p></description></item><item><title>Personal Blog</title><link>https://www.kleinloog.ch/project/personal-blog/</link><pubDate>Tue, 05 May 2020 00:00:00 +0000</pubDate><guid>https://www.kleinloog.ch/project/personal-blog/</guid><description>&lt;p>The goal of this mini-project was to set up a simple website to use as a personal blog.
 You are currently looking at the result of it.&lt;/p>
 &lt;h2 id="the-what">The What&lt;/h2>
 &lt;p>The basic idea was to set up a simple blog that allows me to manage posts on some topics that interest me and to provide some info on some of the projects I work on.
@@ -86,15 +81,10 @@ And if in turn they would provide feedback, even better!&lt;/p>
 &lt;h2 id="the-how">The How&lt;/h2>
 &lt;p>After looking around a bit I decided to try out the following:&lt;/p>
 &lt;ul>
-&lt;li>Use
-&lt;a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo&lt;/a>, a static site generator written in
-&lt;a href="https://golang.org/" target="_blank" rel="noopener">Go&lt;/a>&lt;/li>
-&lt;li>Write the content in
-&lt;a href="https://www.markdownguide.org/" target="_blank" rel="noopener">markdown&lt;/a>&lt;/li>
-&lt;li>Use a
-&lt;a href="https://github.com/akleinloog/website" target="_blank" rel="noopener">GitHub repository&lt;/a> to keep the sources&lt;/li>
-&lt;li>Use another
-&lt;a href="https://github.com/akleinloog/akleinloog.github.io" target="_blank" rel="noopener">GitHub repository&lt;/a> to host the resulting blog&lt;/li>
+&lt;li>Use &lt;a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo&lt;/a>, a static site generator written in &lt;a href="https://golang.org/" target="_blank" rel="noopener">Go&lt;/a>&lt;/li>
+&lt;li>Write the content in &lt;a href="https://www.markdownguide.org/" target="_blank" rel="noopener">markdown&lt;/a>&lt;/li>
+&lt;li>Use a &lt;a href="https://github.com/akleinloog/website" target="_blank" rel="noopener">GitHub repository&lt;/a> to keep the sources&lt;/li>
+&lt;li>Use another &lt;a href="https://github.com/akleinloog/akleinloog.github.io" target="_blank" rel="noopener">GitHub repository&lt;/a> to host the resulting blog&lt;/li>
 &lt;li>Open Source the result so others might learn from it&lt;/li>
 &lt;/ul>
 &lt;h2 id="the-results">The Results&lt;/h2>

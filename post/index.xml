@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts | My Site</title><link>https://akleinloog.github.io/post/</link><atom:link href="https://akleinloog.github.io/post/index.xml" rel="self" type="application/rss+xml"/><description>Posts</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Dedicated to the public domain · [Unlicensed](https://github.com/akleinloog/akleinloog.github.io/blob/master/LICENSE)</copyright><image><url>https://akleinloog.github.io/images/icon_hu1d96926d990b8c2ce1741b9516caf288_71361_512x512_fill_lanczos_center_2.png</url><title>Posts</title><link>https://akleinloog.github.io/post/</link></image><item><title>Go CLI</title><link>https://akleinloog.github.io/post/go-cli/</link><pubDate>Fri, 05 Jun 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/post/go-cli/</guid><description>&lt;p>Let&amp;rsquo;s set up a decent Command Line Interface (CLI) for our Go project.
-This has been made easy by
-&lt;a href="https://github.com/spf13/cobra" target="_blank" rel="noopener">Cobra&lt;/a>, a library that provides a simple interface to create a powerful modern CLI, like you are used to from git, kubectl, etc.&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts | My Site</title><link>https://www.kleinloog.ch/post/</link><atom:link href="https://www.kleinloog.ch/post/index.xml" rel="self" type="application/rss+xml"/><description>Posts</description><generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>Dedicated to the public domain · [Unlicensed](https://github.com/akleinloog/akleinloog.github.io/blob/master/LICENSE)</copyright><image><url>https://www.kleinloog.ch/images/icon_hu1d96926d990b8c2ce1741b9516caf288_71361_512x512_fill_lanczos_center_2.png</url><title>Posts</title><link>https://www.kleinloog.ch/post/</link></image><item><title>Go CLI</title><link>https://www.kleinloog.ch/post/go-cli/</link><pubDate>Fri, 05 Jun 2020 00:00:00 +0000</pubDate><guid>https://www.kleinloog.ch/post/go-cli/</guid><description>&lt;p>Let&amp;rsquo;s set up a decent Command Line Interface (CLI) for our Go project.
+This has been made easy by &lt;a href="https://github.com/spf13/cobra" target="_blank" rel="noopener">Cobra&lt;/a>, a library that provides a simple interface to create a powerful modern CLI, like you are used to from git, kubectl, etc.&lt;/p>
 &lt;p>Cobra comes with a very nice set of features, amongst which:&lt;/p>
 &lt;ul>
 &lt;li>Easily add commands and nested commands&lt;/li>
@@ -43,8 +42,7 @@ See for yourself:&lt;/p>
 ./hello
 &lt;/code>&lt;/pre>
 &lt;p>Another thing to notice is that cobra added an &lt;em>Execute()&lt;/em> function, an &lt;em>init()&lt;/em> function and an &lt;em>initConfig()&lt;/em> function.
-With that, it added
-&lt;a href="https://github.com/spf13/viper" target="_blank" rel="noopener">Viper&lt;/a> and support for a configuration file.
+With that, it added &lt;a href="https://github.com/spf13/viper" target="_blank" rel="noopener">Viper&lt;/a> and support for a configuration file.
 We&amp;rsquo;ll add another flag later on, and I will discuss Viper and proper configuration in another post.&lt;/p>
 &lt;h3 id="adding-commands">Adding Commands&lt;/h3>
 &lt;p>Let&amp;rsquo;s first add a new command that will start our HTTP Server:&lt;/p>
@@ -123,8 +121,7 @@ listen()
 &lt;pre>&lt;code class="language-bash">go build
 ./hello serve
 &lt;/code>&lt;/pre>
-&lt;p>The HTTP Server will start and you can visit
-&lt;a href="http://localhost" target="_blank" rel="noopener">http://localhost&lt;/a> to see the result.&lt;/p>
+&lt;p>The HTTP Server will start and you can visit &lt;a href="http://localhost" target="_blank" rel="noopener">http://localhost&lt;/a> to see the result.&lt;/p>
 &lt;h3 id="add-an-http-client">Add an HTTP Client&lt;/h3>
 &lt;p>Let&amp;rsquo;s add another command that will serve as a client for our Server:&lt;/p>
 &lt;pre>&lt;code class="language-bash">cobra add get
@@ -197,8 +194,7 @@ err = http.ListenAndServe(fmt.Sprintf(&amp;quot;:%d&amp;quot;, serverPort), nil)
 &lt;pre>&lt;code class="language-bash">go build
 ./hello serve -p 10080
 &lt;/code>&lt;/pre>
-&lt;p>The server will now be available on
-&lt;a href="http://localhost:10080" target="_blank" rel="noopener">http://localhost:10080&lt;/a>&lt;/p>
+&lt;p>The server will now be available on &lt;a href="http://localhost:10080" target="_blank" rel="noopener">http://localhost:10080&lt;/a>&lt;/p>
 &lt;p>Then from another console window:&lt;/p>
 &lt;pre>&lt;code class="language-bash">./hello get -p 10080
 &lt;/code>&lt;/pre>
@@ -207,14 +203,10 @@ Then from another console window:&lt;/p>
 &lt;pre>&lt;code class="language-plaintext">Go Hello 1 from my-mac.home on GET ./
 &lt;/code>&lt;/pre>
 &lt;h3 id="the-code">The code&lt;/h3>
-&lt;p>The code of my simple Hello Server is available on GitHub
-&lt;a href="https://github.com/akleinloog/hello" target="_blank" rel="noopener">here&lt;/a>.
+&lt;p>The code of my simple Hello Server is available on GitHub &lt;a href="https://github.com/akleinloog/hello" target="_blank" rel="noopener">here&lt;/a>.
 I may add a few features there since I intend to use it for some Kubernetes experiments.
-Another similar example is my simple
-&lt;a href="https://akleinloog.github.io/project/http-logger">HTTP Logger&lt;/a>.&lt;/p></description></item><item><title>Minikube - Kubernetes for developers</title><link>https://akleinloog.github.io/post/minikube-kubernetes/</link><pubDate>Sat, 30 May 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/post/minikube-kubernetes/</guid><description>&lt;p>As described
-&lt;a href="https://akleinloog.github.io/post/which-local-kubernetes">here&lt;/a>, I decided to use
-&lt;a href="https://minikube.sigs.k8s.io/docs/" target="_blank" rel="noopener">minikube&lt;/a> to run a Kubernetes cluster on my dev machine.
-These are the details and some learnings along the way.&lt;/p>
+Another similar example is my simple &lt;a href="https://www.kleinloog.ch/project/http-logger">HTTP Logger&lt;/a>.&lt;/p></description></item><item><title>Minikube - Kubernetes for developers</title><link>https://www.kleinloog.ch/post/minikube-kubernetes/</link><pubDate>Sat, 30 May 2020 00:00:00 +0000</pubDate><guid>https://www.kleinloog.ch/post/minikube-kubernetes/</guid><description>&lt;p>As described &lt;a href="https://www.kleinloog.ch/post/which-local-kubernetes">here&lt;/a>, I decided to take a deeper look at &lt;a href="https://minikube.sigs.k8s.io/docs/" target="_blank" rel="noopener">minikube&lt;/a> to run a Kubernetes cluster on my dev machine.
+These are the details and some of my learnings along the way.&lt;/p>
 &lt;h3 id="preparation">Preparation&lt;/h3>
 &lt;p>As usual, before starting any experiments, I want my MacBook up to date, so I make sure that I have the latest updates installed.
 At the time of writing, these are macOS Catalina version 10.15.5 and Xcode version 11.5.
@@ -230,17 +222,12 @@ brew cask upgrade
 &lt;pre>&lt;code class="language-bash">Your system is ready to brew.
 &lt;/code>&lt;/pre>
 &lt;p>Should you run into any issues, google is your friend&amp;hellip;&lt;/p>
-&lt;p>If you are running windows,
-&lt;a href="https://chocolatey.org/" target="_blank" rel="noopener">chocolatey&lt;/a> is a decent alternative to brew.&lt;/p>
-&lt;p>If not already installed, make sure you have
-&lt;a href="https://hub.docker.com/editions/community/docker-ce-desktop-mac" target="_blank" rel="noopener">Docker Desktop&lt;/a> up and running.
-This should also come with
-&lt;a href="https://github.com/moby/hyperkit" target="_blank" rel="noopener">Hyperkit&lt;/a>, a lightweight hypervisor for macOS.
-You can find other alternatives
-&lt;a href="https://minikube.sigs.k8s.io/docs/drivers/" target="_blank" rel="noopener">here&lt;/a>.&lt;/p>
+&lt;p>If you are running windows, &lt;a href="https://chocolatey.org/" target="_blank" rel="noopener">chocolatey&lt;/a> is a decent alternative to brew.&lt;/p>
+&lt;p>If not already installed, make sure you have &lt;a href="https://hub.docker.com/editions/community/docker-ce-desktop-mac" target="_blank" rel="noopener">Docker Desktop&lt;/a> up and running.
+This should also come with &lt;a href="https://github.com/moby/hyperkit" target="_blank" rel="noopener">Hyperkit&lt;/a>, a lightweight hypervisor for macOS.
+You can find other alternatives &lt;a href="https://minikube.sigs.k8s.io/docs/drivers/" target="_blank" rel="noopener">here&lt;/a>.&lt;/p>
 &lt;h3 id="installation">Installation&lt;/h3>
-&lt;p>Install minikube and
-&lt;a href="https://kubernetes.io/docs/reference/kubectl/overview/" target="_blank" rel="noopener">kubectl&lt;/a>:&lt;/p>
+&lt;p>Install minikube and &lt;a href="https://kubernetes.io/docs/reference/kubectl/overview/" target="_blank" rel="noopener">kubectl&lt;/a>:&lt;/p>
 &lt;pre>&lt;code class="language-bash">brew install minikube
 brew install kubectl
 &lt;/code>&lt;/pre>
@@ -363,13 +350,9 @@ Switched to context &amp;quot;cluster1&amp;quot;.
 💀 Removed all traces of the &amp;quot;cluster2&amp;quot; cluster.
 &lt;/code>&lt;/pre>
 &lt;h3 id="next-steps">Next Steps&amp;hellip;&lt;/h3>
-&lt;p>Get more familiar with Kubernetes, follow some basic tutorials to deploy your first app
-&lt;a href="https://kubernetes.io/docs/tutorials/" target="_blank" rel="noopener">here&lt;/a> and find some more
-&lt;a href="https://katacoda.com/courses/kubernetes" target="_blank" rel="noopener">here&lt;/a>. Again, google is your friend, there is plenty of content out there.&lt;/p>
-&lt;p>As for me, my next step will be to install
-&lt;a href="https://istio.io/" target="_blank" rel="noopener">Istio&lt;/a> and make sure that my cluster can also be reached from other machines in my network.
-I&amp;rsquo;ll present the details in a following post&amp;hellip;&lt;/p></description></item><item><title>Rapid API Prototyping</title><link>https://akleinloog.github.io/post/rapid-api-prototype/</link><pubDate>Wed, 27 May 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/post/rapid-api-prototype/</guid><description>&lt;p>The goal of my
-&lt;a href="https://akleinloog.github.io/project/rapid-api">Rapid API project&lt;/a> is to create a containerized starting point that can be used to quickly implement a prototype of an API, customize it as needed, and easily add initial content.&lt;/p>
+&lt;p>Get more familiar with Kubernetes, follow some basic tutorials to deploy your first app &lt;a href="https://kubernetes.io/docs/tutorials/" target="_blank" rel="noopener">here&lt;/a> and find some more &lt;a href="https://katacoda.com/courses/kubernetes" target="_blank" rel="noopener">here&lt;/a>. Again, google is your friend, there is plenty of content out there.&lt;/p>
+&lt;p>As for me, my next step will be to install &lt;a href="https://istio.io/" target="_blank" rel="noopener">Istio&lt;/a> and make sure that my cluster can also be reached from other machines in my network.
+I&amp;rsquo;ll present the details in a following post&amp;hellip;&lt;/p></description></item><item><title>Rapid API Prototyping</title><link>https://www.kleinloog.ch/post/rapid-api-prototype/</link><pubDate>Wed, 27 May 2020 00:00:00 +0000</pubDate><guid>https://www.kleinloog.ch/post/rapid-api-prototype/</guid><description>&lt;p>The goal of my &lt;a href="https://www.kleinloog.ch/project/rapid-api">Rapid API project&lt;/a> is to create a containerized starting point that can be used to quickly implement a prototype of an API, customize it as needed, and easily add initial content.&lt;/p>
 &lt;h2 id="preparation">Preparation&lt;/h2>
 &lt;p>To get started, create a new GitHub repository, initialized it with a README and a license, and clone it to your local machine.&lt;/p>
 &lt;h2 id="docker-files">Docker files&lt;/h2>
@@ -401,11 +384,8 @@ ENTRYPOINT [&amp;quot;/usr/local/bin/entrypoint.sh&amp;quot;]
 &lt;p>As you can see, the Dockerfile uses the latest Node JS 13 version.
 At the time of writing, Node JS 14 has already been released, but not all of strapi&amp;rsquo;s dependencies were available at the time of writing.&lt;/p>
 &lt;p>The docker build starts with installing the strapi CLI, which it then uses to create a new quickstart project.
-This initializes a strapi project using a
-&lt;a href="https://www.sqlite.org/index.html" target="_blank" rel="noopener">SQLite&lt;/a> database.
-It then installs the
-&lt;a href="https://strapi.io/documentation/v3.x/plugins/documentation.html" target="_blank" rel="noopener">API documentation&lt;/a> and
-&lt;a href="https://strapi.io/documentation/v3.x/plugins/graphql.html" target="_blank" rel="noopener">GraphQL&lt;/a> plugins and changes the default port number from 1337 to 8080.
+This initializes a strapi project using a &lt;a href="https://www.sqlite.org/index.html" target="_blank" rel="noopener">SQLite&lt;/a> database.
+It then installs the &lt;a href="https://strapi.io/documentation/v3.x/plugins/documentation.html" target="_blank" rel="noopener">API documentation&lt;/a> and &lt;a href="https://strapi.io/documentation/v3.x/plugins/graphql.html" target="_blank" rel="noopener">GraphQL&lt;/a> plugins and changes the default port number from 1337 to 8080.
 In addition, it copies a &lt;em>settings.json&lt;/em> file and an &lt;em>entrypoint.sh&lt;/em> file to the image.&lt;/p>
 &lt;h2 id="open-api-settings">Open API settings&lt;/h2>
 &lt;p>Next to the &lt;em>Dockerfile&lt;/em> in the &lt;em>sqlite&lt;/em> folder, add a &lt;em>settings.json&lt;/em> file with the following content:&lt;/p>
@@ -464,8 +444,7 @@ In addition, it copies a &lt;em>settings.json&lt;/em> file and an &lt;em>entrypo
 }
 &lt;/code>&lt;/pre>
 &lt;p>This file is needed in order to correct the port number used by the Open API endpoint. Feel free to edit the other settings to your liking.
-For more info, see
-&lt;a href="https://strapi.io/documentation/v3.x/plugins/documentation.html#installation" target="_blank" rel="noopener">this section&lt;/a> in the strapi documentation.&lt;/p>
+For more info, see &lt;a href="https://strapi.io/documentation/v3.x/plugins/documentation.html#installation" target="_blank" rel="noopener">this section&lt;/a> in the strapi documentation.&lt;/p>
 &lt;h2 id="entrypoint">Entrypoint&lt;/h2>
 &lt;p>Next to the &lt;em>Dockerfile&lt;/em> in the &lt;em>sqlite&lt;/em> folder, add an &lt;em>entrypoint.sh&lt;/em> file with the following content:&lt;/p>
 &lt;pre>&lt;code class="language-bash">#!/bin/sh
@@ -489,8 +468,7 @@ api-dev | │ http://localhost:8080/admin │
 api-dev | └──────────────────┘
 api-dev |
 &lt;/code>&lt;/pre>
-&lt;p>You are now read to navigate to
-&lt;a href="http://localhost:8080/admin" target="_blank" rel="noopener">http://localhost:8080/admin&lt;/a>, create an admin account and start customizing your API.&lt;/p>
+&lt;p>You are now read to navigate to &lt;a href="http://localhost:8080/admin" target="_blank" rel="noopener">http://localhost:8080/admin&lt;/a>, create an admin account and start customizing your API.&lt;/p>
 &lt;h2 id="adding-content">Adding Content&lt;/h2>
 &lt;p>Let&amp;rsquo;s add a first example resource together.&lt;/p>
 &lt;p>From the menu on the left, select the &lt;em>Content-Types Builder&lt;/em> and choose &lt;em>Create new collection type&lt;/em>.
@@ -501,15 +479,11 @@ For now, we will just add a Text field called &lt;em>Name&lt;/em> and a Rich Tex
 Hit &lt;em>Finish&lt;/em> and then &lt;em>Save&lt;/em>. Strapi will now generate the &lt;em>Example API&lt;/em> and restart the server.
 Once complete, you will see the &lt;em>Example&lt;/em> collection type appear in the top left.
 Open it up and add a few examples.&lt;/p>
-&lt;p>Checkout the
-&lt;a href="https://strapi.io/documentation/v3.x/getting-started/introduction.html" target="_blank" rel="noopener">strapi documentation&lt;/a> and
-&lt;a href="https://strapi.io/tutorials" target="_blank" rel="noopener">tutorials&lt;/a> for more examples.&lt;/p>
+&lt;p>Checkout the &lt;a href="https://strapi.io/documentation/v3.x/getting-started/introduction.html" target="_blank" rel="noopener">strapi documentation&lt;/a> and &lt;a href="https://strapi.io/tutorials" target="_blank" rel="noopener">tutorials&lt;/a> for more examples.&lt;/p>
 &lt;h2 id="test-the-api">Test the API&lt;/h2>
 &lt;p>Now that we have added some content and created our first API, we want to see it in action.
-You can use the API client of your choice to test it (postman,
-&lt;a href="https://insomnia.rest/" target="_blank" rel="noopener">insomnia&lt;/a>, curl, etc,)
-At the moment, I prefer to use Visual Studio Code with the
-&lt;a href="https://marketplace.visualstudio.com/items?itemName=humao.rest-client" target="_blank" rel="noopener">REST Client&lt;/a> plugin.
+You can use the API client of your choice to test it (postman, &lt;a href="https://insomnia.rest/" target="_blank" rel="noopener">insomnia&lt;/a>, curl, etc,)
+At the moment, I prefer to use Visual Studio Code with the &lt;a href="https://marketplace.visualstudio.com/items?itemName=humao.rest-client" target="_blank" rel="noopener">REST Client&lt;/a> plugin.
 Add a &lt;em>test.http&lt;/em> file with the first test:&lt;/p>
 &lt;pre>&lt;code class="language-http">###
 GET http://localhost:8080/examples
@@ -545,19 +519,14 @@ content-type: application/json
 &lt;h2 id="graphql">GraphQL&lt;/h2>
 &lt;p>A main reason for me to try strapi for rapid API prototyping is its support for GraphQL.
 I am not yet very familiar with GraphQL and want to have a playground to learn more.&lt;/p>
-&lt;p>Your API&amp;rsquo;s GraphQL Playground is available at
-&lt;a href="http://localhost:8080/graphql" target="_blank" rel="noopener">http://localhost:8080/graphql&lt;/a>. See
-&lt;a href="https://strapi.io/documentation/v3.x/plugins/graphql.html" target="_blank" rel="noopener">this section&lt;/a> in the strapi documentation for more info.&lt;/p>
+&lt;p>Your API&amp;rsquo;s GraphQL Playground is available at &lt;a href="http://localhost:8080/graphql" target="_blank" rel="noopener">http://localhost:8080/graphql&lt;/a>. See &lt;a href="https://strapi.io/documentation/v3.x/plugins/graphql.html" target="_blank" rel="noopener">this section&lt;/a> in the strapi documentation for more info.&lt;/p>
 &lt;h2 id="even-easier">Even easier&amp;hellip;&lt;/h2>
 &lt;p>Don&amp;rsquo;t want to go through the effort described above?
-I&amp;rsquo;ll do you one better. The resulting container image is available
-&lt;a href="https://hub.docker.com/r/akleinloog/rapid-api" target="_blank" rel="noopener">here&lt;/a> on docker hub, so you can get started with a single line:&lt;/p>
+I&amp;rsquo;ll do you one better. The resulting container image is available &lt;a href="https://hub.docker.com/r/akleinloog/rapid-api" target="_blank" rel="noopener">here&lt;/a> on docker hub, so you can get started with a single line:&lt;/p>
 &lt;pre>&lt;code class="language-bash">docker run -p 8080:8080 akleinloog/rapid-api
 &lt;/code>&lt;/pre>
 &lt;h2 id="the-code">The code&lt;/h2>
-&lt;p>If you want to see how to set up a prototype using MongoDB instead of SQLite, or wonder how I built and published the container image to docker hub, feel free to check out the
-&lt;a href="https://github.com/akleinloog/rapid-api" target="_blank" rel="noopener">repository&lt;/a> on Github.&lt;/p></description></item><item><title>Kubernetes on my machine. Great idea, but which one?</title><link>https://akleinloog.github.io/post/which-local-kubernetes/</link><pubDate>Fri, 22 May 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/post/which-local-kubernetes/</guid><description>&lt;p>
-&lt;a href="https://kubernetes.io" target="_blank" rel="noopener">Kubernetes&lt;/a> is the state-of-the-art when it comes to container orchestration.&lt;br>
+&lt;p>If you want to see how to set up a prototype using MongoDB instead of SQLite, or wonder how I built and published the container image to docker hub, feel free to check out the &lt;a href="https://github.com/akleinloog/rapid-api" target="_blank" rel="noopener">repository&lt;/a> on Github.&lt;/p></description></item><item><title>Kubernetes on my machine. Great idea, but which one?</title><link>https://www.kleinloog.ch/post/which-local-kubernetes/</link><pubDate>Fri, 22 May 2020 00:00:00 +0000</pubDate><guid>https://www.kleinloog.ch/post/which-local-kubernetes/</guid><description>&lt;p>&lt;a href="https://kubernetes.io" target="_blank" rel="noopener">Kubernetes&lt;/a> is the state-of-the-art when it comes to container orchestration.&lt;br>
 Built upon years of experience with production workloads at Google, it combines best-of-breed ideas and community practices.
 Kubernetes is a classroom example of a successful open source project, drives vendor neutrality and runs basically everywhere.&lt;/p>
 &lt;p>Today, I see Kubernetes as the operating system of the Cloud Native world.
@@ -577,33 +546,22 @@ Ideally, I should be able to use it with some Raspberry Pis to create a small cl
 These are nice to haves though, using a different distribution for each purpose is an option too.&lt;/p>
 &lt;h3 id="the-alternatives">The Alternatives&lt;/h3>
 &lt;p>So far, I have identified the following solutions as promising:&lt;/p>
-&lt;p>
-&lt;a href="https://www.docker.com/blog/kubernetes-is-now-available-in-docker-desktop-stable-channel/" target="_blank" rel="noopener">Docker Desktop&lt;/a> ships with a bundled Kubernetes offering.
+&lt;p>&lt;a href="https://www.docker.com/blog/kubernetes-is-now-available-in-docker-desktop-stable-channel/" target="_blank" rel="noopener">Docker Desktop&lt;/a> ships with a bundled Kubernetes offering.
 The Kubernetes version it supports is tightly coupled with the Docker version. The current version (2.4.0.0) ships with Kubernetes version 1.18.8.
 Since it comes with docker I don&amp;rsquo;t need to install anything. At the same time, I did not find an easy programmatic way to create and destroy a new Kubernetes cluster.&lt;/p>
-&lt;p>
-&lt;a href="https://kind.sigs.k8s.io" target="_blank" rel="noopener">Kind&lt;/a> - Kubernetes IN Docker - is a tool for running local Kubernetes clusters using Docker containers as nodes.
-It is an
-&lt;a href="https://github.com/kubernetes-sigs/kind" target="_blank" rel="noopener">open source&lt;/a> project managed by the Kubernetes Community and was primarily designed for testing Kubernetes itself.
+&lt;p>&lt;a href="https://kind.sigs.k8s.io" target="_blank" rel="noopener">Kind&lt;/a> - Kubernetes IN Docker - is a tool for running local Kubernetes clusters using Docker containers as nodes.
+It is an &lt;a href="https://github.com/kubernetes-sigs/kind" target="_blank" rel="noopener">open source&lt;/a> project managed by the Kubernetes Community and was primarily designed for testing Kubernetes itself.
 Kind supports multi-node (including HA) clusters and is optimized for CI pipelines.&lt;/p>
-&lt;p>
-&lt;a href="https://minikube.sigs.k8s.io/docs/" target="_blank" rel="noopener">Minikube&lt;/a> sets up a local single node Kubernetes cluster using a VM.
-It is another
-&lt;a href="https://github.com/kubernetes/minikube" target="_blank" rel="noopener">open source&lt;/a> project managed by the Kubernetes Community and was designed to make it simple to run Kubernetes locally, for day-to-day development workflows and learning purposes.
+&lt;p>&lt;a href="https://minikube.sigs.k8s.io/docs/" target="_blank" rel="noopener">Minikube&lt;/a> sets up a local single node Kubernetes cluster using a VM.
+It is another &lt;a href="https://github.com/kubernetes/minikube" target="_blank" rel="noopener">open source&lt;/a> project managed by the Kubernetes Community and was designed to make it simple to run Kubernetes locally, for day-to-day development workflows and learning purposes.
 Minikube supports multiple container runtimes and advanced features such as load balancer, filesystem mounts, and feature gates.&lt;/p>
-&lt;p>
-&lt;a href="https://k3d.io" target="_blank" rel="noopener">K3d&lt;/a> is a lightweight wrapper to run
-&lt;a href="https://k3s.io" target="_blank" rel="noopener">k3s&lt;/a>, Rancher Lab’s minified Kubernetes distribution, in docker.
+&lt;p>&lt;a href="https://k3d.io" target="_blank" rel="noopener">K3d&lt;/a> is a lightweight wrapper to run &lt;a href="https://k3s.io" target="_blank" rel="noopener">k3s&lt;/a>, Rancher Lab’s minified Kubernetes distribution, in docker.
 By removing dispensable features (legacy, alpha, non-default, in-tree plugins) and using lightweight components (e.g. sqlite3 instead of etcd3) Rancher Labs created an ultra small Kubernetes distribution built for IoT and Edge computing. It supports ARMv7 and ARM64 architectures, making it possible to run a Kubernetes cluster on a set of Raspberry Pis.&lt;/p>
-&lt;p>Last but not least,
-&lt;a href="https://microk8s.io" target="_blank" rel="noopener">Microk8s&lt;/a> is a production-grade Kubernetes distribution maintained by Canonical.
+&lt;p>Last but not least, &lt;a href="https://microk8s.io" target="_blank" rel="noopener">MicroK8s&lt;/a> is a production-grade Kubernetes distribution maintained by Canonical.
 MicroK8s runs in an immutable container, comes with a range of sensible defaults to ease installation and configuration.
 Networking, storage and standard services are supported out of the box and can be customized as needed.
 It supports both ARM and Intel architectures, as well as single node and multi node deployments.&lt;/p>
-&lt;p>Of course there are other potential alternatives like
-&lt;a href="https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm/" target="_blank" rel="noopener">Kubeadm&lt;/a>,
-&lt;a href="https://kubespray.io" target="_blank" rel="noopener">Kubespray&lt;/a>,
-&lt;a href="https://kops.sigs.k8s.io" target="_blank" rel="noopener">Kops&lt;/a> and more. I discarded these because they are not cross platform, require too much manual configuration or are rather geared towards production environments.&lt;/p>
+&lt;p>Of course there are other potential alternatives like &lt;a href="https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm/" target="_blank" rel="noopener">Kubeadm&lt;/a>, &lt;a href="https://kubespray.io" target="_blank" rel="noopener">Kubespray&lt;/a>, &lt;a href="https://kops.sigs.k8s.io" target="_blank" rel="noopener">Kops&lt;/a> and more. I discarded these because they are not cross platform, require too much manual configuration or are rather geared towards production environments.&lt;/p>
 &lt;p>If you feel there is an alternative missing here, please leave a comment.&lt;/p>
 &lt;h3 id="how-do-they-compare">How do they compare?&lt;/h3>
 &lt;p>The following table lists the alternatives along with some of their characteristics:&lt;/p>
@@ -684,24 +642,20 @@ It supports both ARM and Intel architectures, as well as single node and multi n
 &lt;/table>
 &lt;h3 id="conclusion">Conclusion&lt;/h3>
 &lt;p>This exercise provided me with some interesting insights.&lt;/p>
-&lt;p>I won&amp;rsquo;t be using the Docker Desktop version, mainly because it only supports a single Kubernetes version and I have not found a way to programmatically create, configure and destroy the cluster.&lt;/p>
+&lt;p>I won&amp;rsquo;t be using the Docker Desktop version, mainly because it only supports a single Kubernetes version and I haven&amp;rsquo;t found a way to programmatically create, configure and destroy the cluster.&lt;/p>
 &lt;p>Running a Kubernetes cluster on a set of Raspberry Pis is definitely something I want to spend some time on.
-With two options to try out I can&amp;rsquo;t wait to get started.&lt;/p>
-&lt;p>Both Kind and Minikube are managed by the Kubernetes community.
-They have done an awesome job in bringing us Kubernetes, so I expect these to be hassle free alternatives.&lt;/p>
-&lt;p>I first took Minikube for a deep dive, as detailed in this
-&lt;a href="https://akleinloog.github.io/post/minikube-kubernetes">post&lt;/a>.&lt;/p>
+With two options to try out I can&amp;rsquo;t wait to get started. I&amp;rsquo;ll add a post as soon as I get to it.&lt;/p>
+&lt;p>Both Kind and Minikube are interesting options managed by the Kubernetes community.
+They have done an awesome job with Kubernetes, so I expect these to be hassle free alternatives.
+At first sight, Kind seems to be promising for automated tests in your CI/CD pipeline and Minikube seems to be the most feature rich for your desktop.&lt;/p>
+&lt;p>I took a deeper look at Minikube, see this &lt;a href="https://www.kleinloog.ch/post/minikube-kubernetes">post&lt;/a> for the details.&lt;/p>
 &lt;p>Up next is MicroK8s, more on that to follow soon.&lt;/p>
-&lt;p>
-&lt;a href="https://docs.google.com/spreadsheets/d/1LxSqBzjOxfGx3cmtZ4EbB_BGCxT_wlxW_xgHVVa23es/edit#gid=0" target="_blank" rel="noopener">Here&lt;/a> is an updated list of certified Kubernetes offerings and the versions they support, and
-&lt;a href="https://github.com/cncf/k8s-conformance" target="_blank" rel="noopener">here&lt;/a> is more info on conformance.&lt;/p>
-&lt;p>If you do not agree with my conclusions, or you feel like I have missed something, please leave a comment!&lt;/p></description></item><item><title>Setting up this Blog - Part 2</title><link>https://akleinloog.github.io/post/my-blog-pt2/</link><pubDate>Sat, 09 May 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/post/my-blog-pt2/</guid><description>&lt;p>This is the second part in a series of posts detailing the set up of my personal blog.
+&lt;p>&lt;a href="https://docs.google.com/spreadsheets/d/1LxSqBzjOxfGx3cmtZ4EbB_BGCxT_wlxW_xgHVVa23es/edit#gid=0" target="_blank" rel="noopener">Here&lt;/a> is an updated list of certified Kubernetes offerings and the versions they support, and &lt;a href="https://github.com/cncf/k8s-conformance" target="_blank" rel="noopener">here&lt;/a> is more info on conformance.&lt;/p>
+&lt;p>If you do not agree with my conclusions, or you feel like I have missed something, please leave a comment!&lt;/p></description></item><item><title>Setting up this Blog - Part 2</title><link>https://www.kleinloog.ch/post/my-blog-pt2/</link><pubDate>Sat, 09 May 2020 00:00:00 +0000</pubDate><guid>https://www.kleinloog.ch/post/my-blog-pt2/</guid><description>&lt;p>This is the second part in a series of posts detailing the set up of my personal blog.
 It details how to enable google analytics, commenting and a simple contact page.
-See
-&lt;a href="https://akleinloog.github.io/post/my-blog-pt1">part 1&lt;/a> for the basic setup.&lt;/p>
+See &lt;a href="https://www.kleinloog.ch/post/my-blog-pt1">part 1&lt;/a> for the basic setup.&lt;/p>
 &lt;h2 id="enable-google-analytics">Enable Google Analytics&lt;/h2>
-&lt;p>
-&lt;a href="https://marketingplatform.google.com/about/analytics/" target="_blank" rel="noopener">Google Analytics&lt;/a> can provide you with some interesting insights on your site&amp;rsquo;s visitors and the way they use your site. Enabling it on my personal blog provides a nice opportunity to learn a bit more about the possibilities it offers to site owners.&lt;/p>
+&lt;p>&lt;a href="https://marketingplatform.google.com/about/analytics/" target="_blank" rel="noopener">Google Analytics&lt;/a> can provide you with some interesting insights on your site&amp;rsquo;s visitors and the way they use your site. Enabling it on my personal blog provides a nice opportunity to learn a bit more about the possibilities it offers to site owners.&lt;/p>
 &lt;p>Lucky for me, it is a straight forward exercise. After signing up for google analytics and creating an account for your website, all you need to do is open your &lt;em>params.toml&lt;/em> in _/config/&lt;em>default&lt;/em> and add the account id:&lt;/p>
 &lt;pre>&lt;code class="language-toml">############################
 ## Marketing
@@ -710,8 +664,7 @@ See
 google_analytics = &amp;quot;UA-***&amp;quot;
 # google_tag_manager = &amp;quot;&amp;quot;
 &lt;/code>&lt;/pre>
-&lt;p>I signed up for
-&lt;a href="https://marketingplatform.google.com/about/tag-manager/" target="_blank" rel="noopener">Google Tag Manager&lt;/a> as well, and tried to activate it, but no luck so far. In order to get Google Analytics to work I had to comment out the &lt;em>google_tag_manager&lt;/em> entry. If I decide to take another look at this and get it to work, I&amp;rsquo;ll detail it in a follow up post.&lt;/p>
+&lt;p>I signed up for &lt;a href="https://marketingplatform.google.com/about/tag-manager/" target="_blank" rel="noopener">Google Tag Manager&lt;/a> as well, and tried to activate it, but no luck so far. In order to get Google Analytics to work I had to comment out the &lt;em>google_tag_manager&lt;/em> entry. If I decide to take another look at this and get it to work, I&amp;rsquo;ll detail it in a follow up post.&lt;/p>
 &lt;p>The next step is to configure the base URL of your site, in &lt;em>config.toml&lt;/em> in _/config/&lt;em>default&lt;/em>. If you used a custom domain:&lt;/p>
 &lt;pre>&lt;code class="language-toml"># The URL of your site.
 baseurl = &amp;quot;https://www.yourdomain.com/&amp;quot;
@@ -729,11 +682,9 @@ hugo -t academic
 &lt;pre>&lt;code class="language-bash">echo &amp;quot;Running Hugo Build&amp;quot;
 env HUGO_ENV=&amp;quot;production&amp;quot; hugo --gc --minify -t academic -b https://&amp;lt;username here&amp;gt;.github.io
 &lt;/code>&lt;/pre>
-&lt;p>Doing so will activate the Google Analytics scripts when the site is running in production. In addition, it also
-&lt;a href="https://gohugo.io/commands/hugo/" target="_blank" rel="noopener">instructs Hugo&lt;/a> to run some cleanup tasks after the build and to minify the output, something I didn&amp;rsquo;t pay attention to in my previous post.&lt;/p>
+&lt;p>Doing so will activate the Google Analytics scripts when the site is running in production. In addition, it also &lt;a href="https://gohugo.io/commands/hugo/" target="_blank" rel="noopener">instructs Hugo&lt;/a> to run some cleanup tasks after the build and to minify the output, something I didn&amp;rsquo;t pay attention to in my previous post.&lt;/p>
 &lt;h2 id="enable-google-search-console">Enable Google Search Console&lt;/h2>
-&lt;p>Another thing I decided to add is
-&lt;a href="https://search.google.com/search-console/about" target="_blank" rel="noopener">Google Search Console&lt;/a>, another free-to-use service offered by Google that helps you monitor, maintain, and troubleshoot your site&amp;rsquo;s presence in Google Search results.&lt;/p>
+&lt;p>Another thing I decided to add is &lt;a href="https://search.google.com/search-console/about" target="_blank" rel="noopener">Google Search Console&lt;/a>, another free-to-use service offered by Google that helps you monitor, maintain, and troubleshoot your site&amp;rsquo;s presence in Google Search results.&lt;/p>
 &lt;p>After using the &amp;lsquo;URL prefix&amp;rsquo; method, my site ownership was automatically verified based on the Google Analytics account. I added an additional verification method by going to &lt;em>Settings-&amp;gt;Ownership Verification&lt;/em>, and selecting &lt;em>HTML File&lt;/em>. Download the file, add it to your &lt;em>/static&lt;/em> folder and redeploy the site:&lt;/p>
 &lt;pre>&lt;code class="language-bash">./deploy.sh
 &lt;/code>&lt;/pre>
@@ -755,8 +706,7 @@ shortname = &amp;quot;&amp;lt;shortname&amp;gt;&amp;quot; # Paste the shortname 
 &lt;em>&amp;ldquo;Disqus comments not available by default when the website is previewed locally.&amp;quot;&lt;/em> at the bottom of your posts.&lt;/p>
 &lt;p>Deploy your website to production and see how it works!&lt;/p>
 &lt;h2 id="contact-page">Contact Page&lt;/h2>
-&lt;p>Adding a simple contact page can be done with Academic&amp;rsquo;s
-&lt;a href="https://sourcethemes.com/academic/docs/page-builder/#contact" target="_blank" rel="noopener">contact widget&lt;/a>.&lt;/p>
+&lt;p>Adding a simple contact page can be done with Academic&amp;rsquo;s &lt;a href="https://sourcethemes.com/academic/docs/page-builder/#contact" target="_blank" rel="noopener">contact widget&lt;/a>.&lt;/p>
 &lt;p>For this side, I decided to add it to the bottom of the about page, and in addition, add a top-level menu and a link from my profile.&lt;/p>
 &lt;p>To add a top level menu, open _config/&lt;em>default/menus.toml&lt;/em> and add:&lt;/p>
 &lt;pre>&lt;code class="language-toml">[[main]]
@@ -788,32 +738,23 @@ autolink = true
 email_form = 2
 +++
 &lt;/code>&lt;/pre>
-&lt;p>This sets up your site to use
-&lt;a href="https://formspree.io/" target="_blank" rel="noopener">Formspree&lt;/a> to email you the request.
+&lt;p>This sets up your site to use &lt;a href="https://formspree.io/" target="_blank" rel="noopener">Formspree&lt;/a> to email you the request.
 After deploying to production, simply fill in the form once and you will receive an email to complete your registration.
 Their free plan gives you a limited amount of monthly submissions.&lt;/p>
-&lt;p>The contact widget can be further customized by providing additional information in your &lt;em>params.toml&lt;/em>, see the
-&lt;a href="https://sourcethemes.com/academic/docs/page-builder/#contact" target="_blank" rel="noopener">docs&lt;/a> for more detail.&lt;/p></description></item><item><title>Setting up this Blog - Part 1</title><link>https://akleinloog.github.io/post/my-blog-pt1/</link><pubDate>Wed, 06 May 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/post/my-blog-pt1/</guid><description>&lt;p>Welcome to the first in a series of posts that detail how I set up of this blog. It covers the basic steps needed to get started.&lt;/p>
-&lt;p>I use
-&lt;a href="https://gohugo.io" target="_blank" rel="noopener">Hugo&lt;/a> as a static site generator and
-&lt;a href="https://code.visualstudio.com" target="_blank" rel="noopener">Visual Studio Code&lt;/a> as editor. The resulting website is hosted using
-&lt;a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages&lt;/a>. A nice combination of open source tools with a free hosting provider that poses no restrictions in terms of traffic, size, etc.
+&lt;p>The contact widget can be further customized by providing additional information in your &lt;em>params.toml&lt;/em>, see the &lt;a href="https://sourcethemes.com/academic/docs/page-builder/#contact" target="_blank" rel="noopener">docs&lt;/a> for more detail.&lt;/p></description></item><item><title>Setting up this Blog - Part 1</title><link>https://www.kleinloog.ch/post/my-blog-pt1/</link><pubDate>Wed, 06 May 2020 00:00:00 +0000</pubDate><guid>https://www.kleinloog.ch/post/my-blog-pt1/</guid><description>&lt;p>Welcome to the first in a series of posts that detail how I set up of this blog. It covers the basic steps needed to get started.&lt;/p>
+&lt;p>I use &lt;a href="https://gohugo.io" target="_blank" rel="noopener">Hugo&lt;/a> as a static site generator and &lt;a href="https://code.visualstudio.com" target="_blank" rel="noopener">Visual Studio Code&lt;/a> as editor. The resulting website is hosted using &lt;a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages&lt;/a>. A nice combination of open source tools with a free hosting provider that poses no restrictions in terms of traffic, size, etc.
 Sounds like a perfect match to me.&lt;/p>
 &lt;p>Familiarity with git and the command line are assumed. I use a Mac, some of the commands may need to be translated to your environment.&lt;/p>
 &lt;h2 id="getting-started">Getting started&lt;/h2>
-&lt;p>Following this
-&lt;a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/" target="_blank" rel="noopener">Hugo tutorial&lt;/a>, I created two repositories on GitHub.
-One named &lt;em>website&lt;/em> for the
-&lt;a href="https://github.com/akleinloog/website" target="_blank" rel="noopener">sources&lt;/a>, and another one for the
-&lt;a href="https://github.com/akleinloog/akleinloog.github.io" target="_blank" rel="noopener">generated website&lt;/a>.&lt;/p>
+&lt;p>Following this &lt;a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/" target="_blank" rel="noopener">Hugo tutorial&lt;/a>, I created two repositories on GitHub.
+One named &lt;em>website&lt;/em> for the &lt;a href="https://github.com/akleinloog/website" target="_blank" rel="noopener">sources&lt;/a>, and another one for the &lt;a href="https://github.com/akleinloog/akleinloog.github.io" target="_blank" rel="noopener">generated website&lt;/a>.&lt;/p>
 &lt;div class="alert alert-note">
 &lt;div>
 The name of the repository for the generated website has to be specific in order for it to be picked up by GitHub Pages.
 In my case: &lt;strong>akleinloog.github.io&lt;/strong>
 &lt;/div>
 &lt;/div>
-&lt;p>I decided to dedicate both repositories to the public domain and therefore used the
-&lt;a href="https://choosealicense.com/licenses/unlicense/" target="_blank" rel="noopener">UNLICENSE&lt;/a>.
+&lt;p>I decided to dedicate both repositories to the public domain and therefore used the &lt;a href="https://choosealicense.com/licenses/unlicense/" target="_blank" rel="noopener">UNLICENSE&lt;/a>.
 Feel free to use anything you find there as you see fit.&lt;/p>
 &lt;p>The next step is to clone the repository used for the source:&lt;/p>
 &lt;pre>&lt;code class="language-bash">git clone https://github.com/&amp;lt;username here&amp;gt;/website.git
@@ -835,26 +776,20 @@ resources/
 &lt;pre>&lt;code class="language-bash">hugo new site . --force
 &lt;/code>&lt;/pre>
 &lt;h2 id="select-a-theme">Select a theme&lt;/h2>
-&lt;p>A good overview of available themes can be found
-&lt;a href="https://jamstackthemes.dev" target="_blank" rel="noopener">here&lt;/a>.
+&lt;p>A good overview of available themes can be found &lt;a href="https://jamstackthemes.dev" target="_blank" rel="noopener">here&lt;/a>.
 Select Hugo and order the themes by Stars gives you an overview of the most used themes.&lt;/p>
-&lt;p>I decided to try
-&lt;a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic&lt;/a>, a feature rich, open source theme developed by George Cushen and made available under the
-&lt;a href="https://choosealicense.com/licenses/mit/" target="_blank" rel="noopener">MIT&lt;/a> license. Thanks George!&lt;/p>
+&lt;p>I decided to try &lt;a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic&lt;/a>, a feature rich, open source theme developed by George Cushen and made available under the &lt;a href="https://choosealicense.com/licenses/mit/" target="_blank" rel="noopener">MIT&lt;/a> license. Thanks George!&lt;/p>
 &lt;p>Add the theme as a git submodule:&lt;/p>
 &lt;pre>&lt;code class="language-bash">git submodule add https://github.com/gcushen/hugo-academic.git themes/academic
 &lt;/code>&lt;/pre>
-&lt;p>Familiarize yourself with Academic, and
-&lt;a href="https://sourcethemes.com/academic/docs/customization/" target="_blank" rel="noopener">customize&lt;/a> it as you see fit.
-A good way to do that, is to clone the
-&lt;a href="https://github.com/sourcethemes/academic-kickstart" target="_blank" rel="noopener">Academic Kickstart&lt;/a> project in a separate directory.
+&lt;p>Familiarize yourself with Academic, and &lt;a href="https://sourcethemes.com/academic/docs/customization/" target="_blank" rel="noopener">customize&lt;/a> it as you see fit.
+A good way to do that, is to clone the &lt;a href="https://github.com/sourcethemes/academic-kickstart" target="_blank" rel="noopener">Academic Kickstart&lt;/a> project in a separate directory.
 It provides a good demonstration of what the theme has to offer.&lt;/p>
 &lt;h2 id="add-some-content">Add some content&lt;/h2>
 &lt;p>First add the configuration files. You can copy the ones from the Academic Kickstart project to get started. Read through them and adjust as you see fit.&lt;/p>
 &lt;p>Also copy the &lt;em>page_sharer.toml&lt;/em> file in the &lt;em>data&lt;/em> folder to your local project.&lt;/p>
 &lt;p>Playing around with Academic&amp;rsquo;s many widgets using the Kickstart project should give you a fair idea on what other content you want to add.
-You can also have a look at my
-&lt;a href="https://github.com/akleinloog/website" target="_blank" rel="noopener">sources repository&lt;/a> to see what I did for this blog.&lt;/p>
+You can also have a look at my &lt;a href="https://github.com/akleinloog/website" target="_blank" rel="noopener">sources repository&lt;/a> to see what I did for this blog.&lt;/p>
 &lt;h2 id="try-it-out-locally">Try it out locally&lt;/h2>
 &lt;p>Experiment with the configuration options and the structure. Run the site in development mode using:&lt;/p>
 &lt;pre>&lt;code class="language-bash">hugo server
@@ -869,8 +804,7 @@ Whenever you save your changes, Hugo will react and automatically refresh the we
 &lt;p>First, we&amp;rsquo;ll do a manual run. Generate your website:&lt;/p>
 &lt;pre>&lt;code class="language-bash">hugo -t academic
 &lt;/code>&lt;/pre>
-&lt;p>Test the generated output using the
-&lt;a href="https://www.npmjs.com/package/serve" target="_blank" rel="noopener">serve package&lt;/a>:&lt;/p>
+&lt;p>Test the generated output using the &lt;a href="https://www.npmjs.com/package/serve" target="_blank" rel="noopener">serve package&lt;/a>:&lt;/p>
 &lt;pre>&lt;code class="language-bash">cd public
 npx serve
 &lt;/code>&lt;/pre>
@@ -902,8 +836,7 @@ By pushing these changes to GitHub, the script effectively deploys your website 
 &lt;p>Navigate to your GitHub Pages URL to see the result!&lt;/p>
 &lt;h2 id="add-a-custom-domain-name">Add a custom domain name&lt;/h2>
 &lt;p>Using a custom domain name for your GitHub pages is relatively straight forward.
-First register a domain name and then configure the
-&lt;a href="https://kb.pressable.com/article/dns-record-types-explained/" target="_blank" rel="noopener">DNS settings&lt;/a>.&lt;/p>
+First register a domain name and then configure the &lt;a href="https://kb.pressable.com/article/dns-record-types-explained/" target="_blank" rel="noopener">DNS settings&lt;/a>.&lt;/p>
 &lt;p>Create the following A records for your domain to point it to GitHub&amp;rsquo;s servers:&lt;/p>
 &lt;pre>&lt;code>185.199.108.153
 185.199.109.153
@@ -917,9 +850,7 @@ This will trigger a check-in that adds a CNAME file with the domain that you hav
 &lt;p>Keep in mind that may take some time for DNS changes to take effect, and for the SSL certificates to be generated.
 Once completed, check the &amp;lsquo;Enforce HTTPS&amp;rsquo; checkbox and the setup is completed.&lt;/p>
 &lt;p>Your domain name will be forwarded to your &lt;strong>www.&lt;/strong> and so will your GitHub pages and HTTPS will be automatically enforces, with valid a certificate for your URL, free of charge!&lt;/p>
-&lt;p>See the GitHub Pages docs for
-&lt;a href="https://help.github.com/en/github/working-with-github-pages/managing-a-custom-domain-for-your-github-pages-site" target="_blank" rel="noopener">more information&lt;/a> and
-&lt;a href="https://help.github.com/en/github/working-with-github-pages/troubleshooting-custom-domains-and-github-pages" target="_blank" rel="noopener">troubleshooting tips&lt;/a>.&lt;/p>
+&lt;p>See the GitHub Pages docs for &lt;a href="https://help.github.com/en/github/working-with-github-pages/managing-a-custom-domain-for-your-github-pages-site" target="_blank" rel="noopener">more information&lt;/a> and &lt;a href="https://help.github.com/en/github/working-with-github-pages/troubleshooting-custom-domains-and-github-pages" target="_blank" rel="noopener">troubleshooting tips&lt;/a>.&lt;/p>
 &lt;h2 id="update-the-source-repository">Update the source repository&lt;/h2>
 &lt;p>The last thing to do, before making other modifications to your site, is to secure the CNAME file in your source repository so that it does not get deleted when the website is regenerated. First pull the changes:&lt;/p>
 &lt;pre>&lt;code class="language-bash">cd public
@@ -927,5 +858,4 @@ git pull --all
 &lt;/code>&lt;/pre>
 &lt;p>This will update the local module and add the CNAME file. Now copy that file from the &lt;em>public&lt;/em> folder to the &lt;em>static&lt;/em> folder so it will be re-added when the site is regenerated. Commit and push your changes and you are good to go!&lt;/p>
 &lt;h2 id="next-steps">Next Steps&lt;/h2>
-&lt;p>I hope you may have learned something from this, as I did. In
-&lt;a href="https://akleinloog.github.io/post/my-blog-pt2">Part 2&lt;/a> I will add support for Google Analytics, comments and a simple contact page.&lt;/p></description></item></channel></rss>
+&lt;p>I hope you may have learned something from this, as I did. In &lt;a href="https://www.kleinloog.ch/post/my-blog-pt2">Part 2&lt;/a> I will add support for Google Analytics, comments and a simple contact page.&lt;/p></description></item></channel></rss>

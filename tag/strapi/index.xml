@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>strapi | My Site</title><link>https://akleinloog.github.io/tag/strapi/</link><atom:link href="https://akleinloog.github.io/tag/strapi/index.xml" rel="self" type="application/rss+xml"/><description>strapi</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Dedicated to the public domain · [Unlicensed](https://github.com/akleinloog/akleinloog.github.io/blob/master/LICENSE)</copyright><lastBuildDate>Wed, 27 May 2020 00:00:00 +0000</lastBuildDate><image><url>https://akleinloog.github.io/images/icon_hu1d96926d990b8c2ce1741b9516caf288_71361_512x512_fill_lanczos_center_2.png</url><title>strapi</title><link>https://akleinloog.github.io/tag/strapi/</link></image><item><title>Rapid API Prototyping</title><link>https://akleinloog.github.io/post/rapid-api-prototype/</link><pubDate>Wed, 27 May 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/post/rapid-api-prototype/</guid><description>&lt;p>The goal of my
-&lt;a href="https://akleinloog.github.io/project/rapid-api">Rapid API project&lt;/a> is to create a containerized starting point that can be used to quickly implement a prototype of an API, customize it as needed, and easily add initial content.&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>strapi | My Site</title><link>https://www.kleinloog.ch/tag/strapi/</link><atom:link href="https://www.kleinloog.ch/tag/strapi/index.xml" rel="self" type="application/rss+xml"/><description>strapi</description><generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>Dedicated to the public domain · [Unlicensed](https://github.com/akleinloog/akleinloog.github.io/blob/master/LICENSE)</copyright><lastBuildDate>Wed, 27 May 2020 00:00:00 +0000</lastBuildDate><image><url>https://www.kleinloog.ch/images/icon_hu1d96926d990b8c2ce1741b9516caf288_71361_512x512_fill_lanczos_center_2.png</url><title>strapi</title><link>https://www.kleinloog.ch/tag/strapi/</link></image><item><title>Rapid API Prototyping</title><link>https://www.kleinloog.ch/post/rapid-api-prototype/</link><pubDate>Wed, 27 May 2020 00:00:00 +0000</pubDate><guid>https://www.kleinloog.ch/post/rapid-api-prototype/</guid><description>&lt;p>The goal of my &lt;a href="https://www.kleinloog.ch/project/rapid-api">Rapid API project&lt;/a> is to create a containerized starting point that can be used to quickly implement a prototype of an API, customize it as needed, and easily add initial content.&lt;/p>
 &lt;h2 id="preparation">Preparation&lt;/h2>
 &lt;p>To get started, create a new GitHub repository, initialized it with a README and a license, and clone it to your local machine.&lt;/p>
 &lt;h2 id="docker-files">Docker files&lt;/h2>
@@ -31,11 +30,8 @@ ENTRYPOINT [&amp;quot;/usr/local/bin/entrypoint.sh&amp;quot;]
 &lt;p>As you can see, the Dockerfile uses the latest Node JS 13 version.
 At the time of writing, Node JS 14 has already been released, but not all of strapi&amp;rsquo;s dependencies were available at the time of writing.&lt;/p>
 &lt;p>The docker build starts with installing the strapi CLI, which it then uses to create a new quickstart project.
-This initializes a strapi project using a
-&lt;a href="https://www.sqlite.org/index.html" target="_blank" rel="noopener">SQLite&lt;/a> database.
-It then installs the
-&lt;a href="https://strapi.io/documentation/v3.x/plugins/documentation.html" target="_blank" rel="noopener">API documentation&lt;/a> and
-&lt;a href="https://strapi.io/documentation/v3.x/plugins/graphql.html" target="_blank" rel="noopener">GraphQL&lt;/a> plugins and changes the default port number from 1337 to 8080.
+This initializes a strapi project using a &lt;a href="https://www.sqlite.org/index.html" target="_blank" rel="noopener">SQLite&lt;/a> database.
+It then installs the &lt;a href="https://strapi.io/documentation/v3.x/plugins/documentation.html" target="_blank" rel="noopener">API documentation&lt;/a> and &lt;a href="https://strapi.io/documentation/v3.x/plugins/graphql.html" target="_blank" rel="noopener">GraphQL&lt;/a> plugins and changes the default port number from 1337 to 8080.
 In addition, it copies a &lt;em>settings.json&lt;/em> file and an &lt;em>entrypoint.sh&lt;/em> file to the image.&lt;/p>
 &lt;h2 id="open-api-settings">Open API settings&lt;/h2>
 &lt;p>Next to the &lt;em>Dockerfile&lt;/em> in the &lt;em>sqlite&lt;/em> folder, add a &lt;em>settings.json&lt;/em> file with the following content:&lt;/p>
@@ -94,8 +90,7 @@ In addition, it copies a &lt;em>settings.json&lt;/em> file and an &lt;em>entrypo
 }
 &lt;/code>&lt;/pre>
 &lt;p>This file is needed in order to correct the port number used by the Open API endpoint. Feel free to edit the other settings to your liking.
-For more info, see
-&lt;a href="https://strapi.io/documentation/v3.x/plugins/documentation.html#installation" target="_blank" rel="noopener">this section&lt;/a> in the strapi documentation.&lt;/p>
+For more info, see &lt;a href="https://strapi.io/documentation/v3.x/plugins/documentation.html#installation" target="_blank" rel="noopener">this section&lt;/a> in the strapi documentation.&lt;/p>
 &lt;h2 id="entrypoint">Entrypoint&lt;/h2>
 &lt;p>Next to the &lt;em>Dockerfile&lt;/em> in the &lt;em>sqlite&lt;/em> folder, add an &lt;em>entrypoint.sh&lt;/em> file with the following content:&lt;/p>
 &lt;pre>&lt;code class="language-bash">#!/bin/sh
@@ -119,8 +114,7 @@ api-dev | │ http://localhost:8080/admin │
 api-dev | └──────────────────┘
 api-dev |
 &lt;/code>&lt;/pre>
-&lt;p>You are now read to navigate to
-&lt;a href="http://localhost:8080/admin" target="_blank" rel="noopener">http://localhost:8080/admin&lt;/a>, create an admin account and start customizing your API.&lt;/p>
+&lt;p>You are now read to navigate to &lt;a href="http://localhost:8080/admin" target="_blank" rel="noopener">http://localhost:8080/admin&lt;/a>, create an admin account and start customizing your API.&lt;/p>
 &lt;h2 id="adding-content">Adding Content&lt;/h2>
 &lt;p>Let&amp;rsquo;s add a first example resource together.&lt;/p>
 &lt;p>From the menu on the left, select the &lt;em>Content-Types Builder&lt;/em> and choose &lt;em>Create new collection type&lt;/em>.
@@ -131,15 +125,11 @@ For now, we will just add a Text field called &lt;em>Name&lt;/em> and a Rich Tex
 Hit &lt;em>Finish&lt;/em> and then &lt;em>Save&lt;/em>. Strapi will now generate the &lt;em>Example API&lt;/em> and restart the server.
 Once complete, you will see the &lt;em>Example&lt;/em> collection type appear in the top left.
 Open it up and add a few examples.&lt;/p>
-&lt;p>Checkout the
-&lt;a href="https://strapi.io/documentation/v3.x/getting-started/introduction.html" target="_blank" rel="noopener">strapi documentation&lt;/a> and
-&lt;a href="https://strapi.io/tutorials" target="_blank" rel="noopener">tutorials&lt;/a> for more examples.&lt;/p>
+&lt;p>Checkout the &lt;a href="https://strapi.io/documentation/v3.x/getting-started/introduction.html" target="_blank" rel="noopener">strapi documentation&lt;/a> and &lt;a href="https://strapi.io/tutorials" target="_blank" rel="noopener">tutorials&lt;/a> for more examples.&lt;/p>
 &lt;h2 id="test-the-api">Test the API&lt;/h2>
 &lt;p>Now that we have added some content and created our first API, we want to see it in action.
-You can use the API client of your choice to test it (postman,
-&lt;a href="https://insomnia.rest/" target="_blank" rel="noopener">insomnia&lt;/a>, curl, etc,)
-At the moment, I prefer to use Visual Studio Code with the
-&lt;a href="https://marketplace.visualstudio.com/items?itemName=humao.rest-client" target="_blank" rel="noopener">REST Client&lt;/a> plugin.
+You can use the API client of your choice to test it (postman, &lt;a href="https://insomnia.rest/" target="_blank" rel="noopener">insomnia&lt;/a>, curl, etc,)
+At the moment, I prefer to use Visual Studio Code with the &lt;a href="https://marketplace.visualstudio.com/items?itemName=humao.rest-client" target="_blank" rel="noopener">REST Client&lt;/a> plugin.
 Add a &lt;em>test.http&lt;/em> file with the first test:&lt;/p>
 &lt;pre>&lt;code class="language-http">###
 GET http://localhost:8080/examples
@@ -175,18 +165,14 @@ content-type: application/json
 &lt;h2 id="graphql">GraphQL&lt;/h2>
 &lt;p>A main reason for me to try strapi for rapid API prototyping is its support for GraphQL.
 I am not yet very familiar with GraphQL and want to have a playground to learn more.&lt;/p>
-&lt;p>Your API&amp;rsquo;s GraphQL Playground is available at
-&lt;a href="http://localhost:8080/graphql" target="_blank" rel="noopener">http://localhost:8080/graphql&lt;/a>. See
-&lt;a href="https://strapi.io/documentation/v3.x/plugins/graphql.html" target="_blank" rel="noopener">this section&lt;/a> in the strapi documentation for more info.&lt;/p>
+&lt;p>Your API&amp;rsquo;s GraphQL Playground is available at &lt;a href="http://localhost:8080/graphql" target="_blank" rel="noopener">http://localhost:8080/graphql&lt;/a>. See &lt;a href="https://strapi.io/documentation/v3.x/plugins/graphql.html" target="_blank" rel="noopener">this section&lt;/a> in the strapi documentation for more info.&lt;/p>
 &lt;h2 id="even-easier">Even easier&amp;hellip;&lt;/h2>
 &lt;p>Don&amp;rsquo;t want to go through the effort described above?
-I&amp;rsquo;ll do you one better. The resulting container image is available
-&lt;a href="https://hub.docker.com/r/akleinloog/rapid-api" target="_blank" rel="noopener">here&lt;/a> on docker hub, so you can get started with a single line:&lt;/p>
+I&amp;rsquo;ll do you one better. The resulting container image is available &lt;a href="https://hub.docker.com/r/akleinloog/rapid-api" target="_blank" rel="noopener">here&lt;/a> on docker hub, so you can get started with a single line:&lt;/p>
 &lt;pre>&lt;code class="language-bash">docker run -p 8080:8080 akleinloog/rapid-api
 &lt;/code>&lt;/pre>
 &lt;h2 id="the-code">The code&lt;/h2>
-&lt;p>If you want to see how to set up a prototype using MongoDB instead of SQLite, or wonder how I built and published the container image to docker hub, feel free to check out the
-&lt;a href="https://github.com/akleinloog/rapid-api" target="_blank" rel="noopener">repository&lt;/a> on Github.&lt;/p></description></item><item><title>Rapid API</title><link>https://akleinloog.github.io/project/rapid-api/</link><pubDate>Sat, 16 May 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/project/rapid-api/</guid><description>&lt;p>This goal of this project is to come up with an approach for rapid prototyping of APIs that support both REST and GraphQL.&lt;/p>
+&lt;p>If you want to see how to set up a prototype using MongoDB instead of SQLite, or wonder how I built and published the container image to docker hub, feel free to check out the &lt;a href="https://github.com/akleinloog/rapid-api" target="_blank" rel="noopener">repository&lt;/a> on Github.&lt;/p></description></item><item><title>Rapid API</title><link>https://www.kleinloog.ch/project/rapid-api/</link><pubDate>Sat, 16 May 2020 00:00:00 +0000</pubDate><guid>https://www.kleinloog.ch/project/rapid-api/</guid><description>&lt;p>This goal of this project is to come up with an approach for rapid prototyping of APIs that support both REST and GraphQL.&lt;/p>
 &lt;h2 id="the-what">The What&lt;/h2>
 &lt;p>A containerized starting point that can be used to quickly implement a prototype of an API, customize it as needed, and easily add initial content.&lt;/p>
 &lt;p>My main requirements:&lt;/p>
@@ -208,18 +194,13 @@ This often happens when exploring a design for a new Microservice, especially wh
 &lt;p>In order to properly allocate responsibilities and design the interactions between these Microservice, I often find it useful to create some working prototypes of the Microservices I depend on.&lt;/p>
 &lt;p>Being able to do so quickly, while having a rich feature set at the same time, enables me to follow the &lt;strong>show me&lt;/strong> approach to software architecture, which I find far more interesting and effective, and therefore more valuable, than the more common diagrams-based &lt;strong>tell me&lt;/strong> approach.&lt;/p>
 &lt;h2 id="the-how">The How&lt;/h2>
-&lt;p>The
-&lt;a href="https://strapi.io/" target="_blank" rel="noopener">strapi&lt;/a> project was initially created to boot&lt;strong>strap&lt;/strong> &lt;strong>API&lt;/strong>s. Even though it is now advertised as a Headless CMS, from what I have seen, it could be a very good fit for what I need.&lt;/p>
-&lt;p>Based on strapi, I will create a docker image that is pre-configured and ready to use. In the process, I will tailor the image to my needs and in addition, set up an automated build that pushes new versions of that image to
-&lt;a href="https://hub.docker.com" target="_blank" rel="noopener">docker hub&lt;/a>.
+&lt;p>The &lt;a href="https://strapi.io/" target="_blank" rel="noopener">strapi&lt;/a> project was initially created to boot&lt;strong>strap&lt;/strong> &lt;strong>API&lt;/strong>s. Even though it is now advertised as a Headless CMS, from what I have seen, it could be a very good fit for what I need.&lt;/p>
+&lt;p>Based on strapi, I will create a docker image that is pre-configured and ready to use. In the process, I will tailor the image to my needs and in addition, set up an automated build that pushes new versions of that image to &lt;a href="https://hub.docker.com" target="_blank" rel="noopener">docker hub&lt;/a>.
 This is something that I did not do before, so a good opportunity to learn.&lt;/p>
 &lt;h2 id="the-results">The Results&lt;/h2>
-&lt;p>See
-&lt;a href="https://akleinloog.github.io/post/rapid-api-prototype">this post&lt;/a> for a detailed description of the process and how to use it.&lt;/p>
-&lt;p>The resulting container to get you going with rapid API prototyping is available on docker hub
-&lt;a href="https://hub.docker.com/r/akleinloog/rapid-api" target="_blank" rel="noopener">here&lt;/a> and can be started as follows:&lt;/p>
+&lt;p>See &lt;a href="https://www.kleinloog.ch/post/rapid-api-prototype">this post&lt;/a> for a detailed description of the process and how to use it.&lt;/p>
+&lt;p>The resulting container to get you going with rapid API prototyping is available on docker hub &lt;a href="https://hub.docker.com/r/akleinloog/rapid-api" target="_blank" rel="noopener">here&lt;/a> and can be started as follows:&lt;/p>
 &lt;pre>&lt;code class="language-r">docker run -p 8080:8080 akleinloog/rapid-api
 &lt;/code>&lt;/pre>
-&lt;p>The code is available in this
-&lt;a href="https://github.com/akleinloog/rapid-api" target="_blank" rel="noopener">GitHub repository&lt;/a>.&lt;/p>
+&lt;p>The code is available in this &lt;a href="https://github.com/akleinloog/rapid-api" target="_blank" rel="noopener">GitHub repository&lt;/a>.&lt;/p>
 &lt;p>Use it freely, learn from it, and ideally, provide some feedback!&lt;/p></description></item></channel></rss>

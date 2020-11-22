@@ -1,10 +1,8 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hugo | My Site</title><link>https://akleinloog.github.io/tag/hugo/</link><atom:link href="https://akleinloog.github.io/tag/hugo/index.xml" rel="self" type="application/rss+xml"/><description>Hugo</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Dedicated to the public domain · [Unlicensed](https://github.com/akleinloog/akleinloog.github.io/blob/master/LICENSE)</copyright><lastBuildDate>Sat, 09 May 2020 00:00:00 +0000</lastBuildDate><image><url>https://akleinloog.github.io/images/icon_hu1d96926d990b8c2ce1741b9516caf288_71361_512x512_fill_lanczos_center_2.png</url><title>Hugo</title><link>https://akleinloog.github.io/tag/hugo/</link></image><item><title>Setting up this Blog - Part 2</title><link>https://akleinloog.github.io/post/my-blog-pt2/</link><pubDate>Sat, 09 May 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/post/my-blog-pt2/</guid><description>&lt;p>This is the second part in a series of posts detailing the set up of my personal blog.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hugo | My Site</title><link>https://www.kleinloog.ch/tag/hugo/</link><atom:link href="https://www.kleinloog.ch/tag/hugo/index.xml" rel="self" type="application/rss+xml"/><description>Hugo</description><generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>Dedicated to the public domain · [Unlicensed](https://github.com/akleinloog/akleinloog.github.io/blob/master/LICENSE)</copyright><lastBuildDate>Sat, 09 May 2020 00:00:00 +0000</lastBuildDate><image><url>https://www.kleinloog.ch/images/icon_hu1d96926d990b8c2ce1741b9516caf288_71361_512x512_fill_lanczos_center_2.png</url><title>Hugo</title><link>https://www.kleinloog.ch/tag/hugo/</link></image><item><title>Setting up this Blog - Part 2</title><link>https://www.kleinloog.ch/post/my-blog-pt2/</link><pubDate>Sat, 09 May 2020 00:00:00 +0000</pubDate><guid>https://www.kleinloog.ch/post/my-blog-pt2/</guid><description>&lt;p>This is the second part in a series of posts detailing the set up of my personal blog.
 It details how to enable google analytics, commenting and a simple contact page.
-See
-&lt;a href="https://akleinloog.github.io/post/my-blog-pt1">part 1&lt;/a> for the basic setup.&lt;/p>
+See &lt;a href="https://www.kleinloog.ch/post/my-blog-pt1">part 1&lt;/a> for the basic setup.&lt;/p>
 &lt;h2 id="enable-google-analytics">Enable Google Analytics&lt;/h2>
-&lt;p>
-&lt;a href="https://marketingplatform.google.com/about/analytics/" target="_blank" rel="noopener">Google Analytics&lt;/a> can provide you with some interesting insights on your site&amp;rsquo;s visitors and the way they use your site. Enabling it on my personal blog provides a nice opportunity to learn a bit more about the possibilities it offers to site owners.&lt;/p>
+&lt;p>&lt;a href="https://marketingplatform.google.com/about/analytics/" target="_blank" rel="noopener">Google Analytics&lt;/a> can provide you with some interesting insights on your site&amp;rsquo;s visitors and the way they use your site. Enabling it on my personal blog provides a nice opportunity to learn a bit more about the possibilities it offers to site owners.&lt;/p>
 &lt;p>Lucky for me, it is a straight forward exercise. After signing up for google analytics and creating an account for your website, all you need to do is open your &lt;em>params.toml&lt;/em> in _/config/&lt;em>default&lt;/em> and add the account id:&lt;/p>
 &lt;pre>&lt;code class="language-toml">############################
 ## Marketing
@@ -13,8 +11,7 @@ See
 google_analytics = &amp;quot;UA-***&amp;quot;
 # google_tag_manager = &amp;quot;&amp;quot;
 &lt;/code>&lt;/pre>
-&lt;p>I signed up for
-&lt;a href="https://marketingplatform.google.com/about/tag-manager/" target="_blank" rel="noopener">Google Tag Manager&lt;/a> as well, and tried to activate it, but no luck so far. In order to get Google Analytics to work I had to comment out the &lt;em>google_tag_manager&lt;/em> entry. If I decide to take another look at this and get it to work, I&amp;rsquo;ll detail it in a follow up post.&lt;/p>
+&lt;p>I signed up for &lt;a href="https://marketingplatform.google.com/about/tag-manager/" target="_blank" rel="noopener">Google Tag Manager&lt;/a> as well, and tried to activate it, but no luck so far. In order to get Google Analytics to work I had to comment out the &lt;em>google_tag_manager&lt;/em> entry. If I decide to take another look at this and get it to work, I&amp;rsquo;ll detail it in a follow up post.&lt;/p>
 &lt;p>The next step is to configure the base URL of your site, in &lt;em>config.toml&lt;/em> in _/config/&lt;em>default&lt;/em>. If you used a custom domain:&lt;/p>
 &lt;pre>&lt;code class="language-toml"># The URL of your site.
 baseurl = &amp;quot;https://www.yourdomain.com/&amp;quot;
@@ -32,11 +29,9 @@ hugo -t academic
 &lt;pre>&lt;code class="language-bash">echo &amp;quot;Running Hugo Build&amp;quot;
 env HUGO_ENV=&amp;quot;production&amp;quot; hugo --gc --minify -t academic -b https://&amp;lt;username here&amp;gt;.github.io
 &lt;/code>&lt;/pre>
-&lt;p>Doing so will activate the Google Analytics scripts when the site is running in production. In addition, it also
-&lt;a href="https://gohugo.io/commands/hugo/" target="_blank" rel="noopener">instructs Hugo&lt;/a> to run some cleanup tasks after the build and to minify the output, something I didn&amp;rsquo;t pay attention to in my previous post.&lt;/p>
+&lt;p>Doing so will activate the Google Analytics scripts when the site is running in production. In addition, it also &lt;a href="https://gohugo.io/commands/hugo/" target="_blank" rel="noopener">instructs Hugo&lt;/a> to run some cleanup tasks after the build and to minify the output, something I didn&amp;rsquo;t pay attention to in my previous post.&lt;/p>
 &lt;h2 id="enable-google-search-console">Enable Google Search Console&lt;/h2>
-&lt;p>Another thing I decided to add is
-&lt;a href="https://search.google.com/search-console/about" target="_blank" rel="noopener">Google Search Console&lt;/a>, another free-to-use service offered by Google that helps you monitor, maintain, and troubleshoot your site&amp;rsquo;s presence in Google Search results.&lt;/p>
+&lt;p>Another thing I decided to add is &lt;a href="https://search.google.com/search-console/about" target="_blank" rel="noopener">Google Search Console&lt;/a>, another free-to-use service offered by Google that helps you monitor, maintain, and troubleshoot your site&amp;rsquo;s presence in Google Search results.&lt;/p>
 &lt;p>After using the &amp;lsquo;URL prefix&amp;rsquo; method, my site ownership was automatically verified based on the Google Analytics account. I added an additional verification method by going to &lt;em>Settings-&amp;gt;Ownership Verification&lt;/em>, and selecting &lt;em>HTML File&lt;/em>. Download the file, add it to your &lt;em>/static&lt;/em> folder and redeploy the site:&lt;/p>
 &lt;pre>&lt;code class="language-bash">./deploy.sh
 &lt;/code>&lt;/pre>
@@ -58,8 +53,7 @@ shortname = &amp;quot;&amp;lt;shortname&amp;gt;&amp;quot; # Paste the shortname 
 &lt;em>&amp;ldquo;Disqus comments not available by default when the website is previewed locally.&amp;quot;&lt;/em> at the bottom of your posts.&lt;/p>
 &lt;p>Deploy your website to production and see how it works!&lt;/p>
 &lt;h2 id="contact-page">Contact Page&lt;/h2>
-&lt;p>Adding a simple contact page can be done with Academic&amp;rsquo;s
-&lt;a href="https://sourcethemes.com/academic/docs/page-builder/#contact" target="_blank" rel="noopener">contact widget&lt;/a>.&lt;/p>
+&lt;p>Adding a simple contact page can be done with Academic&amp;rsquo;s &lt;a href="https://sourcethemes.com/academic/docs/page-builder/#contact" target="_blank" rel="noopener">contact widget&lt;/a>.&lt;/p>
 &lt;p>For this side, I decided to add it to the bottom of the about page, and in addition, add a top-level menu and a link from my profile.&lt;/p>
 &lt;p>To add a top level menu, open _config/&lt;em>default/menus.toml&lt;/em> and add:&lt;/p>
 &lt;pre>&lt;code class="language-toml">[[main]]
@@ -91,32 +85,23 @@ autolink = true
 email_form = 2
 +++
 &lt;/code>&lt;/pre>
-&lt;p>This sets up your site to use
-&lt;a href="https://formspree.io/" target="_blank" rel="noopener">Formspree&lt;/a> to email you the request.
+&lt;p>This sets up your site to use &lt;a href="https://formspree.io/" target="_blank" rel="noopener">Formspree&lt;/a> to email you the request.
 After deploying to production, simply fill in the form once and you will receive an email to complete your registration.
 Their free plan gives you a limited amount of monthly submissions.&lt;/p>
-&lt;p>The contact widget can be further customized by providing additional information in your &lt;em>params.toml&lt;/em>, see the
-&lt;a href="https://sourcethemes.com/academic/docs/page-builder/#contact" target="_blank" rel="noopener">docs&lt;/a> for more detail.&lt;/p></description></item><item><title>Setting up this Blog - Part 1</title><link>https://akleinloog.github.io/post/my-blog-pt1/</link><pubDate>Wed, 06 May 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/post/my-blog-pt1/</guid><description>&lt;p>Welcome to the first in a series of posts that detail how I set up of this blog. It covers the basic steps needed to get started.&lt;/p>
-&lt;p>I use
-&lt;a href="https://gohugo.io" target="_blank" rel="noopener">Hugo&lt;/a> as a static site generator and
-&lt;a href="https://code.visualstudio.com" target="_blank" rel="noopener">Visual Studio Code&lt;/a> as editor. The resulting website is hosted using
-&lt;a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages&lt;/a>. A nice combination of open source tools with a free hosting provider that poses no restrictions in terms of traffic, size, etc.
+&lt;p>The contact widget can be further customized by providing additional information in your &lt;em>params.toml&lt;/em>, see the &lt;a href="https://sourcethemes.com/academic/docs/page-builder/#contact" target="_blank" rel="noopener">docs&lt;/a> for more detail.&lt;/p></description></item><item><title>Setting up this Blog - Part 1</title><link>https://www.kleinloog.ch/post/my-blog-pt1/</link><pubDate>Wed, 06 May 2020 00:00:00 +0000</pubDate><guid>https://www.kleinloog.ch/post/my-blog-pt1/</guid><description>&lt;p>Welcome to the first in a series of posts that detail how I set up of this blog. It covers the basic steps needed to get started.&lt;/p>
+&lt;p>I use &lt;a href="https://gohugo.io" target="_blank" rel="noopener">Hugo&lt;/a> as a static site generator and &lt;a href="https://code.visualstudio.com" target="_blank" rel="noopener">Visual Studio Code&lt;/a> as editor. The resulting website is hosted using &lt;a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages&lt;/a>. A nice combination of open source tools with a free hosting provider that poses no restrictions in terms of traffic, size, etc.
 Sounds like a perfect match to me.&lt;/p>
 &lt;p>Familiarity with git and the command line are assumed. I use a Mac, some of the commands may need to be translated to your environment.&lt;/p>
 &lt;h2 id="getting-started">Getting started&lt;/h2>
-&lt;p>Following this
-&lt;a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/" target="_blank" rel="noopener">Hugo tutorial&lt;/a>, I created two repositories on GitHub.
-One named &lt;em>website&lt;/em> for the
-&lt;a href="https://github.com/akleinloog/website" target="_blank" rel="noopener">sources&lt;/a>, and another one for the
-&lt;a href="https://github.com/akleinloog/akleinloog.github.io" target="_blank" rel="noopener">generated website&lt;/a>.&lt;/p>
+&lt;p>Following this &lt;a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/" target="_blank" rel="noopener">Hugo tutorial&lt;/a>, I created two repositories on GitHub.
+One named &lt;em>website&lt;/em> for the &lt;a href="https://github.com/akleinloog/website" target="_blank" rel="noopener">sources&lt;/a>, and another one for the &lt;a href="https://github.com/akleinloog/akleinloog.github.io" target="_blank" rel="noopener">generated website&lt;/a>.&lt;/p>
 &lt;div class="alert alert-note">
 &lt;div>
 The name of the repository for the generated website has to be specific in order for it to be picked up by GitHub Pages.
 In my case: &lt;strong>akleinloog.github.io&lt;/strong>
 &lt;/div>
 &lt;/div>
-&lt;p>I decided to dedicate both repositories to the public domain and therefore used the
-&lt;a href="https://choosealicense.com/licenses/unlicense/" target="_blank" rel="noopener">UNLICENSE&lt;/a>.
+&lt;p>I decided to dedicate both repositories to the public domain and therefore used the &lt;a href="https://choosealicense.com/licenses/unlicense/" target="_blank" rel="noopener">UNLICENSE&lt;/a>.
 Feel free to use anything you find there as you see fit.&lt;/p>
 &lt;p>The next step is to clone the repository used for the source:&lt;/p>
 &lt;pre>&lt;code class="language-bash">git clone https://github.com/&amp;lt;username here&amp;gt;/website.git
@@ -138,26 +123,20 @@ resources/
 &lt;pre>&lt;code class="language-bash">hugo new site . --force
 &lt;/code>&lt;/pre>
 &lt;h2 id="select-a-theme">Select a theme&lt;/h2>
-&lt;p>A good overview of available themes can be found
-&lt;a href="https://jamstackthemes.dev" target="_blank" rel="noopener">here&lt;/a>.
+&lt;p>A good overview of available themes can be found &lt;a href="https://jamstackthemes.dev" target="_blank" rel="noopener">here&lt;/a>.
 Select Hugo and order the themes by Stars gives you an overview of the most used themes.&lt;/p>
-&lt;p>I decided to try
-&lt;a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic&lt;/a>, a feature rich, open source theme developed by George Cushen and made available under the
-&lt;a href="https://choosealicense.com/licenses/mit/" target="_blank" rel="noopener">MIT&lt;/a> license. Thanks George!&lt;/p>
+&lt;p>I decided to try &lt;a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic&lt;/a>, a feature rich, open source theme developed by George Cushen and made available under the &lt;a href="https://choosealicense.com/licenses/mit/" target="_blank" rel="noopener">MIT&lt;/a> license. Thanks George!&lt;/p>
 &lt;p>Add the theme as a git submodule:&lt;/p>
 &lt;pre>&lt;code class="language-bash">git submodule add https://github.com/gcushen/hugo-academic.git themes/academic
 &lt;/code>&lt;/pre>
-&lt;p>Familiarize yourself with Academic, and
-&lt;a href="https://sourcethemes.com/academic/docs/customization/" target="_blank" rel="noopener">customize&lt;/a> it as you see fit.
-A good way to do that, is to clone the
-&lt;a href="https://github.com/sourcethemes/academic-kickstart" target="_blank" rel="noopener">Academic Kickstart&lt;/a> project in a separate directory.
+&lt;p>Familiarize yourself with Academic, and &lt;a href="https://sourcethemes.com/academic/docs/customization/" target="_blank" rel="noopener">customize&lt;/a> it as you see fit.
+A good way to do that, is to clone the &lt;a href="https://github.com/sourcethemes/academic-kickstart" target="_blank" rel="noopener">Academic Kickstart&lt;/a> project in a separate directory.
 It provides a good demonstration of what the theme has to offer.&lt;/p>
 &lt;h2 id="add-some-content">Add some content&lt;/h2>
 &lt;p>First add the configuration files. You can copy the ones from the Academic Kickstart project to get started. Read through them and adjust as you see fit.&lt;/p>
 &lt;p>Also copy the &lt;em>page_sharer.toml&lt;/em> file in the &lt;em>data&lt;/em> folder to your local project.&lt;/p>
 &lt;p>Playing around with Academic&amp;rsquo;s many widgets using the Kickstart project should give you a fair idea on what other content you want to add.
-You can also have a look at my
-&lt;a href="https://github.com/akleinloog/website" target="_blank" rel="noopener">sources repository&lt;/a> to see what I did for this blog.&lt;/p>
+You can also have a look at my &lt;a href="https://github.com/akleinloog/website" target="_blank" rel="noopener">sources repository&lt;/a> to see what I did for this blog.&lt;/p>
 &lt;h2 id="try-it-out-locally">Try it out locally&lt;/h2>
 &lt;p>Experiment with the configuration options and the structure. Run the site in development mode using:&lt;/p>
 &lt;pre>&lt;code class="language-bash">hugo server
@@ -172,8 +151,7 @@ Whenever you save your changes, Hugo will react and automatically refresh the we
 &lt;p>First, we&amp;rsquo;ll do a manual run. Generate your website:&lt;/p>
 &lt;pre>&lt;code class="language-bash">hugo -t academic
 &lt;/code>&lt;/pre>
-&lt;p>Test the generated output using the
-&lt;a href="https://www.npmjs.com/package/serve" target="_blank" rel="noopener">serve package&lt;/a>:&lt;/p>
+&lt;p>Test the generated output using the &lt;a href="https://www.npmjs.com/package/serve" target="_blank" rel="noopener">serve package&lt;/a>:&lt;/p>
 &lt;pre>&lt;code class="language-bash">cd public
 npx serve
 &lt;/code>&lt;/pre>
@@ -205,8 +183,7 @@ By pushing these changes to GitHub, the script effectively deploys your website 
 &lt;p>Navigate to your GitHub Pages URL to see the result!&lt;/p>
 &lt;h2 id="add-a-custom-domain-name">Add a custom domain name&lt;/h2>
 &lt;p>Using a custom domain name for your GitHub pages is relatively straight forward.
-First register a domain name and then configure the
-&lt;a href="https://kb.pressable.com/article/dns-record-types-explained/" target="_blank" rel="noopener">DNS settings&lt;/a>.&lt;/p>
+First register a domain name and then configure the &lt;a href="https://kb.pressable.com/article/dns-record-types-explained/" target="_blank" rel="noopener">DNS settings&lt;/a>.&lt;/p>
 &lt;p>Create the following A records for your domain to point it to GitHub&amp;rsquo;s servers:&lt;/p>
 &lt;pre>&lt;code>185.199.108.153
 185.199.109.153
@@ -220,9 +197,7 @@ This will trigger a check-in that adds a CNAME file with the domain that you hav
 &lt;p>Keep in mind that may take some time for DNS changes to take effect, and for the SSL certificates to be generated.
 Once completed, check the &amp;lsquo;Enforce HTTPS&amp;rsquo; checkbox and the setup is completed.&lt;/p>
 &lt;p>Your domain name will be forwarded to your &lt;strong>www.&lt;/strong> and so will your GitHub pages and HTTPS will be automatically enforces, with valid a certificate for your URL, free of charge!&lt;/p>
-&lt;p>See the GitHub Pages docs for
-&lt;a href="https://help.github.com/en/github/working-with-github-pages/managing-a-custom-domain-for-your-github-pages-site" target="_blank" rel="noopener">more information&lt;/a> and
-&lt;a href="https://help.github.com/en/github/working-with-github-pages/troubleshooting-custom-domains-and-github-pages" target="_blank" rel="noopener">troubleshooting tips&lt;/a>.&lt;/p>
+&lt;p>See the GitHub Pages docs for &lt;a href="https://help.github.com/en/github/working-with-github-pages/managing-a-custom-domain-for-your-github-pages-site" target="_blank" rel="noopener">more information&lt;/a> and &lt;a href="https://help.github.com/en/github/working-with-github-pages/troubleshooting-custom-domains-and-github-pages" target="_blank" rel="noopener">troubleshooting tips&lt;/a>.&lt;/p>
 &lt;h2 id="update-the-source-repository">Update the source repository&lt;/h2>
 &lt;p>The last thing to do, before making other modifications to your site, is to secure the CNAME file in your source repository so that it does not get deleted when the website is regenerated. First pull the changes:&lt;/p>
 &lt;pre>&lt;code class="language-bash">cd public
@@ -230,8 +205,7 @@ git pull --all
 &lt;/code>&lt;/pre>
 &lt;p>This will update the local module and add the CNAME file. Now copy that file from the &lt;em>public&lt;/em> folder to the &lt;em>static&lt;/em> folder so it will be re-added when the site is regenerated. Commit and push your changes and you are good to go!&lt;/p>
 &lt;h2 id="next-steps">Next Steps&lt;/h2>
-&lt;p>I hope you may have learned something from this, as I did. In
-&lt;a href="https://akleinloog.github.io/post/my-blog-pt2">Part 2&lt;/a> I will add support for Google Analytics, comments and a simple contact page.&lt;/p></description></item><item><title>Personal Blog</title><link>https://akleinloog.github.io/project/personal-blog/</link><pubDate>Tue, 05 May 2020 00:00:00 +0000</pubDate><guid>https://akleinloog.github.io/project/personal-blog/</guid><description>&lt;p>The goal of this mini-project was to set up a simple website to use as a personal blog.
+&lt;p>I hope you may have learned something from this, as I did. In &lt;a href="https://www.kleinloog.ch/post/my-blog-pt2">Part 2&lt;/a> I will add support for Google Analytics, comments and a simple contact page.&lt;/p></description></item><item><title>Personal Blog</title><link>https://www.kleinloog.ch/project/personal-blog/</link><pubDate>Tue, 05 May 2020 00:00:00 +0000</pubDate><guid>https://www.kleinloog.ch/project/personal-blog/</guid><description>&lt;p>The goal of this mini-project was to set up a simple website to use as a personal blog.
 You are currently looking at the result of it.&lt;/p>
 &lt;h2 id="the-what">The What&lt;/h2>
 &lt;p>The basic idea was to set up a simple blog that allows me to manage posts on some topics that interest me and to provide some info on some of the projects I work on.
@@ -251,15 +225,10 @@ And if in turn they would provide feedback, even better!&lt;/p>
 &lt;h2 id="the-how">The How&lt;/h2>
 &lt;p>After looking around a bit I decided to try out the following:&lt;/p>
 &lt;ul>
-&lt;li>Use
-&lt;a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo&lt;/a>, a static site generator written in
-&lt;a href="https://golang.org/" target="_blank" rel="noopener">Go&lt;/a>&lt;/li>
-&lt;li>Write the content in
-&lt;a href="https://www.markdownguide.org/" target="_blank" rel="noopener">markdown&lt;/a>&lt;/li>
-&lt;li>Use a
-&lt;a href="https://github.com/akleinloog/website" target="_blank" rel="noopener">GitHub repository&lt;/a> to keep the sources&lt;/li>
-&lt;li>Use another
-&lt;a href="https://github.com/akleinloog/akleinloog.github.io" target="_blank" rel="noopener">GitHub repository&lt;/a> to host the resulting blog&lt;/li>
+&lt;li>Use &lt;a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo&lt;/a>, a static site generator written in &lt;a href="https://golang.org/" target="_blank" rel="noopener">Go&lt;/a>&lt;/li>
+&lt;li>Write the content in &lt;a href="https://www.markdownguide.org/" target="_blank" rel="noopener">markdown&lt;/a>&lt;/li>
+&lt;li>Use a &lt;a href="https://github.com/akleinloog/website" target="_blank" rel="noopener">GitHub repository&lt;/a> to keep the sources&lt;/li>
+&lt;li>Use another &lt;a href="https://github.com/akleinloog/akleinloog.github.io" target="_blank" rel="noopener">GitHub repository&lt;/a> to host the resulting blog&lt;/li>
 &lt;li>Open Source the result so others might learn from it&lt;/li>
 &lt;/ul>
 &lt;h2 id="the-results">The Results&lt;/h2>
