@@ -104,7 +104,7 @@ In my case: &lt;strong>akleinloog.github.io&lt;/strong>
 &lt;p>I decided to dedicate both repositories to the public domain and therefore used the &lt;a href="https://choosealicense.com/licenses/unlicense/" target="_blank" rel="noopener">UNLICENSE&lt;/a>.
 Feel free to use anything you find there as you see fit.&lt;/p>
 &lt;p>The next step is to clone the repository used for the source:&lt;/p>
-&lt;pre>&lt;code class="language-bash">git clone https://github.com/&amp;lt;username here&amp;gt;/website.git
+&lt;pre>&lt;code class="language-bash">git clone git@github.com:&amp;lt;username here&amp;gt;/website.git
 &lt;/code>&lt;/pre>
 &lt;p>And open the project in Visual Studio Code:&lt;/p>
 &lt;pre>&lt;code class="language-bash">cd website
@@ -125,13 +125,25 @@ resources/
 &lt;h2 id="select-a-theme">Select a theme&lt;/h2>
 &lt;p>A good overview of available themes can be found &lt;a href="https://jamstackthemes.dev" target="_blank" rel="noopener">here&lt;/a>.
 Select Hugo and order the themes by Stars gives you an overview of the most used themes.&lt;/p>
-&lt;p>I decided to try &lt;a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic&lt;/a>, a feature rich, open source theme developed by George Cushen and made available under the &lt;a href="https://choosealicense.com/licenses/mit/" target="_blank" rel="noopener">MIT&lt;/a> license. Thanks George!&lt;/p>
-&lt;p>Add the theme as a git submodule:&lt;/p>
-&lt;pre>&lt;code class="language-bash">git submodule add https://github.com/gcushen/hugo-academic.git themes/academic
+&lt;p>I decided to try &lt;a href="https://wowchemy.com" target="_blank" rel="noopener">Academic&lt;/a>, a feature rich, open source theme developed by George Cushen and made available under the &lt;a href="https://choosealicense.com/licenses/mit/" target="_blank" rel="noopener">MIT&lt;/a> license. Thanks George!&lt;/p>
+&lt;p>The Academic theme can be added using go modules.
+Add a go.mod file with the following content:&lt;/p>
+&lt;pre>&lt;code class="language-yaml">module github.com/wowchemy/starter-academic
+go 1.15
+require (
+github.com/wowchemy/wowchemy-hugo-modules/netlify-cms-academic v0.0.0-20210205224825-50d3d41e9e1a // indirect
+github.com/wowchemy/wowchemy-hugo-modules/wowchemy v0.0.0-20210205224825-50d3d41e9e1a
+)
 &lt;/code>&lt;/pre>
-&lt;p>Familiarize yourself with Academic, and &lt;a href="https://sourcethemes.com/academic/docs/customization/" target="_blank" rel="noopener">customize&lt;/a> it as you see fit.
-A good way to do that, is to clone the &lt;a href="https://github.com/sourcethemes/academic-kickstart" target="_blank" rel="noopener">Academic Kickstart&lt;/a> project in a separate directory.
-It provides a good demonstration of what the theme has to offer.&lt;/p>
+&lt;p>And a go.sum file with the following content:&lt;/p>
+&lt;pre>&lt;code class="language-yaml">github.com/wowchemy/wowchemy-hugo-modules/netlify-cms-academic v0.0.0-20210205224825-50d3d41e9e1a h1:+YPB8FgVKzFGcT21RVBU345fARNYm6xOE/HXmr2D5J0=
+github.com/wowchemy/wowchemy-hugo-modules/netlify-cms-academic v0.0.0-20210205224825-50d3d41e9e1a/go.mod h1:TU3QDPUdBSQnvDP5QVCwjAkBIdVMS/bKFA8jr3eI5AY=
+github.com/wowchemy/wowchemy-hugo-modules/wowchemy v0.0.0-20210205224825-50d3d41e9e1a h1:BxOQUKnIoXDmsexnifhDJlw/xnCxojOYt2vpv2u9IfA=
+github.com/wowchemy/wowchemy-hugo-modules/wowchemy v0.0.0-20210205224825-50d3d41e9e1a/go.mod h1:H22qfH9qj3FWwsk7+bAZpmT24yRGNQURah2/IRwjbn8=
+&lt;/code>&lt;/pre>
+&lt;p>Familiarize yourself with Academic, and &lt;a href="https://wowchemy.com/docs/getting-started/customization/" target="_blank" rel="noopener">customize&lt;/a> it as you see fit.
+A good way to do that, is to clone the &lt;a href="https://github.com/wowchemy/starter-academic" target="_blank" rel="noopener">Academic Kickstart&lt;/a> project in a separate directory.
+It provides a good demonstration of what the theme has to offer and can be helpful for troubleshooting.&lt;/p>
 &lt;h2 id="add-some-content">Add some content&lt;/h2>
 &lt;p>First add the configuration files. You can copy the ones from the Academic Kickstart project to get started. Read through them and adjust as you see fit.&lt;/p>
 &lt;p>Also copy the &lt;em>page_sharer.toml&lt;/em> file in the &lt;em>data&lt;/em> folder to your local project.&lt;/p>
@@ -145,11 +157,11 @@ You can also have a look at my &lt;a href="https://github.com/akleinloog/website
 Whenever you save your changes, Hugo will react and automatically refresh the website, providing a very pleasant live-editing experience.&lt;/p>
 &lt;h2 id="get-ready-to-publish">Get ready to publish&lt;/h2>
 &lt;p>Add the repository for the generated website as a git submodule:&lt;/p>
-&lt;pre>&lt;code class="language-bash">git submodule add -b master https://github.com/&amp;lt;username here&amp;gt;/&amp;lt;username here&amp;gt;.github.io.git public
+&lt;pre>&lt;code class="language-bash">git submodule add -b main git@github.com:&amp;lt;username here&amp;gt;/&amp;lt;username here&amp;gt;.github.io.git public
 &lt;/code>&lt;/pre>
 &lt;p>Doing so ensures that the HTML and JavaScript generated by Hugo will be placed in that repository.&lt;/p>
 &lt;p>First, we&amp;rsquo;ll do a manual run. Generate your website:&lt;/p>
-&lt;pre>&lt;code class="language-bash">hugo -t academic
+&lt;pre>&lt;code class="language-bash">hugo --gc
 &lt;/code>&lt;/pre>
 &lt;p>Test the generated output using the &lt;a href="https://www.npmjs.com/package/serve" target="_blank" rel="noopener">serve package&lt;/a>:&lt;/p>
 &lt;pre>&lt;code class="language-bash">cd public
@@ -163,16 +175,16 @@ npx serve
 &lt;pre>&lt;code class="language-bash">#!/bin/sh
 set -e
 echo &amp;quot;Cleaning Publish Folder&amp;quot;
-rm -r ./public/*
+rm -rf ./public/*
 echo &amp;quot;Running Hugo Build&amp;quot;
-hugo -t academic
+env HUGO_ENV=&amp;quot;production&amp;quot; hugo --gc --minify
 cd public
 echo &amp;quot;Adding changes to git&amp;quot;
 git add .
 msg=&amp;quot;regenerating site content $(date)&amp;quot;
 git commit -m &amp;quot;$msg&amp;quot;
-echo &amp;quot;Pushing to master&amp;quot;
-git push origin master
+echo &amp;quot;Pushing to main&amp;quot;
+git push origin main
 cd ..
 echo &amp;quot;Deployment Finished&amp;quot;
 &lt;/code>&lt;/pre>
