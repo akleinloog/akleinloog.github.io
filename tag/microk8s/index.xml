@@ -1,4 +1,105 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>MicroK8s | My Site</title><link>https://www.kleinloog.ch/tag/microk8s/</link><atom:link href="https://www.kleinloog.ch/tag/microk8s/index.xml" rel="self" type="application/rss+xml"/><description>MicroK8s</description><generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>Dedicated to the public domain · [Unlicensed](https://github.com/akleinloog/akleinloog.github.io/blob/master/LICENSE)</copyright><lastBuildDate>Fri, 22 May 2020 00:00:00 +0000</lastBuildDate><image><url>https://www.kleinloog.ch/images/icon_hu1d96926d990b8c2ce1741b9516caf288_71361_512x512_fill_lanczos_center_2.png</url><title>MicroK8s</title><link>https://www.kleinloog.ch/tag/microk8s/</link></image><item><title>Kubernetes on my machine. Great idea, but which one?</title><link>https://www.kleinloog.ch/post/which-local-kubernetes/</link><pubDate>Fri, 22 May 2020 00:00:00 +0000</pubDate><guid>https://www.kleinloog.ch/post/which-local-kubernetes/</guid><description>&lt;p>&lt;a href="https://kubernetes.io" target="_blank" rel="noopener">Kubernetes&lt;/a> is the state-of-the-art when it comes to container orchestration.&lt;br>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>MicroK8s | My Site</title><link>https://www.kleinloog.ch/tag/microk8s/</link><atom:link href="https://www.kleinloog.ch/tag/microk8s/index.xml" rel="self" type="application/rss+xml"/><description>MicroK8s</description><generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>Dedicated to the public domain · [Unlicensed](https://github.com/akleinloog/akleinloog.github.io/blob/master/LICENSE)</copyright><lastBuildDate>Sat, 13 Feb 2021 00:00:00 +0000</lastBuildDate><image><url>https://www.kleinloog.ch/images/icon_hu1d96926d990b8c2ce1741b9516caf288_71361_512x512_fill_lanczos_center_2.png</url><title>MicroK8s</title><link>https://www.kleinloog.ch/tag/microk8s/</link></image><item><title>MicroK8s - Kubernetes for developers</title><link>https://www.kleinloog.ch/post/microk8s-kubernetes/</link><pubDate>Sat, 13 Feb 2021 00:00:00 +0000</pubDate><guid>https://www.kleinloog.ch/post/microk8s-kubernetes/</guid><description>&lt;p>Following my initial post on &lt;a href="https://www.kleinloog.ch/post/which-local-kubernetes">local Kubernetes options&lt;/a> and a deep dive on &lt;a href="https://www.kleinloog.ch/post/minikube-kubernetes">Minikube&lt;/a> it is time to take &lt;a href="https://microk8s.io" target="_blank" rel="noopener">MicroK8s&lt;/a> for a spin.
+I have been looking forward to this for a while, so let&amp;rsquo;s get started.&lt;/p>
+&lt;h3 id="preparation">Preparation&lt;/h3>
+&lt;p>First things first, as always, I want my MacBook up to date.
+At the time of writing, it runs macOS Big Sur version 11.2.1 and Xcode version 12.0.1.
+Time to update the rest:&lt;/p>
+&lt;pre>&lt;code class="language-bash">brew update
+brew upgrade
+brew upgrade --cask
+&lt;/code>&lt;/pre>
+&lt;p>In addition, make sure there are no issues. If there are, resolve them first:&lt;/p>
+&lt;pre>&lt;code class="language-bash">brew doctor
+&lt;/code>&lt;/pre>
+&lt;p>Should give the following output when all is ready:&lt;/p>
+&lt;pre>&lt;code class="language-bash">Your system is ready to brew.
+&lt;/code>&lt;/pre>
+&lt;p>Should you run into any issues, I recommend to fix these first. Google is your friend&amp;hellip;&lt;/p>
+&lt;p>If you are running windows, &lt;a href="https://chocolatey.org/" target="_blank" rel="noopener">chocolatey&lt;/a> is a decent alternative to brew.&lt;/p>
+&lt;h3 id="install-multipass">Install Multipass&lt;/h3>
+&lt;p>&lt;a href="https://multipass.run" target="_blank" rel="noopener">Multipass&lt;/a> makes it easy to work with Ubuntu VMs on a Mac or Windows workstation.
+Install it using:&lt;/p>
+&lt;pre>&lt;code class="language-bash">brew install --cask multipass
+&lt;/code>&lt;/pre>
+&lt;p>After a little while, the installation completes:&lt;/p>
+&lt;pre>&lt;code class="language-plaintext">🍺 multipass was successfully installed!
+&lt;/code>&lt;/pre>
+&lt;p>For more info on Multipass, check the &lt;a href="https://multipass.run/docs" target="_blank" rel="noopener">docs&lt;/a>.&lt;/p>
+&lt;h3 id="create-an-ubuntu-vm">Create an Ubuntu VM&lt;/h3>
+&lt;p>TIme to create an Ubuntu VM to install MicroK8s on. Let&amp;rsquo;s give it some resources as well.&lt;/p>
+&lt;pre>&lt;code class="language-bash">multipass launch --name k8s-master --cpus 4 --mem 16G --disk 50G
+&lt;/code>&lt;/pre>
+&lt;p>After a little while, a new VM is created:&lt;/p>
+&lt;pre>&lt;code class="language-plaintext">Launched: k8s-master
+&lt;/code>&lt;/pre>
+&lt;p>Open a shell into our new VM&lt;/p>
+&lt;pre>&lt;code class="language-bash">multipass shell k8s-master
+&lt;/code>&lt;/pre>
+&lt;p>And make sure it is up to date:&lt;/p>
+&lt;pre>&lt;code class="language-bash">sudo su
+apt update
+apt upgrade
+&lt;/code>&lt;/pre>
+&lt;h3 id="install-microk8s">Install MicroK8s&lt;/h3>
+&lt;p>Time to install MicroK8s:&lt;/p>
+&lt;pre>&lt;code class="language-bash">sudo snap install microk8s --classic --channel=1.19/stable
+&lt;/code>&lt;/pre>
+&lt;p>And make sure the networking runs smoothly:&lt;/p>
+&lt;pre>&lt;code class="language-bash">sudo iptables -P FORWARD ACCEPT
+&lt;/code>&lt;/pre>
+&lt;p>MicroK8s creates a group to enable seamless usage of commands which require admin privilege. Add your user to this group:&lt;/p>
+&lt;pre>&lt;code class="language-bash">sudo usermod -a -G microk8s $USER
+sudo chown -f -R $USER ~/.kube
+&lt;/code>&lt;/pre>
+&lt;p>Re-enter the session so the group update takes place:&lt;/p>
+&lt;pre>&lt;code class="language-bash">su - $USER
+&lt;/code>&lt;/pre>
+&lt;p>Make sure that the cluster was created successfully:&lt;/p>
+&lt;pre>&lt;code class="language-bash">microk8s status --wait-ready
+&lt;/code>&lt;/pre>
+&lt;p>Create an alias for kubectl:&lt;/p>
+&lt;pre>&lt;code class="language-bash">alias kubectl='microk8s kubectl'
+&lt;/code>&lt;/pre>
+&lt;p>For more info on MicroK8s, check the &lt;a href="https://microk8s.io/docs" target="_blank" rel="noopener">docs&lt;/a>.&lt;/p>
+&lt;h3 id="first-deployment">First deployment&lt;/h3>
+&lt;p>Deploy a simple application:&lt;/p>
+&lt;pre>&lt;code class="language-bash">kubectl create deployment hello --image=akleinloog/hello:v1
+&lt;/code>&lt;/pre>
+&lt;p>Verify that the pod is up and running:&lt;/p>
+&lt;pre>&lt;code class="language-bash">kubectl get pods
+&lt;/code>&lt;/pre>
+&lt;p>And expose it:&lt;/p>
+&lt;pre>&lt;code class="language-bash">kubectl expose deployment hello --port=80 --type=NodePort
+&lt;/code>&lt;/pre>
+&lt;p>See at which port it is available:&lt;/p>
+&lt;pre>&lt;code class="language-bash">kubectl get services
+&lt;/code>&lt;/pre>
+&lt;p>This should give a response similar to:&lt;/p>
+&lt;pre>&lt;code class="language-bash">NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGE
+kubernetes ClusterIP 10.152.183.1 &amp;lt;none&amp;gt; 443/TCP 15m
+hello NodePort 10.152.183.70 &amp;lt;none&amp;gt; 80:31984/TCP 3s
+&lt;/code>&lt;/pre>
+&lt;p>Which tells us that the hello app is exposes at port 31984, so we can test it using:&lt;/p>
+&lt;pre>&lt;code class="language-bash">curl localhost:31984
+&lt;/code>&lt;/pre>
+&lt;p>Which should give output similar to:&lt;/p>
+&lt;pre>&lt;code class="language-bash">Go Hello 1 from hello-656897b96f-dvwc7 on GET ./
+&lt;/code>&lt;/pre>
+&lt;p>On your host machine, list the multipass VMs:&lt;/p>
+&lt;pre>&lt;code class="language-bash">multipass list
+&lt;/code>&lt;/pre>
+&lt;p>Which should give output similar to:&lt;/p>
+&lt;pre>&lt;code class="language-bash">k8s-master Running 192.168.64.52 Ubuntu 20.04 LTS
+10.1.235.192
+&lt;/code>&lt;/pre>
+&lt;p>Which tells us that we can access the app running in our Kubernetes instance using:&lt;/p>
+&lt;pre>&lt;code class="language-bash">curl 192.168.64.52:31984
+&lt;/code>&lt;/pre>
+&lt;p>Or by simply pointing our browser to http://192.168.64.52:31984&lt;/p>
+&lt;h3 id="next-steps">Next Steps&amp;hellip;&lt;/h3>
+&lt;p>To get more familiar with Kubernetes, follow some basic tutorials &lt;a href="https://kubernetes.io/docs/tutorials/" target="_blank" rel="noopener">here&lt;/a> and find some more &lt;a href="https://katacoda.com/courses/kubernetes" target="_blank" rel="noopener">here&lt;/a>. Again, google is your friend, there is plenty of content out there.&lt;/p>
+&lt;p>In addition, you can install some readily available &lt;a href="https://microk8s.io/docs/addons" target="_blank" rel="noopener">MicroKs add ons&lt;/a> like &lt;a href="https://istio.io/" target="_blank" rel="noopener">Istio&lt;/a> or &lt;a href="https://knative.dev/" target="_blank" rel="noopener">Knative&lt;/a> and play around with those. Last but not least, extend your single node cluster with &lt;a href="https://microk8s.io/docs/clustering" target="_blank" rel="noopener">additional nodes&lt;/a>!&lt;/p>
+&lt;p>As for me, my next step will be to setup a &lt;a href="https://rancher.com/" target="_blank" rel="noopener">Rancher&lt;/a> instance and create a managed local cluster.&lt;/p></description></item><item><title>Kubernetes on my machine. Great idea, but which one?</title><link>https://www.kleinloog.ch/post/which-local-kubernetes/</link><pubDate>Fri, 22 May 2020 00:00:00 +0000</pubDate><guid>https://www.kleinloog.ch/post/which-local-kubernetes/</guid><description>&lt;p>&lt;a href="https://kubernetes.io" target="_blank" rel="noopener">Kubernetes&lt;/a> is the state-of-the-art when it comes to container orchestration.&lt;br>
 Built upon years of experience with production workloads at Google, it combines best-of-breed ideas and community practices.
 Kubernetes is a classroom example of a successful open source project, drives vendor neutrality and runs basically everywhere.&lt;/p>
 &lt;p>Today, I see Kubernetes as the operating system of the Cloud Native world.
@@ -120,7 +221,7 @@ With two options to try out I can&amp;rsquo;t wait to get started. I&amp;rsquo;l
 &lt;p>Both Kind and Minikube are interesting options managed by the Kubernetes community.
 They have done an awesome job with Kubernetes, so I expect these to be hassle free alternatives.
 At first sight, Kind seems to be promising for automated tests in your CI/CD pipeline and Minikube seems to be the most feature rich for your desktop.&lt;/p>
-&lt;p>I took a deeper look at Minikube, see this &lt;a href="https://www.kleinloog.ch/post/minikube-kubernetes">post&lt;/a> for the details.&lt;/p>
-&lt;p>Up next is MicroK8s, more on that to follow soon.&lt;/p>
+&lt;p>I took a deeper look at Minikube, see this &lt;a href="https://www.kleinloog.ch/post/minikube-kubernetes">post&lt;/a> for the details.
+In addition, check this &lt;a href="https://www.kleinloog.ch/post/microk8s-kubernetes">post&lt;/a> to see how to quickly setup a MicroK8s cluster.&lt;/p>
 &lt;p>&lt;a href="https://docs.google.com/spreadsheets/d/1LxSqBzjOxfGx3cmtZ4EbB_BGCxT_wlxW_xgHVVa23es/edit#gid=0" target="_blank" rel="noopener">Here&lt;/a> is an updated list of certified Kubernetes offerings and the versions they support, and &lt;a href="https://github.com/cncf/k8s-conformance" target="_blank" rel="noopener">here&lt;/a> is more info on conformance.&lt;/p>
-&lt;p>If you do not agree with my conclusions, or you feel like I have missed something, please leave a comment!&lt;/p></description></item></channel></rss>
+&lt;p>If you see things differently, or feel like I missed something, please leave a comment!&lt;/p></description></item></channel></rss>

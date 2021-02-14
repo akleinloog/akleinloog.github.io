@@ -120,7 +120,7 @@ With two options to try out I can&amp;rsquo;t wait to get started. I&amp;rsquo;l
 &lt;p>Both Kind and Minikube are interesting options managed by the Kubernetes community.
 They have done an awesome job with Kubernetes, so I expect these to be hassle free alternatives.
 At first sight, Kind seems to be promising for automated tests in your CI/CD pipeline and Minikube seems to be the most feature rich for your desktop.&lt;/p>
-&lt;p>I took a deeper look at Minikube, see this &lt;a href="https://www.kleinloog.ch/post/minikube-kubernetes">post&lt;/a> for the details.&lt;/p>
-&lt;p>Up next is MicroK8s, more on that to follow soon.&lt;/p>
+&lt;p>I took a deeper look at Minikube, see this &lt;a href="https://www.kleinloog.ch/post/minikube-kubernetes">post&lt;/a> for the details.
+In addition, check this &lt;a href="https://www.kleinloog.ch/post/microk8s-kubernetes">post&lt;/a> to see how to quickly setup a MicroK8s cluster.&lt;/p>
 &lt;p>&lt;a href="https://docs.google.com/spreadsheets/d/1LxSqBzjOxfGx3cmtZ4EbB_BGCxT_wlxW_xgHVVa23es/edit#gid=0" target="_blank" rel="noopener">Here&lt;/a> is an updated list of certified Kubernetes offerings and the versions they support, and &lt;a href="https://github.com/cncf/k8s-conformance" target="_blank" rel="noopener">here&lt;/a> is more info on conformance.&lt;/p>
-&lt;p>If you do not agree with my conclusions, or you feel like I have missed something, please leave a comment!&lt;/p></description></item></channel></rss>
+&lt;p>If you see things differently, or feel like I missed something, please leave a comment!&lt;/p></description></item></channel></rss>
