@@ -2,7 +2,7 @@
 I have been looking forward to this for a while, so let&amp;rsquo;s get started.&lt;/p>
 &lt;h3 id="preparation">Preparation&lt;/h3>
 &lt;p>First things first, as always, I want my MacBook up to date.
-At the time of writing, it runs macOS Big Sur version 11.2.1 and Xcode version 12.0.1.
+At the time of writing, it runs macOS Big Sur version 11.2.1 and Xcode version 12.4.
 Time to update the rest:&lt;/p>
 &lt;pre>&lt;code class="language-bash">brew update
 brew upgrade
@@ -792,7 +792,7 @@ env HUGO_ENV=&amp;quot;production&amp;quot; hugo --gc --minify -t academic -b ht
 &lt;p>Of course I realize that, as is the case with most &amp;lsquo;free service&amp;rsquo; offerings, I am being part of the product here. Google will use all information they get in ways they see fit. Since what I am doing here is &amp;lsquo;out in the open&amp;rsquo; and dedicated to the public domain, I figured it would make a good opportunity to learn more about these Google services, and I appreciate that the collected information (or at least some of it) is shared with me as well.&lt;/p>
 &lt;h2 id="commenting-with-disqus">Commenting with Disqus&lt;/h2>
 &lt;p>Enabling others to comment on your site turns it into an interactive site and is relatively easy to do.
-First go to &lt;a href="https://disqus.com">https://disqus.com&lt;/a> and sign up. I selected the basic, free package. Then open &lt;em>params.toml&lt;/em> in your _config/&lt;em>default&lt;/em> directory and fill in the comments section to enable commenting:&lt;/p>
+First go to &lt;a href="https://disqus.com" target="_blank" rel="noopener">https://disqus.com&lt;/a> and sign up. I selected the basic, free package. Then open &lt;em>params.toml&lt;/em> in your _config/&lt;em>default&lt;/em> directory and fill in the comments section to enable commenting:&lt;/p>
 &lt;pre>&lt;code class="language-toml">############################
 ## Comments
 ############################

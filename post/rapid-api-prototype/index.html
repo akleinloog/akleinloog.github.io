@@ -1,21 +1,160 @@
-<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=generator content="Wowchemy 5.0.0-beta.2 for Hugo"><meta name=author content="Arnoud Kleinloog"><meta name=description content="Rapidly develop API prototypes using strapi."><link rel=alternate hreflang=en-us href=https://www.kleinloog.ch/post/rapid-api-prototype/><link rel=preconnect href=https://fonts.gstatic.com crossorigin><meta name=theme-color content="#2962ff"><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin=anonymous><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin=anonymous><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin=anonymous media=print onload="this.media='all'"><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/vs2015.min.css crossorigin=anonymous title=hl-light media=print onload="this.media='all'"><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/vs2015.min.css crossorigin=anonymous title=hl-dark media=print onload="this.media='all'" disabled><script src=https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.2/lazysizes.min.js integrity="sha512-TmDwFLhg3UA4ZG0Eb4MIyT1O1Mb+Oww5kFG0uHqXsdbyZz9DcvYQhKpGgNkamAI6h2lGGZq2X8ftOJvF/XjTUg==" crossorigin=anonymous async></script><link rel=preload as=style href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap"><link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media=print onload="this.media='all'"><link rel=stylesheet href=/css/wowchemy.4964b27c408125e852d77e799faca141.css><script async src="https://www.googletagmanager.com/gtag/js?id=UA-165915271-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
-function trackOutboundLink(url,target){gtag('event','click',{'event_category':'outbound','event_label':url,'transport_type':'beacon','event_callback':function(){if(target!=='_blank'){document.location=url;}}});console.debug("Outbound link clicked: "+url);}
-function onClickCallback(event){if((event.target.tagName!=='A')||(event.target.host===window.location.host)){return;}
-trackOutboundLink(event.target,event.target.getAttribute('target'));}
-gtag('js',new Date());gtag('config','UA-165915271-1',{});document.addEventListener('click',onClickCallback,false);</script><link rel=manifest href=/index.webmanifest><link rel=icon type=image/png href=/images/icon_hu1d96926d990b8c2ce1741b9516caf288_71361_32x32_fill_lanczos_center_2.png><link rel=apple-touch-icon type=image/png href=/images/icon_hu1d96926d990b8c2ce1741b9516caf288_71361_180x180_fill_lanczos_center_2.png><link rel=canonical href=https://www.kleinloog.ch/post/rapid-api-prototype/><meta property="twitter:card" content="summary"><meta property="og:site_name" content="My Site"><meta property="og:url" content="https://www.kleinloog.ch/post/rapid-api-prototype/"><meta property="og:title" content="Rapid API Prototyping | My Site"><meta property="og:description" content="Rapidly develop API prototypes using strapi."><meta property="og:image" content="https://www.kleinloog.ch/images/icon_hu1d96926d990b8c2ce1741b9516caf288_71361_512x512_fill_lanczos_center_2.png"><meta property="twitter:image" content="https://www.kleinloog.ch/images/icon_hu1d96926d990b8c2ce1741b9516caf288_71361_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us"><meta property="article:published_time" content="2020-05-27T00:00:00+00:00"><meta property="article:modified_time" content="2020-06-06T22:45:20+02:00"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.kleinloog.ch/post/rapid-api-prototype/"},"headline":"Rapid API Prototyping","datePublished":"2020-05-27T00:00:00Z","dateModified":"2020-06-06T22:45:20+02:00","author":{"@type":"Person","name":"Arnoud Kleinloog"},"publisher":{"@type":"Organization","name":"My Site","logo":{"@type":"ImageObject","url":"https://www.kleinloog.ch/images/icon_hu1d96926d990b8c2ce1741b9516caf288_71361_192x192_fill_lanczos_center_2.png"}},"description":"Rapidly develop API prototypes using strapi."}</script><title>Rapid API Prototyping | My Site</title></head><body id=top data-spy=scroll data-offset=70 data-target=#TableOfContents class=page-wrapper><script src=/js/wowchemy-init.min.d04a4dd9cd5314a106673db4cc9094ae.js></script><aside class=search-modal id=search><div class=container><section class=search-header><div class="row no-gutters justify-content-between mb-3"><div class=col-6><h1>Search</h1></div><div class="col-6 col-search-close"><a class=js-search href=# aria-label=Close><i class="fas fa-times-circle text-muted" aria-hidden=true></i></a></div></div><div id=search-box><input name=q id=search-query placeholder=Search... autocapitalize=off autocomplete=off autocorrect=off spellcheck=false type=search class=form-control aria-label=Search...></div></section><section class=section-search-results><div id=search-hits></div></section></div></aside><div class=page-header><nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id=navbar-main><div class=container-xl><div class="d-none d-lg-inline-flex"><a class=navbar-brand href=/>My Site</a></div><button type=button class=navbar-toggler data-toggle=collapse data-target=#navbar-content aria-controls=navbar aria-expanded=false aria-label="Toggle navigation">
-<span><i class="fas fa-bars"></i></span></button><div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none"><a class=navbar-brand href=/>My Site</a></div><div class="navbar-collapse main-menu-item collapse justify-content-start" id=navbar-content><ul class="navbar-nav d-md-inline-flex"><li class=nav-item><a class="nav-link active" href=/post/><span>Posts</span></a></li><li class=nav-item><a class=nav-link href=/portfolio/><span>Projects</span></a></li><li class=nav-item><a class=nav-link href=/about/><span>About</span></a></li><li class=nav-item><a class=nav-link href=/about/#contact><span>Contact</span></a></li></ul></div><ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2"><li class=nav-item><a class="nav-link js-search" href=# aria-label=Search><i class="fas fa-search" aria-hidden=true></i></a></li><li class="nav-item dropdown theme-dropdown"><a href=# class=nav-link data-toggle=dropdown aria-haspopup=true aria-label="Display preferences"><i class="fas fa-moon" aria-hidden=true></i></a><div class=dropdown-menu><a href=# class="dropdown-item js-set-theme-light"><span>Light</span></a>
-<a href=# class="dropdown-item js-set-theme-dark"><span>Dark</span></a>
-<a href=# class="dropdown-item js-set-theme-auto"><span>Automatic</span></a></div></li></ul></div></nav></div><div class=page-body><article class=article><div class="article-container pt-3"><h1>Rapid API Prototyping</h1><p class=page-subtitle>Get started with Rapid API prototyping using strapi</p><div class=article-metadata><div><span><a href=/author/arnoud-kleinloog/>Arnoud Kleinloog</a></span></div><span class=article-date>Last updated on
-Jun 6, 2020</span>
-<span class=middot-divider></span><span class=article-reading-time>6 min read</span>
-<span class=middot-divider></span><a href=/post/rapid-api-prototype/#disqus_thread></a></div><div class="btn-links mb-3"><a class="btn btn-outline-primary btn-page-header" href=/project/rapid-api/>Project</a></div></div><div class=article-container><div class=article-style><p>The goal of my <a href=/project/rapid-api>Rapid API project</a> is to create a containerized starting point that can be used to quickly implement a prototype of an API, customize it as needed, and easily add initial content.</p><h2 id=preparation>Preparation</h2><p>To get started, create a new GitHub repository, initialized it with a README and a license, and clone it to your local machine.</p><h2 id=docker-files>Docker files</h2><p>Add a <em>docker-compose.yaml</em> file with the following content:</p><pre><code class=language-yaml>version: '3.7'
+<!doctype html><html lang=en-us>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=generator content="Wowchemy 5.0.0-beta.2 for Hugo">
+<meta name=author content="Arnoud Kleinloog">
+<meta name=description content="Rapidly develop API prototypes using strapi.">
+<link rel=alternate hreflang=en-us href=https://www.kleinloog.ch/post/rapid-api-prototype/>
+<link rel=preconnect href=https://fonts.gstatic.com crossorigin>
+<meta name=theme-color content="#2962ff">
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin=anonymous>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin=anonymous>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin=anonymous media=print onload="this.media='all'">
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/vs2015.min.css crossorigin=anonymous title=hl-light media=print onload="this.media='all'">
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/vs2015.min.css crossorigin=anonymous title=hl-dark media=print onload="this.media='all'" disabled>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.2/lazysizes.min.js integrity="sha512-TmDwFLhg3UA4ZG0Eb4MIyT1O1Mb+Oww5kFG0uHqXsdbyZz9DcvYQhKpGgNkamAI6h2lGGZq2X8ftOJvF/XjTUg==" crossorigin=anonymous async></script>
+<link rel=preload as=style href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+<link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media=print onload="this.media='all'">
+<link rel=stylesheet href=/css/wowchemy.a36e0a2fa9da41655a1a432558d8120d.css>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-165915271-1"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}function trackOutboundLink(a,b){gtag('event','click',{event_category:'outbound',event_label:a,transport_type:'beacon',event_callback:function(){b!=='_blank'&&(document.location=a)}}),console.debug("Outbound link clicked: "+a)}function onClickCallback(a){if(a.target.tagName!=='A'||a.target.host===window.location.host)return;trackOutboundLink(a.target,a.target.getAttribute('target'))}gtag('js',new Date),gtag('config','UA-165915271-1',{}),document.addEventListener('click',onClickCallback,!1)</script>
+<link rel=manifest href=/index.webmanifest>
+<link rel=icon type=image/png href=/images/icon_hu1d96926d990b8c2ce1741b9516caf288_71361_32x32_fill_lanczos_center_3.png>
+<link rel=apple-touch-icon type=image/png href=/images/icon_hu1d96926d990b8c2ce1741b9516caf288_71361_180x180_fill_lanczos_center_3.png>
+<link rel=canonical href=https://www.kleinloog.ch/post/rapid-api-prototype/>
+<meta property="twitter:card" content="summary">
+<meta property="og:site_name" content="My Site">
+<meta property="og:url" content="https://www.kleinloog.ch/post/rapid-api-prototype/">
+<meta property="og:title" content="Rapid API Prototyping | My Site">
+<meta property="og:description" content="Rapidly develop API prototypes using strapi."><meta property="og:image" content="https://www.kleinloog.ch/images/icon_hu1d96926d990b8c2ce1741b9516caf288_71361_512x512_fill_lanczos_center_3.png">
+<meta property="twitter:image" content="https://www.kleinloog.ch/images/icon_hu1d96926d990b8c2ce1741b9516caf288_71361_512x512_fill_lanczos_center_3.png"><meta property="og:locale" content="en-us">
+<meta property="article:published_time" content="2020-05-27T00:00:00+00:00">
+<meta property="article:modified_time" content="2020-06-06T22:45:20+02:00">
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.kleinloog.ch/post/rapid-api-prototype/"},"headline":"Rapid API Prototyping","datePublished":"2020-05-27T00:00:00Z","dateModified":"2020-06-06T22:45:20+02:00","author":{"@type":"Person","name":"Arnoud Kleinloog"},"publisher":{"@type":"Organization","name":"My Site","logo":{"@type":"ImageObject","url":"https://www.kleinloog.ch/images/icon_hu1d96926d990b8c2ce1741b9516caf288_71361_192x192_fill_lanczos_center_3.png"}},"description":"Rapidly develop API prototypes using strapi."}</script>
+<title>Rapid API Prototyping | My Site</title>
+</head>
+<body id=top data-spy=scroll data-offset=70 data-target=#TableOfContents class=page-wrapper>
+<script src=/js/wowchemy-init.min.2e458e5393490f06d99da74a463a188b.js></script>
+<aside class=search-modal id=search>
+<div class=container>
+<section class=search-header>
+<div class="row no-gutters justify-content-between mb-3">
+<div class=col-6>
+<h1>Search</h1>
+</div>
+<div class="col-6 col-search-close">
+<a class=js-search href=# aria-label=Close><i class="fas fa-times-circle text-muted" aria-hidden=true></i></a>
+</div>
+</div>
+<div id=search-box>
+<input name=q id=search-query placeholder=Search... autocapitalize=off autocomplete=off autocorrect=off spellcheck=false type=search class=form-control aria-label=Search...>
+</div>
+</section>
+<section class=section-search-results>
+<div id=search-hits>
+</div>
+</section>
+</div>
+</aside>
+<div class=page-header>
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id=navbar-main>
+<div class=container-xl>
+<div class="d-none d-lg-inline-flex">
+<a class=navbar-brand href=/>My Site</a>
+</div>
+<button type=button class=navbar-toggler data-toggle=collapse data-target=#navbar-content aria-controls=navbar aria-expanded=false aria-label="Toggle navigation">
+<span><i class="fas fa-bars"></i></span>
+</button>
+<div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+<a class=navbar-brand href=/>My Site</a>
+</div>
+<div class="navbar-collapse main-menu-item collapse justify-content-start" id=navbar-content>
+<ul class="navbar-nav d-md-inline-flex">
+<li class=nav-item>
+<a class="nav-link active" href=/post/><span>Posts</span></a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=/portfolio/><span>Projects</span></a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=/about/><span>About</span></a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=/about/#contact><span>Contact</span></a>
+</li>
+</ul>
+</div>
+<ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+<li class=nav-item>
+<a class="nav-link js-search" href=# aria-label=Search><i class="fas fa-search" aria-hidden=true></i></a>
+</li>
+<li class="nav-item dropdown theme-dropdown">
+<a href=# class=nav-link data-toggle=dropdown aria-haspopup=true aria-label="Display preferences">
+<i class="fas fa-moon" aria-hidden=true></i>
+</a>
+<div class=dropdown-menu>
+<a href=# class="dropdown-item js-set-theme-light">
+<span>Light</span>
+</a>
+<a href=# class="dropdown-item js-set-theme-dark">
+<span>Dark</span>
+</a>
+<a href=# class="dropdown-item js-set-theme-auto">
+<span>Automatic</span>
+</a>
+</div>
+</li>
+</ul>
+</div>
+</nav>
+</div>
+<div class=page-body>
+<article class=article>
+<div class="article-container pt-3">
+<h1>Rapid API Prototyping</h1>
+<p class=page-subtitle>Get started with Rapid API prototyping using strapi</p>
+<div class=article-metadata>
+<div>
+<span>
+<a href=/author/arnoud-kleinloog/>Arnoud Kleinloog</a></span>
+</div>
+<span class=article-date>
+Last updated on
+Jun 6, 2020
+</span>
+<span class=middot-divider></span>
+<span class=article-reading-time>
+6 min read
+</span>
+<span class=middot-divider></span>
+<a href=/post/rapid-api-prototype/#disqus_thread></a>
+</div>
+<div class="btn-links mb-3">
+<a class="btn btn-outline-primary btn-page-header" href=/project/rapid-api/>
+Project
+</a>
+</div>
+</div>
+<div class=article-container>
+<div class=article-style>
+<p>The goal of my <a href=/project/rapid-api>Rapid API project</a> is to create a containerized starting point that can be used to quickly implement a prototype of an API, customize it as needed, and easily add initial content.</p>
+<h2 id=preparation>Preparation</h2>
+<p>To get started, create a new GitHub repository, initialized it with a README and a license, and clone it to your local machine.</p>
+<h2 id=docker-files>Docker files</h2>
+<p>Add a <em>docker-compose.yaml</em> file with the following content:</p>
+<pre><code class=language-yaml>version: '3.7'
 services:
   rapid-api:
     container_name: api-dev
     build: ./docker/sqlite
     ports:
       - '8080:8080'
-</code></pre><p>This file points to a Dockerfile in the <em>/docker/sqlite</em> folder and maps container port 8080 to host port 8080 so we can access our API.</p><p>Next, add a <em>docker</em> folder with a <em>sqlite</em> sub folder. There, create a <em>Dockerfile</em> with the following content:</p><pre><code class=language-dockerfile>FROM node:13.14.0-alpine3.11
+</code></pre>
+<p>This file points to a Dockerfile in the <em>/docker/sqlite</em> folder and maps container port 8080 to host port 8080 so we can access our API.</p>
+<p>Next, add a <em>docker</em> folder with a <em>sqlite</em> sub folder. There, create a <em>Dockerfile</em> with the following content:</p>
+<pre><code class=language-dockerfile>FROM node:13.14.0-alpine3.11
 
 RUN apk update &amp;&amp; apk upgrade 
 RUN yarn global add strapi
@@ -36,11 +175,16 @@ RUN chmod 755 &quot;/usr/local/bin/entrypoint.sh&quot;
 EXPOSE 8080
 
 ENTRYPOINT [&quot;/usr/local/bin/entrypoint.sh&quot;]
-</code></pre><p>As you can see, the Dockerfile uses the latest Node JS 13 version.
-At the time of writing, Node JS 14 has already been released, but not all of strapi&rsquo;s dependencies were available at the time of writing.</p><p>The docker build starts with installing the strapi CLI, which it then uses to create a new quickstart project.
+</code></pre>
+<p>As you can see, the Dockerfile uses the latest Node JS 13 version.
+At the time of writing, Node JS 14 has already been released, but not all of strapi&rsquo;s dependencies were available at the time of writing.</p>
+<p>The docker build starts with installing the strapi CLI, which it then uses to create a new quickstart project.
 This initializes a strapi project using a <a href=https://www.sqlite.org/index.html target=_blank rel=noopener>SQLite</a> database.
 It then installs the <a href=https://strapi.io/documentation/v3.x/plugins/documentation.html target=_blank rel=noopener>API documentation</a> and <a href=https://strapi.io/documentation/v3.x/plugins/graphql.html target=_blank rel=noopener>GraphQL</a> plugins and changes the default port number from 1337 to 8080.
-In addition, it copies a <em>settings.json</em> file and an <em>entrypoint.sh</em> file to the image.</p><h2 id=open-api-settings>Open API settings</h2><p>Next to the <em>Dockerfile</em> in the <em>sqlite</em> folder, add a <em>settings.json</em> file with the following content:</p><pre><code class=language-json>{
+In addition, it copies a <em>settings.json</em> file and an <em>entrypoint.sh</em> file to the image.</p>
+<h2 id=open-api-settings>Open API settings</h2>
+<p>Next to the <em>Dockerfile</em> in the <em>sqlite</em> folder, add a <em>settings.json</em> file with the following content:</p>
+<pre><code class=language-json>{
     &quot;openapi&quot;: &quot;3.0.0&quot;,
     &quot;info&quot;: {
       &quot;version&quot;: &quot;1.0.0&quot;,
@@ -93,8 +237,12 @@ In addition, it copies a <em>settings.json</em> file and an <em>entrypoint.sh</e
     &quot;tags&quot;: [],
     &quot;components&quot;: {}
 }
-</code></pre><p>This file is needed in order to correct the port number used by the Open API endpoint. Feel free to edit the other settings to your liking.
-For more info, see <a href=https://strapi.io/documentation/v3.x/plugins/documentation.html#installation target=_blank rel=noopener>this section</a> in the strapi documentation.</p><h2 id=entrypoint>Entrypoint</h2><p>Next to the <em>Dockerfile</em> in the <em>sqlite</em> folder, add an <em>entrypoint.sh</em> file with the following content:</p><pre><code class=language-bash>#!/bin/sh
+</code></pre>
+<p>This file is needed in order to correct the port number used by the Open API endpoint. Feel free to edit the other settings to your liking.
+For more info, see <a href=https://strapi.io/documentation/v3.x/plugins/documentation.html#installation target=_blank rel=noopener>this section</a> in the strapi documentation.</p>
+<h2 id=entrypoint>Entrypoint</h2>
+<p>Next to the <em>Dockerfile</em> in the <em>sqlite</em> folder, add an <em>entrypoint.sh</em> file with the following content:</p>
+<pre><code class=language-bash>#!/bin/sh
 
 # exit when any command fails
 set -e
@@ -102,29 +250,45 @@ set -e
 echo &quot;Starting Server&quot;
 
 strapi develop
-</code></pre><p>This entrypoint script simply starts the strapi project in development mode, with automatic reload enabled.</p><h2 id=first-run>First run</h2><p>Startup the container for the first time:</p><pre><code class=language-bash>docker-compose up --build
-</code></pre><p>It will take a while before we are ready for the next steps. The base image is downloaded, updates are installed, the strapi project is initialized and the Documentation and GraphQL plugins are installed. Once this is completed, the container is started and some log entries appear.
-Eventually you will see something like this, indicating that the container is successfully started:</p><pre><code class=language-plaintext>api-dev      | One more thing...
+</code></pre>
+<p>This entrypoint script simply starts the strapi project in development mode, with automatic reload enabled.</p>
+<h2 id=first-run>First run</h2>
+<p>Startup the container for the first time:</p>
+<pre><code class=language-bash>docker-compose up --build
+</code></pre>
+<p>It will take a while before we are ready for the next steps. The base image is downloaded, updates are installed, the strapi project is initialized and the Documentation and GraphQL plugins are installed. Once this is completed, the container is started and some log entries appear.
+Eventually you will see something like this, indicating that the container is successfully started:</p>
+<pre><code class=language-plaintext>api-dev      | One more thing...
 api-dev      | Create your first administrator 💻 by going to the administration panel at:
 api-dev      |
 api-dev      | ┌──────────────────┐
 api-dev      | │ http://localhost:8080/admin  │
 api-dev      | └──────────────────┘
 api-dev      |
-</code></pre><p>You are now read to navigate to <a href=http://localhost:8080/admin target=_blank rel=noopener>http://localhost:8080/admin</a>, create an admin account and start customizing your API.</p><h2 id=adding-content>Adding Content</h2><p>Let&rsquo;s add a first example resource together.</p><p>From the menu on the left, select the <em>Content-Types Builder</em> and choose <em>Create new collection type</em>.
+</code></pre>
+<p>You are now read to navigate to <a href=http://localhost:8080/admin target=_blank rel=noopener>http://localhost:8080/admin</a>, create an admin account and start customizing your API.</p>
+<h2 id=adding-content>Adding Content</h2>
+<p>Let&rsquo;s add a first example resource together.</p>
+<p>From the menu on the left, select the <em>Content-Types Builder</em> and choose <em>Create new collection type</em>.
 Give it a display name <em>Example</em> and continue. Now we can add our choice of fields to our collection type:
 <img src=fields.png alt="Content Fields">
 As you can see, strapi comes with a nice set of built-in field types. Feel free to experiment with them.
 For now, we will just add a Text field called <em>Name</em> and a Rich Text field called <em>Description</em>.
 Hit <em>Finish</em> and then <em>Save</em>. Strapi will now generate the <em>Example API</em> and restart the server.
 Once complete, you will see the <em>Example</em> collection type appear in the top left.
-Open it up and add a few examples.</p><p>Checkout the <a href=https://strapi.io/documentation/v3.x/getting-started/introduction.html target=_blank rel=noopener>strapi documentation</a> and <a href=https://strapi.io/tutorials target=_blank rel=noopener>tutorials</a> for more examples.</p><h2 id=test-the-api>Test the API</h2><p>Now that we have added some content and created our first API, we want to see it in action.
+Open it up and add a few examples.</p>
+<p>Checkout the <a href=https://strapi.io/documentation/v3.x/getting-started/introduction.html target=_blank rel=noopener>strapi documentation</a> and <a href=https://strapi.io/tutorials target=_blank rel=noopener>tutorials</a> for more examples.</p>
+<h2 id=test-the-api>Test the API</h2>
+<p>Now that we have added some content and created our first API, we want to see it in action.
 You can use the API client of your choice to test it (postman, <a href=https://insomnia.rest/ target=_blank rel=noopener>insomnia</a>, curl, etc,)
 At the moment, I prefer to use Visual Studio Code with the <a href="https://marketplace.visualstudio.com/items?itemName=humao.rest-client" target=_blank rel=noopener>REST Client</a> plugin.
-Add a <em>test.http</em> file with the first test:</p><pre><code class=language-http>###
+Add a <em>test.http</em> file with the first test:</p>
+<pre><code class=language-http>###
 GET http://localhost:8080/examples
-</code></pre><p>A little <em>Send Request</em> label will appear, and when you click that, Visual Studio Code will execute the GET request.
-You will get a response like this:</p><pre><code class=language-http>HTTP/1.1 403 Forbidden
+</code></pre>
+<p>A little <em>Send Request</em> label will appear, and when you click that, Visual Studio Code will execute the GET request.
+You will get a response like this:</p>
+<pre><code class=language-http>HTTP/1.1 403 Forbidden
 ...
 Connection: close
 
@@ -133,10 +297,14 @@ Connection: close
   &quot;error&quot;: &quot;Forbidden&quot;,
   &quot;message&quot;: &quot;Forbidden&quot;
 }
-</code></pre><p>Your API supports authentication and is not open to the public!
+</code></pre>
+<p>Your API supports authentication and is not open to the public!
 For the sake of this test, in your strapi Admin UI, navigate to <em>Roles & Responsibilities</em>, select <em>Public</em> and check <em>Select All</em> next to <em>Example</em> and save that.
-<img src=permissions.png alt=Permissions></p><p>Now try sending the request again, you should receive the examples that you&rsquo;ve added previously.</p><p>For our last exercise, let&rsquo;s use the API to add another entry.
-Add the following to the <em>test.http</em> file:</p><pre><code class=language-http>###
+<img src=permissions.png alt=Permissions></p>
+<p>Now try sending the request again, you should receive the examples that you&rsquo;ve added previously.</p>
+<p>For our last exercise, let&rsquo;s use the API to add another entry.
+Add the following to the <em>test.http</em> file:</p>
+<pre><code class=language-http>###
 POST http://localhost:8080/examples
 content-type: application/json
 
@@ -144,19 +312,91 @@ content-type: application/json
   &quot;name&quot;: &quot;API Example&quot;,
   &quot;description&quot;: &quot;Added using the API&quot;
 }
-</code></pre><p>Don&rsquo;t forget the content-type header! Strapi will check for this and create an entry with empty values if you forget to specify that!</p><h2 id=api-documentation>API Documentation</h2><p>You will find another nice feature of our setup when you navigate to <em>Documentation</em>. Click in the <em>Retrieve your jwt token</em> textbox and the token will be copied to the clipboard. Click on <em>Open the documentation</em> and the Swagger based OpenAPI endpoint will be opened. You can <em>Authorize</em> yourself with your token and get familiar with all the options that your API has to offer.</p><h2 id=graphql>GraphQL</h2><p>A main reason for me to try strapi for rapid API prototyping is its support for GraphQL.
-I am not yet very familiar with GraphQL and want to have a playground to learn more.</p><p>Your API&rsquo;s GraphQL Playground is available at <a href=http://localhost:8080/graphql target=_blank rel=noopener>http://localhost:8080/graphql</a>. See <a href=https://strapi.io/documentation/v3.x/plugins/graphql.html target=_blank rel=noopener>this section</a> in the strapi documentation for more info.</p><h2 id=even-easier>Even easier&mldr;</h2><p>Don&rsquo;t want to go through the effort described above?
-I&rsquo;ll do you one better. The resulting container image is available <a href=https://hub.docker.com/r/akleinloog/rapid-api target=_blank rel=noopener>here</a> on docker hub, so you can get started with a single line:</p><pre><code class=language-bash>docker run -p 8080:8080 akleinloog/rapid-api
-</code></pre><h2 id=the-code>The code</h2><p>If you want to see how to set up a prototype using MongoDB instead of SQLite, or wonder how I built and published the container image to docker hub, feel free to check out the <a href=https://github.com/akleinloog/rapid-api target=_blank rel=noopener>repository</a> on Github.</p></div><div class=article-tags><a class="badge badge-light" href=/tag/api/>API</a>
+</code></pre>
+<p>Don&rsquo;t forget the content-type header! Strapi will check for this and create an entry with empty values if you forget to specify that!</p>
+<h2 id=api-documentation>API Documentation</h2>
+<p>You will find another nice feature of our setup when you navigate to <em>Documentation</em>. Click in the <em>Retrieve your jwt token</em> textbox and the token will be copied to the clipboard. Click on <em>Open the documentation</em> and the Swagger based OpenAPI endpoint will be opened. You can <em>Authorize</em> yourself with your token and get familiar with all the options that your API has to offer.</p>
+<h2 id=graphql>GraphQL</h2>
+<p>A main reason for me to try strapi for rapid API prototyping is its support for GraphQL.
+I am not yet very familiar with GraphQL and want to have a playground to learn more.</p>
+<p>Your API&rsquo;s GraphQL Playground is available at <a href=http://localhost:8080/graphql target=_blank rel=noopener>http://localhost:8080/graphql</a>. See <a href=https://strapi.io/documentation/v3.x/plugins/graphql.html target=_blank rel=noopener>this section</a> in the strapi documentation for more info.</p>
+<h2 id=even-easier>Even easier&mldr;</h2>
+<p>Don&rsquo;t want to go through the effort described above?
+I&rsquo;ll do you one better. The resulting container image is available <a href=https://hub.docker.com/r/akleinloog/rapid-api target=_blank rel=noopener>here</a> on docker hub, so you can get started with a single line:</p>
+<pre><code class=language-bash>docker run -p 8080:8080 akleinloog/rapid-api
+</code></pre>
+<h2 id=the-code>The code</h2>
+<p>If you want to see how to set up a prototype using MongoDB instead of SQLite, or wonder how I built and published the container image to docker hub, feel free to check out the <a href=https://github.com/akleinloog/rapid-api target=_blank rel=noopener>repository</a> on Github.</p>
+</div>
+<div class=article-tags>
+<a class="badge badge-light" href=/tag/api/>API</a>
 <a class="badge badge-light" href=/tag/rest/>REST</a>
 <a class="badge badge-light" href=/tag/graphql/>GraphQL</a>
 <a class="badge badge-light" href=/tag/prototyping/>Prototyping</a>
-<a class="badge badge-light" href=/tag/strapi/>strapi</a></div><section id=comments><div id=disqus_thread></div><script>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return;}
-var d=document,s=d.createElement('script');s.async=true;s.src='https://'+"kleinloog"+'.disqus.com/embed.js';s.setAttribute('data-timestamp',+new Date());(d.head||d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></section></div></article></div><div class=page-footer><div class=container><footer class=site-footer><p class=powered-by>Dedicated to the public domain · <a href=https://github.com/akleinloog/akleinloog.github.io/blob/master/LICENSE>Unlicensed</a></p><p class=powered-by>Published with
+<a class="badge badge-light" href=/tag/strapi/>strapi</a>
+</div>
+<section id=comments>
+<div id=disqus_thread></div>
+<script>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return}var b=document,a=b.createElement('script');a.async=!0,a.src='https://kleinloog.disqus.com/embed.js',a.setAttribute('data-timestamp',+new Date),(b.head||b.body).appendChild(a)})()</script>
+<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
+<a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a>
+</section>
+</div>
+</article>
+</div>
+<div class=page-footer>
+<div class=container>
+<footer class=site-footer>
+<p class=powered-by>
+Dedicated to the public domain · <a href=https://github.com/akleinloog/akleinloog.github.io/blob/master/LICENSE>Unlicensed</a>
+</p>
+<p class=powered-by>
+Published with
 <a href="https://wowchemy.com/?utm_campaign=poweredby" target=_blank rel=noopener>Wowchemy</a> —
-the free, <a href=https://github.com/wowchemy/wowchemy-hugo-modules target=_blank rel=noopener>open source</a> website builder that empowers creators.</p></footer></div></div><div id=modal class="modal fade" role=dialog><div class=modal-dialog><div class=modal-content><div class=modal-header><h5 class=modal-title>Cite</h5><button type=button class=close data-dismiss=modal aria-label=Close>
-<span aria-hidden=true>&#215;</span></button></div><div class=modal-body><pre><code class="tex hljs"></code></pre></div><div class=modal-footer><a class="btn btn-outline-primary my-1 js-copy-cite" href=# target=_blank><i class="fas fa-copy"></i>Copy</a>
-<a class="btn btn-outline-primary my-1 js-download-cite" href=# target=_blank><i class="fas fa-download"></i>Download</a><div id=modal-error></div></div></div></div></div><script src=https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/go.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/bash.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/yaml.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/toml.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/dockerfile.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/http.min.js></script><script id=search-hit-fuse-template type=text/x-template>
+the free, <a href=https://github.com/wowchemy/wowchemy-hugo-modules target=_blank rel=noopener>
+open source</a> website builder that empowers creators.
+</p>
+</footer>
+</div>
+</div>
+<div id=modal class="modal fade" role=dialog>
+<div class=modal-dialog>
+<div class=modal-content>
+<div class=modal-header>
+<h5 class=modal-title>Cite</h5>
+<button type=button class=close data-dismiss=modal aria-label=Close>
+<span aria-hidden=true>&#215;</span>
+</button>
+</div>
+<div class=modal-body>
+<pre><code class="tex hljs"></code></pre>
+</div>
+<div class=modal-footer>
+<a class="btn btn-outline-primary my-1 js-copy-cite" href=# target=_blank>
+<i class="fas fa-copy"></i> Copy
+</a>
+<a class="btn btn-outline-primary my-1 js-download-cite" href=# target=_blank>
+<i class="fas fa-download"></i> Download
+</a>
+<div id=modal-error></div>
+</div>
+</div>
+</div>
+</div>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin=anonymous></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin=anonymous></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin=anonymous></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin=anonymous></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin=anonymous></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin=anonymous></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/go.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/bash.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/yaml.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/toml.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/dockerfile.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/http.min.js></script>
+<script id=search-hit-fuse-template type=text/x-template>
       <div class="search-hit" id="summary-{{key}}">
         <div class="search-hit-content">
           <div class="search-hit-name">
@@ -166,4 +406,11 @@ the free, <a href=https://github.com/wowchemy/wowchemy-hugo-modules target=_blan
           </div>
         </div>
       </div>
-    </script><script src=https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin=anonymous></script><script id=dsq-count-scr src=https://kleinloog.disqus.com/count.js async></script><script src=/js/_vendor/bootstrap.bundle.min.29d2abb07db775505d3a2efc824e7b29.js></script><script src=/en/js/wowchemy.min.0ee1c7483ca8c92288e7fca1f5cdb6e4.js></script></body></html>
+    </script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin=anonymous></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin=anonymous></script>
+<script id=dsq-count-scr src=https://kleinloog.disqus.com/count.js async></script>
+<script src=/js/_vendor/bootstrap.bundle.min.f8467c1d3e2740d8f3195894a328004e.js></script>
+<script src=/en/js/wowchemy.min.0a1dc2835a8d4a35754d62f4622f9de5.js></script>
+</body>
+</html>

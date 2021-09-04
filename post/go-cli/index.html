@@ -1,42 +1,200 @@
-<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=generator content="Wowchemy 5.0.0-beta.2 for Hugo"><meta name=author content="Arnoud Kleinloog"><meta name=description content="How to set up a Command Line Interface (CLI) for your project using Go."><link rel=alternate hreflang=en-us href=https://www.kleinloog.ch/post/go-cli/><link rel=preconnect href=https://fonts.gstatic.com crossorigin><meta name=theme-color content="#2962ff"><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin=anonymous><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin=anonymous><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin=anonymous media=print onload="this.media='all'"><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/vs2015.min.css crossorigin=anonymous title=hl-light media=print onload="this.media='all'"><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/vs2015.min.css crossorigin=anonymous title=hl-dark media=print onload="this.media='all'" disabled><script src=https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.2/lazysizes.min.js integrity="sha512-TmDwFLhg3UA4ZG0Eb4MIyT1O1Mb+Oww5kFG0uHqXsdbyZz9DcvYQhKpGgNkamAI6h2lGGZq2X8ftOJvF/XjTUg==" crossorigin=anonymous async></script><link rel=preload as=style href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap"><link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media=print onload="this.media='all'"><link rel=stylesheet href=/css/wowchemy.4964b27c408125e852d77e799faca141.css><script async src="https://www.googletagmanager.com/gtag/js?id=UA-165915271-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
-function trackOutboundLink(url,target){gtag('event','click',{'event_category':'outbound','event_label':url,'transport_type':'beacon','event_callback':function(){if(target!=='_blank'){document.location=url;}}});console.debug("Outbound link clicked: "+url);}
-function onClickCallback(event){if((event.target.tagName!=='A')||(event.target.host===window.location.host)){return;}
-trackOutboundLink(event.target,event.target.getAttribute('target'));}
-gtag('js',new Date());gtag('config','UA-165915271-1',{});document.addEventListener('click',onClickCallback,false);</script><link rel=manifest href=/index.webmanifest><link rel=icon type=image/png href=/images/icon_hu1d96926d990b8c2ce1741b9516caf288_71361_32x32_fill_lanczos_center_2.png><link rel=apple-touch-icon type=image/png href=/images/icon_hu1d96926d990b8c2ce1741b9516caf288_71361_180x180_fill_lanczos_center_2.png><link rel=canonical href=https://www.kleinloog.ch/post/go-cli/><meta property="twitter:card" content="summary"><meta property="og:site_name" content="My Site"><meta property="og:url" content="https://www.kleinloog.ch/post/go-cli/"><meta property="og:title" content="Go CLI | My Site"><meta property="og:description" content="How to set up a Command Line Interface (CLI) for your project using Go."><meta property="og:image" content="https://www.kleinloog.ch/images/icon_hu1d96926d990b8c2ce1741b9516caf288_71361_512x512_fill_lanczos_center_2.png"><meta property="twitter:image" content="https://www.kleinloog.ch/images/icon_hu1d96926d990b8c2ce1741b9516caf288_71361_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us"><meta property="article:published_time" content="2020-06-05T00:00:00+00:00"><meta property="article:modified_time" content="2020-06-06T22:55:21+02:00"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.kleinloog.ch/post/go-cli/"},"headline":"Go CLI","datePublished":"2020-06-05T00:00:00Z","dateModified":"2020-06-06T22:55:21+02:00","author":{"@type":"Person","name":"Arnoud Kleinloog"},"publisher":{"@type":"Organization","name":"My Site","logo":{"@type":"ImageObject","url":"https://www.kleinloog.ch/images/icon_hu1d96926d990b8c2ce1741b9516caf288_71361_192x192_fill_lanczos_center_2.png"}},"description":"How to set up a Command Line Interface (CLI) for your project using Go."}</script><title>Go CLI | My Site</title></head><body id=top data-spy=scroll data-offset=70 data-target=#TableOfContents class=page-wrapper><script src=/js/wowchemy-init.min.d04a4dd9cd5314a106673db4cc9094ae.js></script><aside class=search-modal id=search><div class=container><section class=search-header><div class="row no-gutters justify-content-between mb-3"><div class=col-6><h1>Search</h1></div><div class="col-6 col-search-close"><a class=js-search href=# aria-label=Close><i class="fas fa-times-circle text-muted" aria-hidden=true></i></a></div></div><div id=search-box><input name=q id=search-query placeholder=Search... autocapitalize=off autocomplete=off autocorrect=off spellcheck=false type=search class=form-control aria-label=Search...></div></section><section class=section-search-results><div id=search-hits></div></section></div></aside><div class=page-header><nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id=navbar-main><div class=container-xl><div class="d-none d-lg-inline-flex"><a class=navbar-brand href=/>My Site</a></div><button type=button class=navbar-toggler data-toggle=collapse data-target=#navbar-content aria-controls=navbar aria-expanded=false aria-label="Toggle navigation">
-<span><i class="fas fa-bars"></i></span></button><div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none"><a class=navbar-brand href=/>My Site</a></div><div class="navbar-collapse main-menu-item collapse justify-content-start" id=navbar-content><ul class="navbar-nav d-md-inline-flex"><li class=nav-item><a class="nav-link active" href=/post/><span>Posts</span></a></li><li class=nav-item><a class=nav-link href=/portfolio/><span>Projects</span></a></li><li class=nav-item><a class=nav-link href=/about/><span>About</span></a></li><li class=nav-item><a class=nav-link href=/about/#contact><span>Contact</span></a></li></ul></div><ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2"><li class=nav-item><a class="nav-link js-search" href=# aria-label=Search><i class="fas fa-search" aria-hidden=true></i></a></li><li class="nav-item dropdown theme-dropdown"><a href=# class=nav-link data-toggle=dropdown aria-haspopup=true aria-label="Display preferences"><i class="fas fa-moon" aria-hidden=true></i></a><div class=dropdown-menu><a href=# class="dropdown-item js-set-theme-light"><span>Light</span></a>
-<a href=# class="dropdown-item js-set-theme-dark"><span>Dark</span></a>
-<a href=# class="dropdown-item js-set-theme-auto"><span>Automatic</span></a></div></li></ul></div></nav></div><div class=page-body><article class=article><div class="article-container pt-3"><h1>Go CLI</h1><p class=page-subtitle>Setting up a decent Command Line Interface for your project in Go</p><div class=article-metadata><div><span><a href=/author/arnoud-kleinloog/>Arnoud Kleinloog</a></span></div><span class=article-date>Last updated on
-Jun 6, 2020</span>
-<span class=middot-divider></span><span class=article-reading-time>5 min read</span>
-<span class=middot-divider></span><a href=/post/go-cli/#disqus_thread></a></div><div class="btn-links mb-3"><a class="btn btn-outline-primary btn-page-header" href=https://github.com/akleinloog/hello target=_blank rel=noopener>Code</a></div></div><div class=article-container><div class=article-style><p>Let&rsquo;s set up a decent Command Line Interface (CLI) for our Go project.
-This has been made easy by <a href=https://github.com/spf13/cobra target=_blank rel=noopener>Cobra</a>, a library that provides a simple interface to create a powerful modern CLI, like you are used to from git, kubectl, etc.</p><p>Cobra comes with a very nice set of features, amongst which:</p><ul><li>Easily add commands and nested commands</li><li>Support for flags (including short & long versions)</li><li>Intelligent suggestions (app srver&mldr; did you mean app server?)</li><li>Automatic help generation and support of -h and --help</li><li>Automatically generated bash autocomplete and man pages</li></ul><h3 id=installation>Installation</h3><p>To get started, we&rsquo;ll create a new go project and initialize it, in my case:</p><pre><code class=language-bash>go mod init github.com/akleinloog/hello
-</code></pre><p>Then, install the latest version of Cobra:</p><pre><code class=language-bash>go get github.com/spf13/cobra/cobra
-</code></pre><p>And initialize the new project:</p><pre><code class=language-bash>cobra init --pkg-name github.com/akleinloog/hello
-</code></pre><p>This adds a <em>main.go</em> file and a <em>cmd</em> folder with a <em>root.go</em> file.
-The main.go file is very simple, contains some license info and a simple main function:</p><pre><code class=language-go>package main
+<!doctype html><html lang=en-us>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=generator content="Wowchemy 5.0.0-beta.2 for Hugo">
+<meta name=author content="Arnoud Kleinloog">
+<meta name=description content="How to set up a Command Line Interface (CLI) for your project using Go.">
+<link rel=alternate hreflang=en-us href=https://www.kleinloog.ch/post/go-cli/>
+<link rel=preconnect href=https://fonts.gstatic.com crossorigin>
+<meta name=theme-color content="#2962ff">
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin=anonymous>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin=anonymous>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin=anonymous media=print onload="this.media='all'">
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/vs2015.min.css crossorigin=anonymous title=hl-light media=print onload="this.media='all'">
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/vs2015.min.css crossorigin=anonymous title=hl-dark media=print onload="this.media='all'" disabled>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.2/lazysizes.min.js integrity="sha512-TmDwFLhg3UA4ZG0Eb4MIyT1O1Mb+Oww5kFG0uHqXsdbyZz9DcvYQhKpGgNkamAI6h2lGGZq2X8ftOJvF/XjTUg==" crossorigin=anonymous async></script>
+<link rel=preload as=style href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+<link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media=print onload="this.media='all'">
+<link rel=stylesheet href=/css/wowchemy.a36e0a2fa9da41655a1a432558d8120d.css>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-165915271-1"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}function trackOutboundLink(a,b){gtag('event','click',{event_category:'outbound',event_label:a,transport_type:'beacon',event_callback:function(){b!=='_blank'&&(document.location=a)}}),console.debug("Outbound link clicked: "+a)}function onClickCallback(a){if(a.target.tagName!=='A'||a.target.host===window.location.host)return;trackOutboundLink(a.target,a.target.getAttribute('target'))}gtag('js',new Date),gtag('config','UA-165915271-1',{}),document.addEventListener('click',onClickCallback,!1)</script>
+<link rel=manifest href=/index.webmanifest>
+<link rel=icon type=image/png href=/images/icon_hu1d96926d990b8c2ce1741b9516caf288_71361_32x32_fill_lanczos_center_3.png>
+<link rel=apple-touch-icon type=image/png href=/images/icon_hu1d96926d990b8c2ce1741b9516caf288_71361_180x180_fill_lanczos_center_3.png>
+<link rel=canonical href=https://www.kleinloog.ch/post/go-cli/>
+<meta property="twitter:card" content="summary">
+<meta property="og:site_name" content="My Site">
+<meta property="og:url" content="https://www.kleinloog.ch/post/go-cli/">
+<meta property="og:title" content="Go CLI | My Site">
+<meta property="og:description" content="How to set up a Command Line Interface (CLI) for your project using Go."><meta property="og:image" content="https://www.kleinloog.ch/images/icon_hu1d96926d990b8c2ce1741b9516caf288_71361_512x512_fill_lanczos_center_3.png">
+<meta property="twitter:image" content="https://www.kleinloog.ch/images/icon_hu1d96926d990b8c2ce1741b9516caf288_71361_512x512_fill_lanczos_center_3.png"><meta property="og:locale" content="en-us">
+<meta property="article:published_time" content="2020-06-05T00:00:00+00:00">
+<meta property="article:modified_time" content="2020-06-06T22:55:21+02:00">
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.kleinloog.ch/post/go-cli/"},"headline":"Go CLI","datePublished":"2020-06-05T00:00:00Z","dateModified":"2020-06-06T22:55:21+02:00","author":{"@type":"Person","name":"Arnoud Kleinloog"},"publisher":{"@type":"Organization","name":"My Site","logo":{"@type":"ImageObject","url":"https://www.kleinloog.ch/images/icon_hu1d96926d990b8c2ce1741b9516caf288_71361_192x192_fill_lanczos_center_3.png"}},"description":"How to set up a Command Line Interface (CLI) for your project using Go."}</script>
+<title>Go CLI | My Site</title>
+</head>
+<body id=top data-spy=scroll data-offset=70 data-target=#TableOfContents class=page-wrapper>
+<script src=/js/wowchemy-init.min.2e458e5393490f06d99da74a463a188b.js></script>
+<aside class=search-modal id=search>
+<div class=container>
+<section class=search-header>
+<div class="row no-gutters justify-content-between mb-3">
+<div class=col-6>
+<h1>Search</h1>
+</div>
+<div class="col-6 col-search-close">
+<a class=js-search href=# aria-label=Close><i class="fas fa-times-circle text-muted" aria-hidden=true></i></a>
+</div>
+</div>
+<div id=search-box>
+<input name=q id=search-query placeholder=Search... autocapitalize=off autocomplete=off autocorrect=off spellcheck=false type=search class=form-control aria-label=Search...>
+</div>
+</section>
+<section class=section-search-results>
+<div id=search-hits>
+</div>
+</section>
+</div>
+</aside>
+<div class=page-header>
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id=navbar-main>
+<div class=container-xl>
+<div class="d-none d-lg-inline-flex">
+<a class=navbar-brand href=/>My Site</a>
+</div>
+<button type=button class=navbar-toggler data-toggle=collapse data-target=#navbar-content aria-controls=navbar aria-expanded=false aria-label="Toggle navigation">
+<span><i class="fas fa-bars"></i></span>
+</button>
+<div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+<a class=navbar-brand href=/>My Site</a>
+</div>
+<div class="navbar-collapse main-menu-item collapse justify-content-start" id=navbar-content>
+<ul class="navbar-nav d-md-inline-flex">
+<li class=nav-item>
+<a class="nav-link active" href=/post/><span>Posts</span></a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=/portfolio/><span>Projects</span></a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=/about/><span>About</span></a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=/about/#contact><span>Contact</span></a>
+</li>
+</ul>
+</div>
+<ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+<li class=nav-item>
+<a class="nav-link js-search" href=# aria-label=Search><i class="fas fa-search" aria-hidden=true></i></a>
+</li>
+<li class="nav-item dropdown theme-dropdown">
+<a href=# class=nav-link data-toggle=dropdown aria-haspopup=true aria-label="Display preferences">
+<i class="fas fa-moon" aria-hidden=true></i>
+</a>
+<div class=dropdown-menu>
+<a href=# class="dropdown-item js-set-theme-light">
+<span>Light</span>
+</a>
+<a href=# class="dropdown-item js-set-theme-dark">
+<span>Dark</span>
+</a>
+<a href=# class="dropdown-item js-set-theme-auto">
+<span>Automatic</span>
+</a>
+</div>
+</li>
+</ul>
+</div>
+</nav>
+</div>
+<div class=page-body>
+<article class=article>
+<div class="article-container pt-3">
+<h1>Go CLI</h1>
+<p class=page-subtitle>Setting up a decent Command Line Interface for your project in Go</p>
+<div class=article-metadata>
+<div>
+<span>
+<a href=/author/arnoud-kleinloog/>Arnoud Kleinloog</a></span>
+</div>
+<span class=article-date>
+Last updated on
+Jun 6, 2020
+</span>
+<span class=middot-divider></span>
+<span class=article-reading-time>
+5 min read
+</span>
+<span class=middot-divider></span>
+<a href=/post/go-cli/#disqus_thread></a>
+</div>
+<div class="btn-links mb-3">
+<a class="btn btn-outline-primary btn-page-header" href=https://github.com/akleinloog/hello target=_blank rel=noopener>
+Code
+</a>
+</div>
+</div>
+<div class=article-container>
+<div class=article-style>
+<p>Let&rsquo;s set up a decent Command Line Interface (CLI) for our Go project.
+This has been made easy by <a href=https://github.com/spf13/cobra target=_blank rel=noopener>Cobra</a>, a library that provides a simple interface to create a powerful modern CLI, like you are used to from git, kubectl, etc.</p>
+<p>Cobra comes with a very nice set of features, amongst which:</p>
+<ul>
+<li>Easily add commands and nested commands</li>
+<li>Support for flags (including short & long versions)</li>
+<li>Intelligent suggestions (app srver&mldr; did you mean app server?)</li>
+<li>Automatic help generation and support of -h and --help</li>
+<li>Automatically generated bash autocomplete and man pages</li>
+</ul>
+<h3 id=installation>Installation</h3>
+<p>To get started, we&rsquo;ll create a new go project and initialize it, in my case:</p>
+<pre><code class=language-bash>go mod init github.com/akleinloog/hello
+</code></pre>
+<p>Then, install the latest version of Cobra:</p>
+<pre><code class=language-bash>go get github.com/spf13/cobra/cobra
+</code></pre>
+<p>And initialize the new project:</p>
+<pre><code class=language-bash>cobra init --pkg-name github.com/akleinloog/hello
+</code></pre>
+<p>This adds a <em>main.go</em> file and a <em>cmd</em> folder with a <em>root.go</em> file.
+The main.go file is very simple, contains some license info and a simple main function:</p>
+<pre><code class=language-go>package main
 
 import &quot;github.com/akleinloog/hello/cmd&quot;
 
 func main() {
   cmd.Execute()
 }
-</code></pre><p>Take a look at the <em>root.go</em> file in the <em>cmd</em> folder, and you will notice a few things.
+</code></pre>
+<p>Take a look at the <em>root.go</em> file in the <em>cmd</em> folder, and you will notice a few things.
 First, it contains a use instruction and a short and a long description.
-Change the text to something meaningful for your example. In my case:</p><pre><code class=language-go>var rootCmd = &amp;cobra.Command{
+Change the text to something meaningful for your example. In my case:</p>
+<pre><code class=language-go>var rootCmd = &amp;cobra.Command{
   Use:   &quot;hello&quot;,
   Short: &quot;Go Hello&quot;,
   Long: `A simple HTTP Server written in Go.
 It gives out a simple Hello message with a counter, the host name and the requested address.`,
 }
-</code></pre><p>It is good practice not to define an action here. In that case, Cobra will ensure to give out a nice set of instructions.
-See for yourself:</p><pre><code class=language-bash>go build
+</code></pre>
+<p>It is good practice not to define an action here. In that case, Cobra will ensure to give out a nice set of instructions.
+See for yourself:</p>
+<pre><code class=language-bash>go build
 
 ./hello
-</code></pre><p>Another thing to notice is that cobra added an <em>Execute()</em> function, an <em>init()</em> function and an <em>initConfig()</em> function.
+</code></pre>
+<p>Another thing to notice is that cobra added an <em>Execute()</em> function, an <em>init()</em> function and an <em>initConfig()</em> function.
 With that, it added <a href=https://github.com/spf13/viper target=_blank rel=noopener>Viper</a> and support for a configuration file.
-We&rsquo;ll add another flag later on, and I will discuss Viper and proper configuration in another post.</p><h3 id=adding-commands>Adding Commands</h3><p>Let&rsquo;s first add a new command that will start our HTTP Server:</p><pre><code class=language-bash>cobra add serve
-</code></pre><p>Cobra added a <em>serve.go</em> file in the <em>cmd</em> folder, similar to the <em>root.go</em> we saw earlier.
-This time it adds a serve command. Let&rsquo;s update the text again:</p><pre><code class=language-go>var serveCmd = &amp;cobra.Command{
+We&rsquo;ll add another flag later on, and I will discuss Viper and proper configuration in another post.</p>
+<h3 id=adding-commands>Adding Commands</h3>
+<p>Let&rsquo;s first add a new command that will start our HTTP Server:</p>
+<pre><code class=language-bash>cobra add serve
+</code></pre>
+<p>Cobra added a <em>serve.go</em> file in the <em>cmd</em> folder, similar to the <em>root.go</em> we saw earlier.
+This time it adds a serve command. Let&rsquo;s update the text again:</p>
+<pre><code class=language-go>var serveCmd = &amp;cobra.Command{
   Use:   &quot;serve&quot;,
   Short: &quot;Starts the HTTP Server.&quot;,
   Long: `Starts the HTTP Server listening at port 80, where it will return a simple hello on any request.`,
@@ -44,18 +202,32 @@ This time it adds a serve command. Let&rsquo;s update the text again:</p><pre><c
     fmt.Println(&quot;serve called&quot;)
   },
 }
-</code></pre><p>In the <em>init()</em> method you see that the command is added to the root command:</p><pre><code class=language-go>func init() {
+</code></pre>
+<p>In the <em>init()</em> method you see that the command is added to the root command:</p>
+<pre><code class=language-go>func init() {
   rootCmd.AddCommand(serveCmd)
 ...
 }
-</code></pre><p>Rebuild and run again:</p><pre><code class=language-bash>go build
+</code></pre>
+<p>Rebuild and run again:</p>
+<pre><code class=language-bash>go build
 
 ./hello
-</code></pre><p>Notice that the output has now changed.
-Information is provided on the commands and on flags that are supported.</p><p>Try the help:</p><pre><code class=language-bash>./hello serve -h
-</code></pre><p>Help specific to the serve command is provided.</p><p>Now try the actual command:</p><pre><code class=language-bash>./hello serve
-</code></pre><p>You should see the simple &lsquo;serve called&rsquo; output.</p><h3 id=add-the-http-server>Add the HTTP Server</h3><p>Let&rsquo;s implement the HTTP server. We&rsquo;ll keep it simple.
-In <em>serve.go</em> add the following functions:</p><pre><code class=language-go>var (
+</code></pre>
+<p>Notice that the output has now changed.
+Information is provided on the commands and on flags that are supported.</p>
+<p>Try the help:</p>
+<pre><code class=language-bash>./hello serve -h
+</code></pre>
+<p>Help specific to the serve command is provided.</p>
+<p>Now try the actual command:</p>
+<pre><code class=language-bash>./hello serve
+</code></pre>
+<p>You should see the simple &lsquo;serve called&rsquo; output.</p>
+<h3 id=add-the-http-server>Add the HTTP Server</h3>
+<p>Let&rsquo;s implement the HTTP server. We&rsquo;ll keep it simple.
+In <em>serve.go</em> add the following functions:</p>
+<pre><code class=language-go>var (
   requestNr int64  = 0
   host      string = &quot;unknown&quot;
 )
@@ -87,7 +259,9 @@ func hello(w http.ResponseWriter, r *http.Request) {
   log.Print(message)
   fmt.Fprint(w, message)
 }
-</code></pre><p>And change the serve command to:</p><pre><code class=language-go>var serveCmd = &amp;cobra.Command{
+</code></pre>
+<p>And change the serve command to:</p>
+<pre><code class=language-go>var serveCmd = &amp;cobra.Command{
   Use:   &quot;serve&quot;,
   Short: &quot;Starts the HTTP Server.&quot;,
   Long: `Starts the HTTP Server listening at port 80, where it will return a simple hello on any request.`,
@@ -95,11 +269,19 @@ func hello(w http.ResponseWriter, r *http.Request) {
     listen()
   },
 }
-</code></pre><p>Rebuild and run the server:</p><pre><code class=language-bash>go build
+</code></pre>
+<p>Rebuild and run the server:</p>
+<pre><code class=language-bash>go build
 
 ./hello serve
-</code></pre><p>The HTTP Server will start and you can visit <a href=http://localhost target=_blank rel=noopener>http://localhost</a> to see the result.</p><h3 id=add-an-http-client>Add an HTTP Client</h3><p>Let&rsquo;s add another command that will serve as a client for our Server:</p><pre><code class=language-bash>cobra add get
-</code></pre><p>Add the following function to <em>get.go</em>:</p><pre><code class=language-go>func get() {
+</code></pre>
+<p>The HTTP Server will start and you can visit <a href=http://localhost target=_blank rel=noopener>http://localhost</a> to see the result.</p>
+<h3 id=add-an-http-client>Add an HTTP Client</h3>
+<p>Let&rsquo;s add another command that will serve as a client for our Server:</p>
+<pre><code class=language-bash>cobra add get
+</code></pre>
+<p>Add the following function to <em>get.go</em>:</p>
+<pre><code class=language-go>func get() {
   resp, err := http.Get(&quot;http://localhost&quot;)
   if err != nil {
     log.Println(err)
@@ -114,43 +296,143 @@ func hello(w http.ResponseWriter, r *http.Request) {
     log.Println(err)
   }
 }
-</code></pre><p>And make sure it is called from the get command:</p><pre><code class=language-go>  Run: func(cmd *cobra.Command, args []string) {
+</code></pre>
+<p>And make sure it is called from the get command:</p>
+<pre><code class=language-go>  Run: func(cmd *cobra.Command, args []string) {
     get()
   },
-</code></pre><p>Rebuild and start the server:</p><pre><code class=language-bash>go build
+</code></pre>
+<p>Rebuild and start the server:</p>
+<pre><code class=language-bash>go build
 
 ./hello serve
-</code></pre><p>Then from another console window:</p><pre><code class=language-bash>./hello get
-</code></pre><p>And you will see the hello as output!</p><h3 id=add-a-flag>Add a Flag</h3><p>To finish up, let&rsquo;s add a flag to specify the port number that our server will listen on.</p><p>We&rsquo;ll keep it simple for now, we want:</p><ul><li>Works for both the client and the server</li><li>Supports the full &ndash;port and the shorthand -p</li><li>Default port is 80</li></ul><p>In <em>get</em>.go_, declare a variable to be used as port number:</p><pre><code class=language-go>var clientPort int
-</code></pre><p>And add the port flag to the <em>init()</em> function:</p><pre><code class=language-go>  getCmd.Flags().IntVarP(&amp;clientPort,&quot;port&quot;,&quot;p&quot;, 80, &quot;port number&quot;)
-</code></pre><p>Do the same thing in <em>serve.go</em>, but use serverPort as variable name.</p><p>Rebuild and check the help output:</p><pre><code class=language-bash>go build
+</code></pre>
+<p>Then from another console window:</p>
+<pre><code class=language-bash>./hello get
+</code></pre>
+<p>And you will see the hello as output!</p>
+<h3 id=add-a-flag>Add a Flag</h3>
+<p>To finish up, let&rsquo;s add a flag to specify the port number that our server will listen on.</p>
+<p>We&rsquo;ll keep it simple for now, we want:</p>
+<ul>
+<li>Works for both the client and the server</li>
+<li>Supports the full &ndash;port and the shorthand -p</li>
+<li>Default port is 80</li>
+</ul>
+<p>In <em>get</em>.go_, declare a variable to be used as port number:</p>
+<pre><code class=language-go>var clientPort int
+</code></pre>
+<p>And add the port flag to the <em>init()</em> function:</p>
+<pre><code class=language-go>  getCmd.Flags().IntVarP(&amp;clientPort,&quot;port&quot;,&quot;p&quot;, 80, &quot;port number&quot;)
+</code></pre>
+<p>Do the same thing in <em>serve.go</em>, but use serverPort as variable name.</p>
+<p>Rebuild and check the help output:</p>
+<pre><code class=language-bash>go build
 
 ./hello
 ./hello serve -h
 ./hello get -h
-</code></pre><p>Let&rsquo;s adjust the server so it uses the new port flag.
-In the <em>listen()</em> function in <em>serve.go</em>, replace</p><pre><code class=language-go>  err = http.ListenAndServe(&quot;:80&quot;, nil)
-</code></pre><p>with</p><pre><code class=language-go>  log.Printf(&quot;Listening on port %d\n&quot;, serverPort)
+</code></pre>
+<p>Let&rsquo;s adjust the server so it uses the new port flag.
+In the <em>listen()</em> function in <em>serve.go</em>, replace</p>
+<pre><code class=language-go>  err = http.ListenAndServe(&quot;:80&quot;, nil)
+</code></pre>
+<p>with</p>
+<pre><code class=language-go>  log.Printf(&quot;Listening on port %d\n&quot;, serverPort)
   
   err = http.ListenAndServe(fmt.Sprintf(&quot;:%d&quot;, serverPort), nil)
-</code></pre><p>Now for the client, in the <em>get()</em> function in <em>get.go</em>, replace</p><pre><code class=language-go>  resp, err := http.Get(&quot;http://localhost&quot;)
-</code></pre><p>with</p><pre><code class=language-go>  resp, err := http.Get(fmt.Sprintf(&quot;http://localhost:%d&quot;, clientPort))
-</code></pre><p>Rebuild and start the server:</p><pre><code class=language-bash>go build
+</code></pre>
+<p>Now for the client, in the <em>get()</em> function in <em>get.go</em>, replace</p>
+<pre><code class=language-go>  resp, err := http.Get(&quot;http://localhost&quot;)
+</code></pre>
+<p>with</p>
+<pre><code class=language-go>  resp, err := http.Get(fmt.Sprintf(&quot;http://localhost:%d&quot;, clientPort))
+</code></pre>
+<p>Rebuild and start the server:</p>
+<pre><code class=language-bash>go build
 
 ./hello serve -p 10080
-</code></pre><p>The server will now be available on <a href=http://localhost:10080 target=_blank rel=noopener>http://localhost:10080</a></p><p>Then from another console window:</p><pre><code class=language-bash>./hello get -p 10080
-</code></pre><p>You should see something similar to:
-Then from another console window:</p><pre><code class=language-plaintext>Go Hello 1 from my-mac.home on GET ./
-</code></pre><h3 id=the-code>The code</h3><p>The code of my simple Hello Server is available on GitHub <a href=https://github.com/akleinloog/hello target=_blank rel=noopener>here</a>.
+</code></pre>
+<p>The server will now be available on <a href=http://localhost:10080 target=_blank rel=noopener>http://localhost:10080</a></p>
+<p>Then from another console window:</p>
+<pre><code class=language-bash>./hello get -p 10080
+</code></pre>
+<p>You should see something similar to:
+Then from another console window:</p>
+<pre><code class=language-plaintext>Go Hello 1 from my-mac.home on GET ./
+</code></pre>
+<h3 id=the-code>The code</h3>
+<p>The code of my simple Hello Server is available on GitHub <a href=https://github.com/akleinloog/hello target=_blank rel=noopener>here</a>.
 I may add a few features there since I intend to use it for some Kubernetes experiments.
-Another similar example is my simple <a href=/project/http-logger>HTTP Logger</a>.</p></div><div class=article-tags><a class="badge badge-light" href=/tag/go/>Go</a>
+Another similar example is my simple <a href=/project/http-logger>HTTP Logger</a>.</p>
+</div>
+<div class=article-tags>
+<a class="badge badge-light" href=/tag/go/>Go</a>
 <a class="badge badge-light" href=/tag/cobra/>Cobra</a>
-<a class="badge badge-light" href=/tag/cli/>CLI</a></div><section id=comments><div id=disqus_thread></div><script>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return;}
-var d=document,s=d.createElement('script');s.async=true;s.src='https://'+"kleinloog"+'.disqus.com/embed.js';s.setAttribute('data-timestamp',+new Date());(d.head||d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></section></div></article></div><div class=page-footer><div class=container><footer class=site-footer><p class=powered-by>Dedicated to the public domain · <a href=https://github.com/akleinloog/akleinloog.github.io/blob/master/LICENSE>Unlicensed</a></p><p class=powered-by>Published with
+<a class="badge badge-light" href=/tag/cli/>CLI</a>
+</div>
+<section id=comments>
+<div id=disqus_thread></div>
+<script>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return}var b=document,a=b.createElement('script');a.async=!0,a.src='https://kleinloog.disqus.com/embed.js',a.setAttribute('data-timestamp',+new Date),(b.head||b.body).appendChild(a)})()</script>
+<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
+<a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a>
+</section>
+</div>
+</article>
+</div>
+<div class=page-footer>
+<div class=container>
+<footer class=site-footer>
+<p class=powered-by>
+Dedicated to the public domain · <a href=https://github.com/akleinloog/akleinloog.github.io/blob/master/LICENSE>Unlicensed</a>
+</p>
+<p class=powered-by>
+Published with
 <a href="https://wowchemy.com/?utm_campaign=poweredby" target=_blank rel=noopener>Wowchemy</a> —
-the free, <a href=https://github.com/wowchemy/wowchemy-hugo-modules target=_blank rel=noopener>open source</a> website builder that empowers creators.</p></footer></div></div><div id=modal class="modal fade" role=dialog><div class=modal-dialog><div class=modal-content><div class=modal-header><h5 class=modal-title>Cite</h5><button type=button class=close data-dismiss=modal aria-label=Close>
-<span aria-hidden=true>&#215;</span></button></div><div class=modal-body><pre><code class="tex hljs"></code></pre></div><div class=modal-footer><a class="btn btn-outline-primary my-1 js-copy-cite" href=# target=_blank><i class="fas fa-copy"></i>Copy</a>
-<a class="btn btn-outline-primary my-1 js-download-cite" href=# target=_blank><i class="fas fa-download"></i>Download</a><div id=modal-error></div></div></div></div></div><script src=https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/go.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/bash.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/yaml.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/toml.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/dockerfile.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/http.min.js></script><script id=search-hit-fuse-template type=text/x-template>
+the free, <a href=https://github.com/wowchemy/wowchemy-hugo-modules target=_blank rel=noopener>
+open source</a> website builder that empowers creators.
+</p>
+</footer>
+</div>
+</div>
+<div id=modal class="modal fade" role=dialog>
+<div class=modal-dialog>
+<div class=modal-content>
+<div class=modal-header>
+<h5 class=modal-title>Cite</h5>
+<button type=button class=close data-dismiss=modal aria-label=Close>
+<span aria-hidden=true>&#215;</span>
+</button>
+</div>
+<div class=modal-body>
+<pre><code class="tex hljs"></code></pre>
+</div>
+<div class=modal-footer>
+<a class="btn btn-outline-primary my-1 js-copy-cite" href=# target=_blank>
+<i class="fas fa-copy"></i> Copy
+</a>
+<a class="btn btn-outline-primary my-1 js-download-cite" href=# target=_blank>
+<i class="fas fa-download"></i> Download
+</a>
+<div id=modal-error></div>
+</div>
+</div>
+</div>
+</div>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin=anonymous></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin=anonymous></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin=anonymous></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin=anonymous></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin=anonymous></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin=anonymous></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/go.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/bash.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/yaml.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/toml.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/dockerfile.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/http.min.js></script>
+<script id=search-hit-fuse-template type=text/x-template>
       <div class="search-hit" id="summary-{{key}}">
         <div class="search-hit-content">
           <div class="search-hit-name">
@@ -160,4 +442,11 @@ the free, <a href=https://github.com/wowchemy/wowchemy-hugo-modules target=_blan
           </div>
         </div>
       </div>
-    </script><script src=https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin=anonymous></script><script id=dsq-count-scr src=https://kleinloog.disqus.com/count.js async></script><script src=/js/_vendor/bootstrap.bundle.min.29d2abb07db775505d3a2efc824e7b29.js></script><script src=/en/js/wowchemy.min.0ee1c7483ca8c92288e7fca1f5cdb6e4.js></script></body></html>
+    </script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin=anonymous></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin=anonymous></script>
+<script id=dsq-count-scr src=https://kleinloog.disqus.com/count.js async></script>
+<script src=/js/_vendor/bootstrap.bundle.min.f8467c1d3e2740d8f3195894a328004e.js></script>
+<script src=/en/js/wowchemy.min.0a1dc2835a8d4a35754d62f4622f9de5.js></script>
+</body>
+</html>
