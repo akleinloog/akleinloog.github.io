@@ -1,4 +1,61 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts | My Site</title><link>https://www.kleinloog.ch/post/</link><atom:link href="https://www.kleinloog.ch/post/index.xml" rel="self" type="application/rss+xml"/><description>Posts</description><generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>Dedicated to the public domain · [Unlicensed](https://github.com/akleinloog/akleinloog.github.io/blob/master/LICENSE)</copyright><image><url>https://www.kleinloog.ch/images/icon_hu1d96926d990b8c2ce1741b9516caf288_71361_512x512_fill_lanczos_center_3.png</url><title>Posts</title><link>https://www.kleinloog.ch/post/</link></image><item><title>MicroK8s - Kubernetes for developers</title><link>https://www.kleinloog.ch/post/microk8s-kubernetes/</link><pubDate>Sat, 13 Feb 2021 00:00:00 +0000</pubDate><guid>https://www.kleinloog.ch/post/microk8s-kubernetes/</guid><description>&lt;p>Following my initial post on &lt;a href="https://www.kleinloog.ch/post/which-local-kubernetes">local Kubernetes options&lt;/a> and a deep dive on &lt;a href="https://www.kleinloog.ch/post/minikube-kubernetes">Minikube&lt;/a> it is time to take &lt;a href="https://microk8s.io" target="_blank" rel="noopener">MicroK8s&lt;/a> for a spin.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts | My Site</title><link>https://www.kleinloog.ch/post/</link><atom:link href="https://www.kleinloog.ch/post/index.xml" rel="self" type="application/rss+xml"/><description>Posts</description><generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>Dedicated to the public domain · [Unlicensed](https://github.com/akleinloog/akleinloog.github.io/blob/master/LICENSE)</copyright><image><url>https://www.kleinloog.ch/images/icon_hu1d96926d990b8c2ce1741b9516caf288_71361_512x512_fill_lanczos_center_3.png</url><title>Posts</title><link>https://www.kleinloog.ch/post/</link></image><item><title>Proxmox VE - open source virtualization management</title><link>https://www.kleinloog.ch/post/proxmox/</link><pubDate>Fri, 03 Sep 2021 13:10:00 +0000</pubDate><guid>https://www.kleinloog.ch/post/proxmox/</guid><description>&lt;p>Up until now I have been managing my local VMs with &lt;em>KVM&lt;/em>, &lt;em>Quemu&lt;/em> and &lt;em>libvirt&lt;/em>, using headless Ubuntu 20.04 LTS on the hosts as well as on the VMs,
+creating the VMs using scripts and &lt;a href="https://cloudinit.readthedocs.io/en/latest/" target="_blank" rel="noopener">cloud init&lt;/a> files, and periodically updated the VMs and the hosts manually.&lt;/p>
+&lt;p>I have 3 decent physical machines (i7 with 16 cores and 64 GB memory) at my disposal and want to use them to run a local Kubernetes cluster. As I am still experimenting with Kubernetes, I want to be able to run multiple clusters on those machines and easily create and destroy them. For now, using VMs as nodes seems to make sense. At a later point I might scrap it all and go for a bare metal single cluster approach.&lt;/p>
+&lt;p>For now, it would be nice to make it easier to manage my VMs, and for that reason, I&amp;rsquo;ll do an experiment with &lt;a href="https://www.proxmox.com/en/proxmox-ve" target="_blank" rel="noopener">Proxmox VE&lt;/a>.&lt;/p>
+&lt;h3 id="preparation">Preparation&lt;/h3>
+&lt;p>The first step is to install Proxmox VE on each of the 3 machines.&lt;/p>
+&lt;p>After &lt;a href="https://www.proxmox.com/en/downloads" target="_blank" rel="noopener">downloading&lt;/a> the ISO image and the admin manual, it&amp;rsquo;s time to create a USB stick.&lt;/p>
+&lt;p>Following the instructions on my Mac, convert the &lt;em>.iso&lt;/em> file to &lt;em>.img&lt;/em>&lt;/p>
+&lt;pre>&lt;code class="language-bash">hdiutil convert -format UDRW -o proxmox-ve_7.0-1.dmg proxmox-ve_7.0-1.iso
+&lt;/code>&lt;/pre>
+&lt;p>Then determine which disk it is:&lt;/p>
+&lt;pre>&lt;code class="language-bash">diskutil list
+&lt;/code>&lt;/pre>
+&lt;p>And unmount it:&lt;/p>
+&lt;pre>&lt;code class="language-bash">diskutil unmountDisk /dev/disk2
+&lt;/code>&lt;/pre>
+&lt;p>Finally, write the dmg file to the USB stick:&lt;/p>
+&lt;pre>&lt;code class="language-bash">sudo dd if=proxmox-ve_7.0-1.dmg of=/dev/rdisk2 bs=1m
+&lt;/code>&lt;/pre>
+&lt;p>And this is where the fun starts :) with the following error:&lt;/p>
+&lt;pre>&lt;code class="language-bash">dd: proxmox-ve_7.0-1.dmg: Operation not permitted
+&lt;/code>&lt;/pre>
+&lt;p>A bit of googling brought me to &lt;a href="https://osxdaily.com/2018/10/09/fix-operation-not-permitted-terminal-error-macos/" target="_blank" rel="noopener">this post&lt;/a> with a solution, giving &amp;lsquo;Full Disk Access&amp;rsquo; to iTerm. It&amp;rsquo;s kind of hard to believe that I did not run into this before.&lt;/p>
+&lt;h3 id="install-proxmox-ve">Install Proxmox VE&lt;/h3>
+&lt;p>Not that the USB stick is ready, it&amp;rsquo;s time to do some installations.&lt;/p>
+&lt;p>Once booted, the first step of the installation process is straight forward. For now, I selected &lt;em>xfs&lt;/em> as file system, as it seems to be the best fit for my use case, and choose the biggest and fastest disk as starting point. I also configure each server with a fixed IP.&lt;/p>
+&lt;p>Once rebooted, a friendly message shows up requesting to use a web browser to configure the server. After having done so, the next step is to configure the repositories. Navigate to the host/Updates/Repositories, add the No Subscription repository and disable the enterprise repository:
+&lt;img src="./repositories.png" alt="image" title="Repositories">&lt;/p>
+&lt;p>As I had some spare SSDs available, I want to see if they can be used by VMs as well. For now, let&amp;rsquo;s create a logical volume group for them.
+Open the shell and list the available physical disks using:&lt;/p>
+&lt;pre>&lt;code class="language-bash">lsblk -d
+&lt;/code>&lt;/pre>
+&lt;p>In my case, I have 4 additional disks: sda, sdb, sdc and sdd.
+So, let&amp;rsquo;s go ahead and create physical volumes for them:&lt;/p>
+&lt;pre>&lt;code class="language-bash">pvcreate /dev/sda /dev/sdb /dev/sdc /dev/sdd
+&lt;/code>&lt;/pre>
+&lt;p>Then create a single volume group:&lt;/p>
+&lt;pre>&lt;code class="language-bash">vgcreate vm-data /dev/sda /dev/sdb /dev/sdc /dev/sdd
+&lt;/code>&lt;/pre>
+&lt;p>And create a logical volume:&lt;/p>
+&lt;pre>&lt;code class="language-bash">lvcreate -L 500G -T -n vm-data vm-data
+&lt;/code>&lt;/pre>
+&lt;p>Then go ahead and follow the same steps on the other two hosts.&lt;/p>
+&lt;h3 id="clustering-the-proxmox-servers">Clustering the Proxmox servers&lt;/h3>
+&lt;p>From one of the servers, navigate to &lt;em>Data Center/Cluster&lt;/em> and chose to create a cluster. Give it a valid name, I chose &lt;em>vm-hosts&lt;/em> for now.
+Once completed, click on &lt;em>Join Information&lt;/em> and copy the join information.&lt;/p>
+&lt;p>Then, on the other servers, navigate to &lt;em>Data Center/Cluster&lt;/em> chose to join a cluster. Enter the join information and the original host&amp;rsquo;s root password and wait for the process to complete. Once completed, all 3 hosts show up and can be managed from any of the instances:&lt;/p>
+&lt;p>&lt;img src="./cluster.png" alt="image" title="Cluster Overview">&lt;/p>
+&lt;h3 id="create-a-vm">Create a VM&lt;/h3>
+&lt;p>Let&amp;rsquo;s finish up with creating a simple VM.&lt;/p>
+&lt;p>Download the latest Ubuntu release from &lt;a href="https://ubuntu.com/download" target="_blank" rel="noopener">https://ubuntu.com/download&lt;/a> (or pick any other iso you want to use). Select a host, navigate to one of its storage options and go to ISO images. Upload the image so it is ready to be used:&lt;/p>
+&lt;p>&lt;img src="./uploaded-iso.png" alt="image" title="Uploaded ISO Image">&lt;/p>
+&lt;p>Now create a VM on that host. The options should be pretty self-explanatory, have a look at the proxmox documentation for the details. I keep it simple for my first VM and use the default settings in most places. I decide to give it a 20GB hard drive, 2 cores and 4GB of memory. I&amp;rsquo;ll leave the VirtIO paravirtualized network selected for now and select to start it after it is created:&lt;/p>
+&lt;p>&lt;img src="./first-vm-spec.png" alt="image" title="VM Specification">&lt;/p>
+&lt;p>The VM is created and after a short wait, the Console can be used to go through the installation process.&lt;/p>
+&lt;h3 id="next-steps">Next Steps&amp;hellip;&lt;/h3>
+&lt;p>Plenty of ways to go from here. From using cloud init files to automate the installation process to trying out if terraform would also be an option.&lt;/p>
+&lt;p>As for me, the main reason to set this up was to prepare for some experiments running Kubernetes with &lt;a href="https://www.talos-systems.com/" target="_blank" rel="noopener">Talos&lt;/a>. Let&amp;rsquo;s see how that works out!&lt;/p></description></item><item><title>MicroK8s - Kubernetes for developers</title><link>https://www.kleinloog.ch/post/microk8s-kubernetes/</link><pubDate>Sat, 13 Feb 2021 00:00:00 +0000</pubDate><guid>https://www.kleinloog.ch/post/microk8s-kubernetes/</guid><description>&lt;p>Following my initial post on &lt;a href="https://www.kleinloog.ch/post/which-local-kubernetes">local Kubernetes options&lt;/a> and a deep dive on &lt;a href="https://www.kleinloog.ch/post/minikube-kubernetes">Minikube&lt;/a> it is time to take &lt;a href="https://microk8s.io" target="_blank" rel="noopener">MicroK8s&lt;/a> for a spin.
 I have been looking forward to this for a while, so let&amp;rsquo;s get started.&lt;/p>
 &lt;h3 id="preparation">Preparation&lt;/h3>
 &lt;p>First things first, as always, I want my MacBook up to date.
